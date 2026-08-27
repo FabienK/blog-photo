@@ -70,8 +70,8 @@ Chaque article doit contenir :
 - L'agent exécute tout le pipeline jusqu'à la preview, puis s'arrête et attend l'accord de l'auteur (voir garde-fous)
 - Si le Mac est éteint/endormi le dimanche à 14h : rattrapage automatique au prochain démarrage de la machine
 - En cas d'échec pendant la génération : retry automatique (dans la limite du nombre max de tentatives, à définir)
-- Notification de fin de preview : SMS (image + texte brut) via **Twilio** — coût marginal accepté (~quelques centimes/mois) malgré la contrainte de gratuité appliquée par ailleurs à la stack
-- Validation de la mise en ligne : réponse au SMS reçu (l'auteur répond pour autoriser la publication)
+- Notification de fin de preview : **email** (Gmail SMTP/IMAP, photo en pièce jointe) — gratuit. Twilio/SMS abandonné le 2026-08-27 (procédure d'inscription/conformité bloquante, voir etat.md)
+- Validation de la mise en ligne : réponse affirmative à l'email reçu ("oui", "je valide", "ok", "go", "d'accord" en début de message) déclenche la mise en ligne automatique — décision explicite de l'auteur le 2026-08-27
 - Nombre max de tentatives de régénération par article : 3
 - Format de la preview : image + texte brut, sans mise en habillage/mise en page (l'habillage n'intervient qu'à la publication finale)
 

@@ -5,3 +5,4 @@ site/.astro/
 .env
 automation/logs/
 automation/state/
+__pycache__/

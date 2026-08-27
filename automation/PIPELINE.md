@@ -29,7 +29,7 @@ divergence, `CLAUDE.md` fait foi.
 5. **Rangement** — Créer `publications/<date>-<slug-theme>/` avec, pour
    chaque article, `photo.png`, `prompt.txt`, `texte.md`, et un
    `preview.md` à la racine du dossier (image + texte brut, sans habillage —
-   c'est la preview envoyée par SMS, distincte de la page stylée dans `site/`).
+   c'est la preview envoyée par email, distincte de la page stylée dans `site/`).
 6. **État** — Mettre à jour `etat.md` (phase, décisions, statut par article,
    historique, journal).
 7. **Arrêt** — S'arrêter ici. Ne pas commiter au-delà d'un commit local
@@ -39,7 +39,7 @@ divergence, `CLAUDE.md` fait foi.
 8. **Marqueur** — Terminer la réponse par une ligne au format exact :
    `PREVIEW_DIR: publications/<date>-<slug-theme>` (chemin relatif à la
    racine du projet), pour que `scripts/run_publication.sh` puisse localiser
-   la preview et déclencher la notification SMS.
+   la preview et déclencher la notification email.
 
 ## Cas limites
 

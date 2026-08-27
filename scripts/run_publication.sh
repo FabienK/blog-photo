@@ -6,8 +6,9 @@
 # 2. Invoque Claude Code en mode non-interactif pour exécuter le pipeline
 #    documenté dans automation/PIPELINE.md, avec un nombre limité de
 #    tentatives en cas d'échec.
-# 3. Notifie l'auteur par SMS (via scripts/notify_author.sh) une fois la
-#    preview prête — ou en cas d'échec après épuisement des tentatives.
+# 3. Notifie l'auteur par email (scripts/notify_author.py, photo en pièce
+#    jointe) une fois la preview prête — ou en cas d'échec après épuisement
+#    des tentatives.
 #
 # N'effectue jamais de mise en ligne : le pipeline s'arrête à la preview.
 
@@ -20,19 +21,12 @@ LOG_DIR="$PROJECT_DIR/automation/logs"
 LAST_RUN_FILE="$STATE_DIR/last_run.txt"
 THEMES_FILE="$PROJECT_DIR/themes.md"
 CLAUDE_BIN="${CLAUDE_BIN:-/Users/fabien_1/.local/bin/claude}"
+PYTHON_BIN="${PYTHON_BIN:-/Library/Frameworks/Python.framework/Versions/3.14/bin/python3}"
 MAX_ATTEMPTS=3
 RETRY_DELAY_SECONDS=60
 
 mkdir -p "$STATE_DIR" "$LOG_DIR"
 RUN_LOG="$LOG_DIR/run_publication.log"
-
-ENV_FILE="$PROJECT_DIR/.env"
-if [[ -f "$ENV_FILE" ]]; then
-	set -a
-	# shellcheck disable=SC1090
-	source "$ENV_FILE"
-	set +a
-fi
 
 log() {
 	printf '%s — %s\n' "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$1" >>"$RUN_LOG"
@@ -40,7 +34,8 @@ log() {
 
 notify() {
 	# Best-effort : une notification qui échoue ne doit pas faire planter le script.
-	bash "$SCRIPTS_DIR/notify_author.sh" "$1" "${2:-}" >>"$RUN_LOG" 2>&1 || log "échec de l'envoi SMS (message : $1)"
+	# Usage : notify "<sujet>" "<corps>" ["<chemin_image>"]
+	"$PYTHON_BIN" "$SCRIPTS_DIR/notify_author.py" "$1" "$2" "${3:-}" >>"$RUN_LOG" 2>&1 || log "échec de l'envoi email (sujet : $1)"
 }
 
 # --- 1. Une publication est-elle due ? ---------------------------------
@@ -66,7 +61,7 @@ log "publication due pour la semaine du $last_sunday (dernière connue : ${last_
 
 if ! grep -qE '^- ' "$THEMES_FILE"; then
 	log "themes.md est vide, aucun thème disponible"
-	notify "Prisme : themes.md est vide, impossible de générer une publication. Ajoute des thèmes pour la suite."
+	notify "Prisme : plus de thème disponible" "themes.md est vide, impossible de générer une publication. Ajoute des thèmes pour la suite."
 	exit 0
 fi
 
@@ -106,7 +101,7 @@ done
 
 if [[ $success -ne 1 ]]; then
 	log "échec définitif après $MAX_ATTEMPTS tentatives"
-	notify "Prisme : échec de la génération automatique après $MAX_ATTEMPTS tentatives. Vérifie automation/logs/ sur le Mac mini."
+	notify "Prisme : échec de la génération" "Échec de la génération automatique après $MAX_ATTEMPTS tentatives. Vérifie automation/logs/ sur le Mac mini."
 	exit 1
 fi
 
@@ -116,7 +111,7 @@ fi
 # purement cosmétique sur la notification.
 echo "$last_sunday" >"$LAST_RUN_FILE"
 
-# --- 4. Extraction du dossier de preview + notification SMS -------------
+# --- 4. Extraction du dossier de preview + notification email -----------
 
 result_text=$(jq -r '.result // ""' "$last_out_file")
 preview_dir=$(printf '%s\n' "$result_text" | grep -o 'PREVIEW_DIR:[^[:space:]]*' | tail -1 | sed 's/^PREVIEW_DIR: *//')
@@ -125,35 +120,21 @@ if [[ -n "$preview_dir" && -d "$PROJECT_DIR/$preview_dir" ]]; then
 	theme_title=$(basename "$preview_dir" | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}-//')
 	first_image=$(find "$PROJECT_DIR/$preview_dir" -name "photo.png" | sort | head -1)
 
-	media_url=""
-	if [[ -n "${PREVIEW_PUBLIC_BASE_URL:-}" && -n "$first_image" ]]; then
-		rel_path="${first_image#"$PROJECT_DIR"/}"
-		media_url="${PREVIEW_PUBLIC_BASE_URL%/}/${rel_path}"
-	fi
+	# Plus grand UID de INBOX AVANT l'envoi de la preview : sert de repère à
+	# scripts/check_validation.py pour détecter une nouvelle réponse.
+	baseline_uid=$("$PYTHON_BIN" "$SCRIPTS_DIR/gmail_latest_uid.py" 2>>"$RUN_LOG")
+	[[ "$baseline_uid" =~ ^[0-9]+$ ]] || baseline_uid=0
 
-	# SID du dernier SMS entrant AVANT l'envoi de la preview : sert de repère à
-	# scripts/check_validation.sh pour détecter une nouvelle réponse, sans
-	# dépendre d'un filtre de date côté API (plus robuste).
-	baseline_sid=""
-	if [[ -n "${TWILIO_ACCOUNT_SID:-}" && -n "${TWILIO_AUTH_TOKEN:-}" && -n "${TWILIO_FROM_NUMBER:-}" && -n "${TWILIO_TO_NUMBER:-}" ]]; then
-		baseline_sid=$(curl --silent --show-error \
-			-u "${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}" \
-			-G "https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json" \
-			--data-urlencode "From=${TWILIO_TO_NUMBER}" \
-			--data-urlencode "To=${TWILIO_FROM_NUMBER}" \
-			--data-urlencode "PageSize=1" 2>>"$RUN_LOG" | jq -r '.messages[0].sid // ""' 2>>"$RUN_LOG")
-	fi
+	subject="Prisme : \"$theme_title\" est prête"
+	body="La publication \"$theme_title\" est prête ($preview_dir). Réponds OUI / JE VALIDE / OK / GO pour la mettre en ligne."
+	notify "$subject" "$body" "$first_image"
 
-	msg="Prisme : la publication \"$theme_title\" est prête ($preview_dir). Réponds OUI / JE VALIDE / OK / GO pour la mettre en ligne."
-	notify "$msg" "$media_url"
-
-	sent_at=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
-	jq -n --arg preview_dir "$preview_dir" --arg theme_title "$theme_title" --arg sent_at "$sent_at" --arg baseline_sid "$baseline_sid" \
-		'{preview_dir: $preview_dir, theme_title: $theme_title, sent_at: $sent_at, baseline_sid: $baseline_sid}' >"$STATE_DIR/pending_validation.json"
-	log "run terminé avec succès — preview : $preview_dir — en attente de validation SMS (voir scripts/check_validation.sh)"
+	jq -n --arg preview_dir "$preview_dir" --arg theme_title "$theme_title" --argjson baseline_uid "$baseline_uid" \
+		'{preview_dir: $preview_dir, theme_title: $theme_title, baseline_uid: $baseline_uid}' >"$STATE_DIR/pending_validation.json"
+	log "run terminé avec succès — preview : $preview_dir — en attente de validation par email (voir scripts/check_validation.py)"
 else
 	log "run terminé sans erreur mais dossier de preview non détecté dans la réponse"
-	notify "Prisme : la génération a réussi mais je n'ai pas retrouvé le dossier de preview automatiquement. Vérifie publications/ sur le Mac mini."
+	notify "Prisme : preview introuvable" "La génération a réussi mais je n'ai pas retrouvé le dossier de preview automatiquement. Vérifie publications/ sur le Mac mini."
 fi
 
 exit 0

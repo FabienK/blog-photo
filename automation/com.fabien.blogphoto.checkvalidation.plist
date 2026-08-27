@@ -5,14 +5,14 @@
 	<key>Label</key>
 	<string>com.fabien.blogphoto.checkvalidation</string>
 
-	<!-- Sonde les réponses SMS toutes les 10 minutes. Ne coûte rien tant
-	     qu'aucune publication n'attend de validation : check_validation.sh
+	<!-- Sonde les réponses email toutes les 10 minutes. Ne coûte rien tant
+	     qu'aucune publication n'attend de validation : check_validation.py
 	     sort immédiatement si automation/state/pending_validation.json
-	     n'existe pas, avant tout appel réseau. -->
+	     n'existe pas, avant toute connexion IMAP. -->
 	<key>ProgramArguments</key>
 	<array>
-		<string>/bin/bash</string>
-		<string>/Users/fabien_1/Documents/Projets Claude code/Blog photo/scripts/check_validation.sh</string>
+		<string>/Library/Frameworks/Python.framework/Versions/3.14/bin/python3</string>
+		<string>/Users/fabien_1/Documents/Projets Claude code/Blog photo/scripts/check_validation.py</string>
 	</array>
 
 	<key>StartInterval</key>

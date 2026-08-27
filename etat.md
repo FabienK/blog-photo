@@ -4,11 +4,11 @@ Fichier de suivi d'avancement, mis à jour à chaque étape significative. Voir 
 
 ## 1. Phase actuelle
 
-**Phase 3 — Automatisation** (mécanisme complet construit le 2026-08-27, jobs launchd chargés mais bloqués par une autorisation macOS)
+**Phase 3 — Automatisation** (mécanisme complet et fonctionnel, en attente du mot de passe d'application Gmail)
 
 Phases 0 à 2 terminées le 2026-08-27. **Note de méthode (2026-08-27)** : l'auteur a précisé que le contenu (photos/prompts/textes) et la mise en page ne nécessitent pas de validation intermédiaire — seule la mise en ligne finale requiert son accord explicite (conforme à CLAUDE.md). À partir de maintenant, ces étapes sont exécutées puis rapportées, sans être présentées comme des questions.
 
-Le cycle complet (génération → SMS preview → réponse affirmative → mise en ligne automatique) est construit : `scripts/run_publication.sh`, `scripts/check_validation.sh`, `scripts/publish.sh`, `.github/workflows/deploy.yml`. Les deux jobs launchd sont **chargés** (`launchctl load` fait), mais échouent actuellement (`Operation not permitted`) faute d'accès complet au disque accordé à `/bin/bash` — autorisation macOS que l'auteur doit accorder lui-même. Compte Twilio pas encore créé. **Aucune mise en ligne publique n'a eu lieu** — le site tourne uniquement en local. Détail complet et checklist restante dans [automation/AUTOMATISATION.md](./automation/AUTOMATISATION.md).
+Le cycle complet (génération → email preview → réponse affirmative → mise en ligne automatique) est construit : `scripts/run_publication.sh`, `scripts/check_validation.py`, `scripts/publish.sh`, `.github/workflows/deploy.yml`. Les deux jobs launchd sont **chargés et fonctionnels** (`LastExitStatus = 0`, autorisation macOS accordée). Twilio abandonné le 2026-08-27 (procédure d'inscription bloquante) au profit d'une notification par **email** (Gmail SMTP/IMAP) — voir CLAUDE.md, section Déclenchement automatique. Seul point restant : le mot de passe d'application Gmail à renseigner dans `.env`. **Aucune mise en ligne publique n'a eu lieu** — le site tourne uniquement en local. Détail complet dans [automation/AUTOMATISATION.md](./automation/AUTOMATISATION.md).
 
 ## 2. Décisions prises
 
@@ -22,10 +22,10 @@ Le cycle complet (génération → SMS preview → réponse affirmative → mise
 | 2026-08-27 | Dépôt distant fourni par l'auteur : [github.com/FabienK/blog-photo](https://github.com/FabienK/blog-photo.git), ajouté comme remote `origin`. **Rien poussé pour l'instant** — le push initial constitue une mise en ligne potentielle (si GitHub Pages est activé dessus) et attend donc un accord explicite. |
 | 2026-08-27 | Authentification Claude Code en tâche de fond : l'abonnement existant (`claude auth status` → connecté, plan Pro) fonctionne en mode `-p` non-interactif, y compris en environnement dépouillé proche de launchd — testé en session. Pas besoin de clé API séparée. |
 | 2026-08-27 | Mode de permission retenu pour les runs automatiques : `--permission-mode acceptEdits` (édition de fichiers + Bash sans invite de confirmation) — testé, suffisant, plus scopé qu'un `--dangerously-skip-permissions`. |
-| 2026-08-27 | Mise en ligne automatique sur réponse SMS affirmative (oui/je valide/ok/go/d'accord) : décision explicite de l'auteur. `check_validation.sh` sonde les réponses toutes les 10 min et déclenche `publish.sh` (push + déploiement GitHub Pages) sans repasser par le chat. |
+| 2026-08-27 | Mise en ligne automatique sur réponse affirmative (oui/je valide/ok/go/d'accord) : décision explicite de l'auteur. `check_validation.py` sonde les réponses toutes les 10 min et déclenche `publish.sh` (push + déploiement GitHub Pages) sans repasser par le chat. |
 | 2026-08-27 | Pas de nom de domaine personnalisé pour GitHub Pages (achat payant, hors gratuité) : URL retenue `https://fabienk.github.io/blog-photo/`. `astro.config.mjs` configuré avec `base: '/blog-photo'`. |
-| 2026-08-27 | Compte Twilio : un seul compte suffit, réutilisable pour d'autres projets de l'auteur (pas besoin d'un compte dédié par projet). |
 | 2026-08-27 | Si l'auteur ajoute lui-même un nouveau modèle/checkpoint à ShowMe5WH (`presets.json`), l'agent peut l'utiliser normalement — le garde-fou CLAUDE.md interdit à l'agent d'installer des modèles lui-même, pas d'utiliser ceux ajoutés par l'auteur. |
+| 2026-08-27 | **Twilio abandonné** : procédure d'inscription/conformité bloquante (formulaires ne progressant pas, écrans blancs, numéro acheté mais incapable d'envoyer). Remplacé par une notification **email** (Gmail SMTP/IMAP), gratuite, avec photo en pièce jointe directe (plus simple que le MMS). CLAUDE.md mis à jour en conséquence avec l'accord explicite de l'auteur. |
 
 ## 3. Publication en cours
 
@@ -51,21 +51,21 @@ Aucune publication réalisée à ce jour.
 
 ## 5. Blocages / questions ouvertes
 
-**Bloquants actuels (nécessitent l'auteur, hors périmètre agent) — détail dans `automation/AUTOMATISATION.md` :**
+**Bloquant actuel (nécessite l'auteur, hors périmètre agent) :**
 
-1. **Accès complet au disque pour `/bin/bash`** (Réglages Système → Confidentialité et sécurité → Accès complet au disque) — sans ça, les deux jobs launchd échouent à chaque déclenchement (`Operation not permitted`, confirmé en testant leur premier run).
-2. Créer un compte Twilio, acheter un numéro, renseigner `.env`.
-3. Activer "GitHub Actions" comme source de déploiement sur Settings → Pages du dépôt (actuellement en mode "legacy", incompatible avec le workflow construit) — tentative de bascule automatique refusée par mon propre classifieur de permissions (changement de réglage de compte).
-4. Décider comment gérer l'image dans le SMS (texte seul par défaut, ou joindre une photo — ce qui suppose de l'exposer sur une URL publique, donc une forme de mise en ligne distincte à valider le moment venu).
+1. Générer un mot de passe d'application Gmail ([myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)) et le renseigner dans `.env` (`GMAIL_APP_PASSWORD`). Seul point restant avant un cycle complet fonctionnel.
 
 **Résolus :**
 
 - ~~Localisation de l'outil ShowMe5WH~~ — résolu le 2026-08-27 : trouvé dans `Documents/Projets Claude code/Image generator /Image-generator/`, actuellement installé et démarré (ComfyUI :8188, backend FastAPI :8000, frontend :5173), presets renseignés. API REST disponible (`POST /api/generate`, `POST /api/batches`) pour un déclenchement programmatique.
 - ~~Écart thème "Liberté" vs contenu de `themes.md`~~ — résolu le 2026-08-27 : "Liberté" ajouté en tête de liste.
 - ~~Dépôt GitHub pour l'hébergement~~ — résolu le 2026-08-27 : fourni par l'auteur, ajouté comme remote (pas encore poussé).
-- ~~Ce que déclenche la réponse SMS~~ — résolu le 2026-08-27 : réponse affirmative = mise en ligne automatique, mécanisme construit (`check_validation.sh` / `publish.sh`).
-- ~~Feu vert pour charger le job launchd~~ — résolu le 2026-08-27 : chargé (bloqué par l'autorisation macOS ci-dessus).
+- ~~Ce que déclenche la réponse~~ — résolu le 2026-08-27 : réponse affirmative = mise en ligne automatique, mécanisme construit (`check_validation.py` / `publish.sh`).
+- ~~Feu vert pour charger le job launchd~~ — résolu le 2026-08-27 : chargé et fonctionnel.
 - ~~Nom de domaine GitHub Pages~~ — résolu le 2026-08-27 : pas de domaine personnalisé, `fabienk.github.io/blog-photo`.
+- ~~Accès complet au disque pour `/bin/bash`~~ — résolu le 2026-08-27 : accordé par l'auteur, jobs launchd vérifiés fonctionnels (`LastExitStatus = 0`).
+- ~~Source de déploiement GitHub Pages~~ — résolu le 2026-08-27 : basculé sur "GitHub Actions" par l'auteur (build_type: workflow confirmé via l'API).
+- ~~Compte Twilio / gestion de l'image dans la notification~~ — résolu le 2026-08-27 : Twilio abandonné (blocages répétés), remplacé par email — voir décisions ci-dessus.
 
 ## 6. Journal d'avancement
 
@@ -74,4 +74,6 @@ Aucune publication réalisée à ce jour.
 - **2026-08-27** — Phase 2 : choix de la stack (Astro) et de l'hébergement pressenti (GitHub Pages), construction du site "Prisme" (page d'accueil + page de publication), design éditorial sur mesure (Fraunces/Work Sans, thème clair/sombre), vérifié en local (desktop + mobile). Dépôt git initialisé et premier commit effectué (versioning).
 - **2026-08-27** — L'auteur précise que le contenu et la mise en page relèvent entièrement de l'agent (CLAUDE.md) : plus de validation intermédiaire à demander, seule la mise en ligne finale requiert son accord. Ajout du dépôt distant fourni par l'auteur comme remote `origin` (aucun push effectué).
 - **2026-08-27** — Phase 3 : écriture de `automation/PIPELINE.md` (procédure hebdomadaire stable), `scripts/run_publication.sh` (déclencheur launchd avec détection de rattrapage et 3 tentatives max) et `scripts/notify_author.sh` (SMS/MMS via l'API Twilio). Vérifications en session : authentification Claude Code par abonnement fonctionnelle en environnement dépouillé type launchd, `--permission-mode acceptEdits` suffisant pour un run sans invite de confirmation, logique anti-doublon testée.
-- **2026-08-27** — Réponses de l'auteur : mise en ligne automatique sur réponse SMS affirmative (construit : `check_validation.sh` + `publish.sh` + `.github/workflows/deploy.yml`), pas de domaine personnalisé (`fabienk.github.io/blog-photo`, `astro.config.mjs` mis à jour avec `base`, liens internes du site corrigés en conséquence, build vérifié), un seul compte Twilio suffit, nouveaux modèles ShowMe5WH ajoutés par l'auteur utilisables par l'agent. Fusion de l'historique git avec le README initial du dépôt GitHub (remote). Les deux jobs launchd ont été chargés (`launchctl load`) mais échouent au démarrage (`Operation not permitted`, LastExitStatus 32256) : bloqués par l'autorisation "Accès complet au disque" macOS à accorder à `/bin/bash`, que je ne peux pas accorder moi-même. Tentative d'activer "GitHub Actions" comme source GitHub Pages via l'API refusée par mon classifieur de permissions (changement de réglage de compte) — à faire par l'auteur. Détail complet et checklist restante dans `automation/AUTOMATISATION.md`.
+- **2026-08-27** — Réponses de l'auteur : mise en ligne automatique sur réponse affirmative (construit : `check_validation.sh` + `publish.sh` + `.github/workflows/deploy.yml`), pas de domaine personnalisé (`fabienk.github.io/blog-photo`, `astro.config.mjs` mis à jour avec `base`, liens internes du site corrigés en conséquence, build vérifié), nouveaux modèles ShowMe5WH ajoutés par l'auteur utilisables par l'agent. Fusion de l'historique git avec le README initial du dépôt GitHub (remote). Jobs launchd chargés mais initialement bloqués par l'autorisation "Accès complet au disque" macOS.
+- **2026-08-27** — L'auteur accorde l'accès complet au disque à `/bin/bash` : les deux jobs launchd sont vérifiés fonctionnels (`LastExitStatus = 0`). L'auteur bascule lui-même la source GitHub Pages sur "GitHub Actions" (ma tentative via l'API avait été refusée par mon propre classifieur de permissions) — confirmé (`build_type: workflow`).
+- **2026-08-27** — Tentative de création d'un compte Twilio : blocages répétés (profil de conformité qui ne progresse pas, écran de vérification vide, numéro français acheté mais non activé pour l'envoi — erreur 21659). L'auteur abandonne Twilio et opte pour une notification par email. Réécriture complète du mécanisme de notification/validation : `scripts/notify_author.py` (envoi Gmail SMTP, photo en pièce jointe), `scripts/check_validation.py` + `scripts/gmail_latest_uid.py` (sondage IMAP), `scripts/_email_lib.py` (utilitaires partagés). `run_publication.sh` et `publish.sh` adaptés en conséquence, anciens scripts SMS supprimés. `CLAUDE.md` mis à jour (section Déclenchement automatique) avec l'accord explicite de l'auteur. Job `checkvalidation` rechargé avec le nouveau script Python, vérifié fonctionnel (`LastExitStatus = 0`). Reste : mot de passe d'application Gmail à générer par l'auteur.
