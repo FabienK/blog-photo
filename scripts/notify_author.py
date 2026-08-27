@@ -41,6 +41,10 @@ def main() -> int:
     msg["Subject"] = subject
     msg["From"] = f"Prisme <{gmail_address}>"
     msg["To"] = notify_to
+    # Marqueur permettant à check_validation.py de distinguer ses propres
+    # notifications des vraies réponses de l'auteur, indispensable quand
+    # l'envoi et la réception se font sur la même boîte (voir _email_lib.py).
+    msg["X-Prisme-Notification"] = "yes"
     msg.set_content(body)
 
     if image_path is not None:

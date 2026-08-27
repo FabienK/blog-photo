@@ -62,14 +62,24 @@ def main() -> int:
         imap.select("INBOX")
         _status, data = imap.uid("search", None, "ALL")
         uids = [int(u) for u in data[0].split()] if data and data[0] else []
-        new_uids = [u for u in uids if u > baseline_uid]
-        if not new_uids:
-            imap.logout()
-            return 0
-        latest_uid = max(new_uids)
-        _status, msg_data = imap.uid("fetch", str(latest_uid), "(RFC822)")
-        raw = msg_data[0][1]
+        # Du plus récent au plus ancien : on saute les messages envoyés par
+        # notify_author.py lui-même (marqués X-Prisme-Notification) — sur ce
+        # projet, envoi et réception se font sur la même boîte, donc une
+        # notification (y compris un email d'échec envoyé entre-temps) ne
+        # doit jamais être prise pour la réponse de l'auteur.
+        new_uids = sorted((u for u in uids if u > baseline_uid), reverse=True)
+        raw = None
+        for uid in new_uids:
+            _status, header_data = imap.uid("fetch", str(uid), "(BODY.PEEK[HEADER.FIELDS (X-Prisme-Notification)])")
+            header_bytes = header_data[0][1] if header_data and header_data[0] else b""
+            if b"X-Prisme-Notification" in header_bytes:
+                continue
+            _status, msg_data = imap.uid("fetch", str(uid), "(RFC822)")
+            raw = msg_data[0][1]
+            break
         imap.logout()
+        if raw is None:
+            return 0  # rien de neuf hormis nos propres notifications
     except Exception as exc:  # noqa: BLE001
         log(f"échec de la connexion IMAP : {exc}")
         return 1
