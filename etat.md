@@ -68,6 +68,7 @@ Aucune publication réalisée à ce jour.
 - ~~Compte Twilio / gestion de l'image dans la notification~~ — résolu le 2026-08-27 : Twilio abandonné (blocages répétés), remplacé par email — voir décisions ci-dessus.
 
 ## 6. Journal d'avancement
+- **2026-08-28** — Mise en ligne automatique de la publication "Liberté" suite à validation par email : https://fabienk.github.io/blog-photo/liberte/
 
 - **2026-08-27** — Lecture de CLAUDE.md, création de ce fichier `etat.md`, correction de `themes.md` (ajout de "Liberté" en tête). Localisation et vérification de l'outil ShowMe5WH (installé et actif sur le Mac mini). Feuille de route en 5 phases définie et validée avec l'auteur.
 - **2026-08-27** — Phase 1 : recherche d'idées (symboles de la liberté), rédaction de 3 prompts originaux, génération des 3 photos via l'API REST de ShowMe5WH (modèle Flux.1 Schnell, aucune régénération nécessaire), rédaction des 3 textes, création de la preview brute. Publication rangée dans `publications/2026-08-27-liberte/`. Contenu validé par l'auteur le jour même, sans ajustement.
