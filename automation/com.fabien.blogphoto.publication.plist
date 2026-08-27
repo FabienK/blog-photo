@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.fabien.blogphoto.publication</string>
+
+	<!-- Déclenche run_publication.sh, qui vérifie lui-même si une publication
+	     est due (dimanche courant ou dimanche manqué) avant de faire quoi que
+	     ce soit — voir la logique de rattrapage dans le script. -->
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>/Users/fabien_1/Documents/Projets Claude code/Blog photo/scripts/run_publication.sh</string>
+	</array>
+
+	<!-- Dimanche 14h00 (Weekday 0 = dimanche pour launchd) -->
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Weekday</key>
+		<integer>0</integer>
+		<key>Hour</key>
+		<integer>14</integer>
+		<key>Minute</key>
+		<integer>0</integer>
+	</dict>
+
+	<!-- RunAtLoad : si le Mac était éteint/endormi dimanche à 14h, ce job
+	     s'exécute au prochain démarrage/connexion — combiné à la vérification
+	     de date dans le script, cela réalise le rattrapage automatique sans
+	     déclencher de doublon si la publication a déjà eu lieu. -->
+	<key>RunAtLoad</key>
+	<true/>
+
+	<key>StandardOutPath</key>
+	<string>/Users/fabien_1/Documents/Projets Claude code/Blog photo/automation/logs/launchd.out.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/fabien_1/Documents/Projets Claude code/Blog photo/automation/logs/launchd.err.log</string>
+
+	<!-- launchd ne charge pas le profil shell interactif : PATH doit être
+	     explicite (voir AUTOMATISATION.md pour la valeur exacte à utiliser
+	     sur cette machine, dépendante de l'emplacement d'installation de
+	     node/npm/claude). -->
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/Users/fabien_1/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+	</dict>
+</dict>
+</plist>
