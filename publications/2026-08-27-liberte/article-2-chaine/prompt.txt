@@ -1,0 +1,11 @@
+Prompt original (français, saisi dans ShowMe5WH — mode "prompt libre") :
+
+Photographie noir et blanc argentique : gros plan sur le dernier maillon d'une chaîne métallique rouillée, brisé net, posé sur un sol de terre aride craquelée, sous une lumière dure de fin d'après-midi qui projette une ombre longue. À l'horizon flou, un paysage désertique s'ouvre à perte de vue. Grain de pellicule visible, fort contraste, netteté sur le maillon brisé au premier plan.
+
+Script traduit envoyé au modèle (traduction locale via Argos Translate, automatique dans ShowMe5WH) :
+
+Black and white silver: close-up on the last link of a rusty metal chain, broken clean, placed on a cracked arid soil, under a hard late afternoon light that casts a long shadow. On the blurry horizon, a desert landscape opens as far as possible. Grain of film visible, strong contrast, sharp on the broken link in the foreground.
+
+Style détecté : Noir et blanc argentique
+Modèle de génération : Flux.1 Schnell (mflux, 4-bit) — via ShowMe5WH / ComfyUI, exécuté en local sur le Mac mini
+Seed : 2610602907

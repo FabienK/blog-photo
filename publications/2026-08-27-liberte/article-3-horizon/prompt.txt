@@ -1,0 +1,11 @@
+Prompt original (français, saisi dans ShowMe5WH — mode "prompt libre") :
+
+Photographie photoréaliste : une silhouette humaine seule, bras grands ouverts, debout au sommet d'une falaise rocheuse, face à un vaste paysage de montagnes et de nuages à perte de vue, en contre-jour au lever du soleil. Plan large, ciel embrasé de couleurs chaudes, sensation d'immensité et d'espace infini, personnage petit dans le cadre par rapport au paysage.
+
+Script traduit envoyé au modèle (traduction locale via Argos Translate, automatique dans ShowMe5WH) :
+
+Photorealistic photography: a human silhouette alone, arms wide open, standing at the top of a rocky cliff, facing a vast landscape of mountains and clouds as far as you can see, in the backlight at sunrise. Wide plan, sky burning with warm colors, feeling of immensity and infinite space, small character in the frame in relation to the landscape.
+
+Style détecté : Photoréaliste
+Modèle de génération : Flux.1 Schnell (mflux, 4-bit) — via ShowMe5WH / ComfyUI, exécuté en local sur le Mac mini
+Seed : 1661930746

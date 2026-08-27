@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import coverImage from '../assets/publications/liberte/horizon.png';
+---
+
+<Base
+	title="Prisme — un thème, un dimanche"
+	description="Chaque dimanche, un thème imposé devient une publication de photographies générées et commentées."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<span class="wordmark">Prisme</span>
+			<span class="eyebrow">Un thème. Un dimanche. Des photographies.</span>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="wrap hero__inner">
+				<p class="eyebrow">Numéro 01 — 27 août 2026</p>
+				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
+				<p class="hero__lede">
+					Un thème imposé, une poignée de photographies générées, et un texte pour
+					chacune — ce carnet explore, dimanche après dimanche, ce qu'un seul mot
+					peut donner à voir.
+				</p>
+			</div>
+		</section>
+
+		<hr class="rule wrap" />
+
+		<section class="issues">
+			<div class="wrap">
+				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href="/liberte/">
+					<div class="issue-card__media">
+						<Image
+							src={coverImage}
+							alt="Silhouette aux bras ouverts au sommet d'une falaise, face à une mer de nuages"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">27 août 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Liberté</h2>
+						<p class="issue-card__excerpt">
+							Une cage restée ouverte, une chaîne qui cède, un horizon sans bord —
+							trois façons de regarder ce qu'être libre veut dire.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en local).
+				Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	.site-header {
+		padding: 1.75rem 0;
+	}
+	.site-header__inner {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+	}
+
+	.hero {
+		padding: 2.5rem 0 3.5rem;
+	}
+	.hero__inner {
+		max-width: 44rem;
+	}
+	.hero__title {
+		font-size: clamp(2.25rem, 6vw + 1rem, 4.25rem);
+		letter-spacing: -0.01em;
+		margin: 0.6rem 0 1.5rem;
+	}
+	.hero__lede {
+		font-size: 1.1rem;
+		color: var(--ink-soft);
+		max-width: 38rem;
+		margin: 0;
+	}
+
+	.issues {
+		padding: 3.5rem 0 5rem;
+	}
+	.issues__label {
+		margin-bottom: 1.5rem;
+	}
+
+	.issue-card {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		text-decoration: none;
+		color: inherit;
+		border-radius: 2px;
+	}
+	.issue-card__media {
+		overflow: hidden;
+		background: var(--surface-raised);
+	}
+	.issue-card__media :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	.issue-card:hover .issue-card__media :global(img) {
+		transform: scale(1.02);
+	}
+	.issue-card__title {
+		font-size: clamp(2rem, 4vw + 1rem, 3rem);
+		margin: 0.4rem 0 0.9rem;
+	}
+	.issue-card__excerpt {
+		color: var(--ink-soft);
+		max-width: 36rem;
+		font-size: 1.05rem;
+	}
+	.issue-card__cta {
+		display: inline-block;
+		margin-top: 0.5rem;
+		font-weight: 600;
+		color: var(--accent-strong);
+		position: relative;
+	}
+	.issue-card__cta::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -3px;
+		height: 1px;
+		background: var(--accent-strong);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.35s ease;
+	}
+	.issue-card:hover .issue-card__cta::after {
+		transform: scaleX(1);
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+	}
+	.site-footer p {
+		margin: 0;
+		font-size: 0.875rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 56rem) {
+		.issue-card {
+			grid-template-columns: 1.1fr 1fr;
+			align-items: center;
+			gap: 3rem;
+		}
+	}
+</style>

@@ -1,0 +1,276 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import envol from '../assets/publications/liberte/envol.png';
+import chaine from '../assets/publications/liberte/chaine.png';
+import horizon from '../assets/publications/liberte/horizon.png';
+
+const articles = [
+	{
+		number: '01',
+		title: "L'instant avant l'envol",
+		image: envol,
+		alt: 'Une colombe blanche aux ailes déployées à l\'intérieur d\'une cage en fer forgé restée ouverte, à contre-jour sur un ciel d\'aube doré',
+		paragraphs: [
+			"La porte de la cage est ouverte. Rien ne retient plus la colombe — et pourtant, elle est encore là, ailes déployées, suspendue entre deux mondes. C'est peut-être l'image la plus juste de la liberté : non pas l'évasion elle-même, mais la seconde qui la précède, celle où l'on comprend qu'on peut partir.",
+			"La liberté commence rarement par un mouvement spectaculaire. Elle commence par une porte qu'on n'avait pas remarquée ouverte, une contrainte qui n'existe plus que dans l'habitude qu'on en a gardée. La cage, ici, ne retient plus rien — elle ne fait plus que porter le souvenir d'un enfermement.",
+			"Le ciel doré à l'arrière-plan n'est pas encore atteint. Il est promis. Et c'est peut-être ça, être libre : avoir un horizon vers lequel s'élancer, et le savoir accessible.",
+		],
+		prompt:
+			"Photographie photoréaliste : une colombe blanche s'échappant d'une cage en fer forgé restée grande ouverte, posée sur le rebord d'une fenêtre en pierre ancienne, à l'aube. Elle prend son envol vers un ciel dégagé baigné de lumière dorée. Lumière douce et chaude, faible profondeur de champ, cage nette au premier plan légèrement floue, ciel net et lumineux en arrière-plan, composition selon la règle des tiers.",
+		invert: false,
+	},
+	{
+		number: '02',
+		title: 'Le dernier maillon',
+		image: chaine,
+		alt: "Gros plan en noir et blanc sur un maillon de chaîne métallique brisé, posé sur une terre aride craquelée, avec un désert flou à l'horizon",
+		paragraphs: [
+			"Il ne reste qu'un anneau, rompu, posé sur une terre craquelée par la sécheresse. Le reste de la chaîne s'étire encore vers l'arrière-plan, floue, presque oubliée — elle a cessé d'avoir de l'importance à l'instant où ce maillon a cédé.",
+			"La liberté n'efface pas ce qui a précédé. Elle laisse des traces : un sol aride, une lumière dure, une ombre longue qui rappelle combien le chemin a été âpre. Mais elle change tout, à partir d'un seul point de rupture. Il suffit d'un maillon.",
+			"Le noir et blanc, le grain, le silence de cette image parlent d'un affranchissement sans emphase : pas de poing levé, pas de foule — juste la preuve matérielle, posée au sol, qu'une entrave a fini par céder.",
+		],
+		prompt:
+			"Photographie noir et blanc argentique : gros plan sur le dernier maillon d'une chaîne métallique rouillée, brisé net, posé sur un sol de terre aride craquelée, sous une lumière dure de fin d'après-midi qui projette une ombre longue. À l'horizon flou, un paysage désertique s'ouvre à perte de vue. Grain de pellicule visible, fort contraste, netteté sur le maillon brisé au premier plan.",
+		invert: true,
+	},
+	{
+		number: '03',
+		title: 'Aucune limite',
+		image: horizon,
+		alt: 'Silhouette humaine à contre-jour, bras grands ouverts, au sommet d\'une falaise face à une mer de nuages et un lever de soleil',
+		paragraphs: [
+			"Une silhouette, minuscule face à l'immensité, bras ouverts au sommet d'un monde de nuages et de montagnes. Rien ne l'entoure qu'un horizon sans bord — pas de mur, pas de plafond, pas de ligne d'arrivée.",
+			"C'est la forme la plus radicale de la liberté : celle qui n'a plus besoin d'être conquise contre quelque chose, parce qu'il n'y a plus d'obstacle en vue. Le personnage n'a pas fui une cage, il n'a pas rompu de chaîne — il est simplement monté assez haut pour découvrir que l'espace était plus vaste qu'il ne l'imaginait.",
+			"Le contre-jour efface les détails du visage : ce pourrait être n'importe qui. C'est précisément le sens de cette image — la liberté d'être à cet endroit, dans cette posture, appartient à quiconque a le courage de grimper jusque-là.",
+		],
+		prompt:
+			"Photographie photoréaliste : une silhouette humaine seule, bras grands ouverts, debout au sommet d'une falaise rocheuse, face à un vaste paysage de montagnes et de nuages à perte de vue, en contre-jour au lever du soleil. Plan large, ciel embrasé de couleurs chaudes, sensation d'immensité et d'espace infini, personnage petit dans le cadre par rapport au paysage.",
+		invert: false,
+	},
+];
+---
+
+<Base
+	title="Liberté — Prisme"
+	description="Trois photographies générées pour explorer le thème de la liberté : une cage ouverte, une chaîne brisée, un horizon sans limite."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href="/">Prisme</a>
+			<a class="back-link" href="/">← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="eyebrow">Numéro 01 — 27 août 2026 · 3 photographies</p>
+				<h1 class="pub-title">Liberté</h1>
+				<p class="pub-intro">
+					Liberté n'est pas un mot qu'on illustre d'un seul geste. Trois échelles,
+					trois photographies&nbsp;: l'instant qui précède l'envol, la trace d'une
+					rupture, et l'espace sans limite qui reste une fois tout obstacle
+					disparu.
+				</p>
+			</div>
+		</section>
+
+		{
+			articles.map((article, i) => (
+				<article class={`article ${article.invert ? 'article--inverted' : ''}`}>
+					<div class="wrap article__inner">
+						<p class="eyebrow article__eyebrow">
+							Article {article.number} / 03
+						</p>
+						<h2 class="article__title">{article.title}</h2>
+
+						<figure class="article__figure">
+							<Image
+								src={article.image}
+								alt={article.alt}
+								widths={[480, 900, 1400]}
+								sizes="(min-width: 60rem) 50rem, 100vw"
+								loading={i === 0 ? 'eager' : 'lazy'}
+							/>
+							<figcaption>
+								Photo générée avec <strong>ShowMe5WH</strong> — modèle{' '}
+								<strong>Flux.1 Schnell</strong> (ComfyUI, en local)
+								<details>
+									<summary>Voir le prompt de génération</summary>
+									<p>{article.prompt}</p>
+								</details>
+							</figcaption>
+						</figure>
+
+						<div class="article__body">
+							{article.paragraphs.map((p) => (
+								<p>{p}</p>
+							))}
+						</div>
+					</div>
+				</article>
+			))
+		}
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href="/">← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	.site-header {
+		padding: 1.75rem 0;
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.02em;
+	}
+	.back-link {
+		font-size: 0.875rem;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent-strong);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 1.5rem 0 3rem;
+	}
+	.pub-header__inner {
+		max-width: 46rem;
+	}
+	.pub-title {
+		font-size: clamp(3rem, 10vw + 1rem, 6.5rem);
+		letter-spacing: -0.02em;
+		margin: 0.5rem 0 1.5rem;
+	}
+	.pub-intro {
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		max-width: 40rem;
+		margin: 0;
+	}
+
+	.article {
+		padding: 4rem 0;
+		border-top: 1px solid var(--rule);
+	}
+	.article__inner {
+		max-width: 46rem;
+	}
+	.article__eyebrow {
+		margin-bottom: 0.75rem;
+	}
+	.article__title {
+		font-size: clamp(1.9rem, 3.5vw + 1rem, 2.75rem);
+		margin-bottom: 2rem;
+	}
+
+	.article__figure {
+		margin: 0 0 2.25rem;
+	}
+	.article__figure :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		background: var(--surface-raised);
+	}
+	.article__figure figcaption {
+		margin-top: 0.75rem;
+		font-size: 0.8rem;
+		color: var(--ink-soft);
+		letter-spacing: 0.01em;
+	}
+	.article__figure figcaption strong {
+		color: var(--ink);
+		font-weight: 600;
+	}
+	.article__figure details {
+		margin-top: 0.6rem;
+	}
+	.article__figure summary {
+		cursor: pointer;
+		color: var(--accent-strong);
+		font-weight: 600;
+	}
+	.article__figure details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-body);
+		font-style: italic;
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.article__body {
+		font-size: 1.1rem;
+		max-width: var(--measure);
+	}
+	.article__body p:first-of-type::first-letter {
+		font-family: var(--font-display);
+		font-size: 3.4rem;
+		font-weight: 500;
+		float: left;
+		line-height: 0.82;
+		margin: 0.05em 0.08em 0 0;
+		color: var(--accent-strong);
+	}
+
+	.article--inverted {
+		background: #15130f;
+		color: #ece6da;
+	}
+	.article--inverted .article__body,
+	.article--inverted .article__figure figcaption {
+		color: #b9b0a0;
+	}
+	.article--inverted .article__figure figcaption strong {
+		color: #ece6da;
+	}
+	.article--inverted .eyebrow {
+		color: #d7ab4d;
+	}
+	.article--inverted .article__body p:first-of-type::first-letter {
+		color: #d7ab4d;
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-size: 0.875rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 56rem) {
+		.article__inner {
+			max-width: 50rem;
+		}
+	}
+</style>

@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+	--paper: #f6f3ee;
+	--ink: #1a1714;
+	--ink-soft: #4a443c;
+	--rule: rgba(26, 23, 20, 0.14);
+	--accent: #a8791f;
+	--accent-strong: #8a6318;
+	--surface-raised: #efe9df;
+
+	--font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', serif;
+	--font-body: 'Work Sans', -apple-system, sans-serif;
+
+	--container: min(100% - 2.5rem, 68rem);
+	--measure: 62ch;
+
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--paper: #16140f;
+		--ink: #ece6da;
+		--ink-soft: #b9b0a0;
+		--rule: rgba(236, 230, 218, 0.16);
+		--accent: #d7ab4d;
+		--accent-strong: #e8c069;
+		--surface-raised: #201c15;
+		color-scheme: dark;
+	}
+}
+
+:root[data-theme='dark'] {
+	--paper: #16140f;
+	--ink: #ece6da;
+	--ink-soft: #b9b0a0;
+	--rule: rgba(236, 230, 218, 0.16);
+	--accent: #d7ab4d;
+	--accent-strong: #e8c069;
+	--surface-raised: #201c15;
+	color-scheme: dark;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+body {
+	margin: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: 1rem;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-display);
+	font-weight: 500;
+	line-height: 1.05;
+	margin: 0;
+}
+
+p {
+	margin: 0 0 1.25em;
+}
+
+a {
+	color: inherit;
+}
+
+.wrap {
+	width: var(--container);
+	margin-inline: auto;
+}
+
+.eyebrow {
+	font-family: var(--font-body);
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--accent-strong);
+}
+
+.rule {
+	border: none;
+	border-top: 1px solid var(--rule);
+	margin: 0;
+}

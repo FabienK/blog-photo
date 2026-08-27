@@ -1,0 +1,11 @@
+Prompt original (français, saisi dans ShowMe5WH — mode "prompt libre") :
+
+Photographie photoréaliste : une colombe blanche s'échappant d'une cage en fer forgé restée grande ouverte, posée sur le rebord d'une fenêtre en pierre ancienne, à l'aube. Elle prend son envol vers un ciel dégagé baigné de lumière dorée. Lumière douce et chaude, faible profondeur de champ, cage nette au premier plan légèrement floue, ciel net et lumineux en arrière-plan, composition selon la règle des tiers.
+
+Script traduit envoyé au modèle (traduction locale via Argos Translate, automatique dans ShowMe5WH) :
+
+Photorealistic photograph: a white dove escaping from a wrought iron cage that remained wide open, placed on the edge of an ancient stone window at dawn. It flies to a clear sky bathed in golden light. Soft and warm light, low depth of field, sharp cage in the foreground slightly blurred, clear and bright sky in the background, composition according to the rule of thirds.
+
+Style détecté : Photoréaliste
+Modèle de génération : Flux.1 Schnell (mflux, 4-bit) — via ShowMe5WH / ComfyUI, exécuté en local sur le Mac mini
+Seed : 393129635
