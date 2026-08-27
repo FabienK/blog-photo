@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.fabien.blogphoto.checkvalidation</string>
+
+	<!-- Sonde les réponses SMS toutes les 10 minutes. Ne coûte rien tant
+	     qu'aucune publication n'attend de validation : check_validation.sh
+	     sort immédiatement si automation/state/pending_validation.json
+	     n'existe pas, avant tout appel réseau. -->
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>/Users/fabien_1/Documents/Projets Claude code/Blog photo/scripts/check_validation.sh</string>
+	</array>
+
+	<key>StartInterval</key>
+	<integer>600</integer>
+
+	<key>RunAtLoad</key>
+	<true/>
+
+	<key>StandardOutPath</key>
+	<string>/Users/fabien_1/Documents/Projets Claude code/Blog photo/automation/logs/launchd.checkvalidation.out.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/fabien_1/Documents/Projets Claude code/Blog photo/automation/logs/launchd.checkvalidation.err.log</string>
+
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/Users/fabien_1/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+	</dict>
+</dict>
+</plist>

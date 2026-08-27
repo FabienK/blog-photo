@@ -26,6 +26,14 @@ RETRY_DELAY_SECONDS=60
 mkdir -p "$STATE_DIR" "$LOG_DIR"
 RUN_LOG="$LOG_DIR/run_publication.log"
 
+ENV_FILE="$PROJECT_DIR/.env"
+if [[ -f "$ENV_FILE" ]]; then
+	set -a
+	# shellcheck disable=SC1090
+	source "$ENV_FILE"
+	set +a
+fi
+
 log() {
 	printf '%s — %s\n' "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$1" >>"$RUN_LOG"
 }
@@ -123,9 +131,26 @@ if [[ -n "$preview_dir" && -d "$PROJECT_DIR/$preview_dir" ]]; then
 		media_url="${PREVIEW_PUBLIC_BASE_URL%/}/${rel_path}"
 	fi
 
-	msg="Prisme : la publication \"$theme_title\" est prête ($preview_dir). Réponds à ce SMS pour valider la mise en ligne."
+	# SID du dernier SMS entrant AVANT l'envoi de la preview : sert de repère à
+	# scripts/check_validation.sh pour détecter une nouvelle réponse, sans
+	# dépendre d'un filtre de date côté API (plus robuste).
+	baseline_sid=""
+	if [[ -n "${TWILIO_ACCOUNT_SID:-}" && -n "${TWILIO_AUTH_TOKEN:-}" && -n "${TWILIO_FROM_NUMBER:-}" && -n "${TWILIO_TO_NUMBER:-}" ]]; then
+		baseline_sid=$(curl --silent --show-error \
+			-u "${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}" \
+			-G "https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json" \
+			--data-urlencode "From=${TWILIO_TO_NUMBER}" \
+			--data-urlencode "To=${TWILIO_FROM_NUMBER}" \
+			--data-urlencode "PageSize=1" 2>>"$RUN_LOG" | jq -r '.messages[0].sid // ""' 2>>"$RUN_LOG")
+	fi
+
+	msg="Prisme : la publication \"$theme_title\" est prête ($preview_dir). Réponds OUI / JE VALIDE / OK / GO pour la mettre en ligne."
 	notify "$msg" "$media_url"
-	log "run terminé avec succès — preview : $preview_dir"
+
+	sent_at=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
+	jq -n --arg preview_dir "$preview_dir" --arg theme_title "$theme_title" --arg sent_at "$sent_at" --arg baseline_sid "$baseline_sid" \
+		'{preview_dir: $preview_dir, theme_title: $theme_title, sent_at: $sent_at, baseline_sid: $baseline_sid}' >"$STATE_DIR/pending_validation.json"
+	log "run terminé avec succès — preview : $preview_dir — en attente de validation SMS (voir scripts/check_validation.sh)"
 else
 	log "run terminé sans erreur mais dossier de preview non détecté dans la réponse"
 	notify "Prisme : la génération a réussi mais je n'ai pas retrouvé le dossier de preview automatiquement. Vérifie publications/ sur le Mac mini."

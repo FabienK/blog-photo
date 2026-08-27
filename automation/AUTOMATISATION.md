@@ -1,28 +1,57 @@
 # Automatisation — comment ça marche, et ce qu'il reste à faire
 
+## ⚠️ Bloquant actuel : autorisation macOS requise
+
+Les deux jobs launchd sont chargés (`launchctl load`) mais **échouent
+actuellement à chaque déclenchement** avec `Operation not permitted` —
+macOS bloque l'accès de `/bin/bash` au dossier `~/Documents` (protection
+TCC des dossiers utilisateur) quand le script est lancé par launchd (hors
+session Terminal). C'est une autorisation système que je ne peux pas
+accorder moi-même (je ne modifie jamais les réglages de sécurité macOS).
+
+**À faire une seule fois, par toi :**
+1. Réglages Système → Confidentialité et sécurité → Accès complet au disque
+2. Cliquer "+", puis Cmd+Maj+G et taper `/bin/bash`, valider
+3. Cocher la case en face de `bash`
+
+Une fois fait, les deux jobs fonctionneront au prochain déclenchement (pas
+besoin de recharger). Pour vérifier après coup :
+```bash
+launchctl list com.fabien.blogphoto.publication
+# LastExitStatus doit passer à 0 (au lieu de 32256 actuellement)
+```
+
 ## Ce qui a été construit
 
 ```
-scripts/run_publication.sh   → point d'entrée (déclenché par launchd)
+scripts/run_publication.sh   → génère la publication (déclenché dimanche 14h)
 scripts/notify_author.sh     → envoi SMS/MMS via l'API Twilio (curl, sans dépendance)
+scripts/check_validation.sh  → sonde les réponses SMS toutes les 10 min
+scripts/publish.sh           → push + mise en ligne réelle, appelé par check_validation.sh
 automation/PIPELINE.md       → procédure suivie par Claude à chaque run automatique
-automation/com.fabien.blogphoto.publication.plist → définition du job launchd
-automation/state/last_run.txt → mémorise la dernière semaine déjà publiée (anti-doublon)
+automation/*.plist           → 2 jobs launchd (génération hebdo + sondage validation)
+automation/state/            → last_run.txt (anti-doublon), pending_validation.json (en attente de réponse)
 automation/logs/              → logs de chaque run + sorties JSON de Claude Code
+.github/workflows/deploy.yml  → build Astro + déploiement GitHub Pages, déclenché par le push de publish.sh
 .env.example                  → gabarit des identifiants Twilio (jamais commité)
 ```
 
-`run_publication.sh` :
-1. Vérifie si une publication est due (dimanche courant, ou dimanche manqué
-   non traité — rattrapage automatique si le Mac était éteint/endormi).
-2. Si `themes.md` est vide, notifie l'auteur et s'arrête.
-3. Invoque `claude -p` en tâche de fond (authentification par abonnement,
-   déjà testée en environnement minimal type launchd — voir plus bas),
-   jusqu'à 3 tentatives en cas d'échec.
-4. Une fois la preview prête, envoie un SMS via Twilio et marque la semaine
-   comme traitée.
-5. Ne publie jamais rien en ligne — le pipeline s'arrête à la preview,
-   conformément au garde-fou de `CLAUDE.md`.
+**Cycle complet, du dimanche à la mise en ligne :**
+1. `run_publication.sh` (dimanche 14h, avec rattrapage si le Mac était
+   éteint/endormi) invoque Claude Code en headless pour générer la
+   publication (jusqu'à 3 tentatives), puis envoie la preview par SMS et
+   écrit `pending_validation.json`.
+2. `check_validation.sh` (toutes les 10 min, no-op instantané tant que rien
+   n'est en attente) sonde les nouveaux SMS entrants. Une réponse
+   commençant par **oui / je valide / valide / ok / go / d'accord**
+   (insensible à la casse) déclenche `publish.sh`.
+3. `publish.sh` pousse la branche `main` vers GitHub → le workflow
+   `.github/workflows/deploy.yml` construit le site et le déploie sur
+   GitHub Pages → SMS de confirmation avec l'URL en ligne.
+
+Toute autre réponse (ou l'absence de réponse) ne déclenche rien : la
+mise en ligne n'a lieu que sur confirmation explicite, conformément à
+`CLAUDE.md`.
 
 **Vérifications déjà faites dans cette session** (sur ce Mac mini) :
 - `claude -p` fonctionne avec l'authentification par abonnement actuelle,
@@ -36,63 +65,69 @@ automation/logs/              → logs de chaque run + sorties JSON de Claude Co
 - La logique de rattrapage/anti-doublon (`last_run.txt`) a été testée : le
   script détecte correctement qu'une semaine est déjà traitée et ne relance
   rien.
+- Les deux jobs launchd sont chargés — mais bloqués par l'autorisation
+  macOS ci-dessus, donc le cycle complet n'a pas encore tourné réellement.
 
-**Non testé** : un run complet de bout en bout déclenché par le script (par
-souci de ne pas consommer un thème de `themes.md` pour un test), et le
-déclenchement réel par launchd (nécessite de charger le job — voir ci-dessous).
+**Non testé** : un run complet de bout en bout (génération → SMS → réponse
+→ mise en ligne), bloqué par l'autorisation macOS et par l'absence de
+compte Twilio.
 
 ## Ce qu'il reste à faire (ne peut pas être fait par l'agent)
 
-1. **Créer un compte Twilio** (console.twilio.com), acheter un numéro
+1. **Accorder l'accès disque complet à `/bin/bash`** — voir encadré en haut
+   de ce fichier. Bloquant pour tout le reste.
+2. **Créer un compte Twilio** (console.twilio.com), acheter un numéro
    d'envoi, récupérer `Account SID` et `Auth Token`. Coût marginal accepté
-   par `CLAUDE.md` (quelques centimes/mois) malgré la contrainte de
-   gratuité appliquée au reste de la stack — mais reste une démarche avec
-   création de compte et moyen de paiement, donc à faire par toi.
-2. Copier `.env.example` en `.env` à la racine du projet et renseigner les
-   4 variables Twilio (`TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`,
-   `TWILIO_FROM_NUMBER`, `TWILIO_TO_NUMBER`). Ce fichier est ignoré par git
-   (`.gitignore`), il ne sera jamais commité ni vu par l'agent.
-3. **Décider comment gérer la photo dans le SMS.** Twilio exige une URL
-   publique pour joindre une image (MMS) — impossible de joindre un fichier
-   local directement. Deux options, à trancher par toi :
-   - **SMS texte seul** (par défaut si `PREVIEW_PUBLIC_BASE_URL` reste vide
-     dans `.env`) : tu reçois juste le nom de la publication et son chemin,
-     à consulter directement sur le Mac mini.
-   - **SMS + image** : suppose d'exposer temporairement le dossier
-     `publications/` sur une URL publique (par exemple via un tunnel type
-     Cloudflare Tunnel/ngrok, ou un petit hébergement d'images dédié). Je
-     n'ai rien mis en place ici — publier quoi que ce soit publiquement,
-     même une simple image de preview, relève de la mise en ligne, donc
-     de ta décision explicite (garde-fou CLAUDE.md), pas d'un choix que je
-     peux prendre seul.
-4. **Charger le job launchd** — je ne l'ai pas activé moi-même : installer
-   une tâche qui s'exécute automatiquement chaque semaine est un changement
-   permanent de configuration, à valider explicitement. Une fois prêt :
-   ```bash
-   cp "automation/com.fabien.blogphoto.publication.plist" ~/Library/LaunchAgents/
-   launchctl load ~/Library/LaunchAgents/com.fabien.blogphoto.publication.plist
-   ```
-   Pour vérifier qu'il est bien enregistré : `launchctl list | grep blogphoto`.
-   Pour le désactiver : `launchctl unload ~/Library/LaunchAgents/com.fabien.blogphoto.publication.plist`.
-5. **Décider de la suite après la réponse SMS.** `CLAUDE.md` décrit la
-   validation comme "réponse au SMS reçu", mais l'agent n'a explicitement
-   pas accès aux identifiants de mise en ligne (garde-fou dédié) : recevoir
-   la réponse (lire les messages entrants Twilio) et déclencher la
-   publication ensuite n'est pas construit dans cette session — cela
-   demande de choisir un mécanisme (interroger l'API Twilio, ou un webhook,
-   ce qui suppose une URL publique) et surtout de décider si l'agent a le
-   droit de déclencher la mise en ligne tout seul dès qu'il voit "oui", ou
-   si tu préfères garder ce déclenchement toi-même. À trancher ensemble
-   avant de construire cette dernière brique.
+   par `CLAUDE.md` malgré la contrainte de gratuité — mais reste une
+   démarche avec création de compte et moyen de paiement.
+   *Réponse à ta question "un compte pour d'autres projets ou un compte par
+   projet" : un seul compte Twilio suffit pour plusieurs projets (tu peux
+   y acheter plusieurs numéros, ou réutiliser le même). Pour ce projet,
+   un compte + un numéro suffisent largement ; pas besoin de compte dédié
+   sauf si tu préfères isoler la facturation.*
+3. Copier `.env.example` en `.env` à la racine du projet et renseigner les
+   4 variables Twilio. Ce fichier est ignoré par git, il ne sera jamais
+   commité ni vu par l'agent.
+4. **Décider comment gérer la photo dans le SMS** (texte seul par défaut,
+   ou joindre une image — ce qui suppose de l'exposer publiquement, donc
+   une forme de mise en ligne à valider explicitement le moment venu).
+5. **Activer le déploiement GitHub Pages côté GitHub** — le dépôt a déjà
+   une configuration Pages en mode "legacy" (déploiement direct depuis la
+   branche, hérité de la création du dépôt), incompatible avec le workflow
+   GitHub Actions que j'ai écrit (qui build le site avant de le publier).
+   Une tentative de bascule via l'API a été bloquée par mon propre
+   classifieur de permissions (changement de réglage de compte). À faire
+   par toi, en une fois :
+   - Sur github.com : Settings → Pages → Build and deployment → Source →
+     **GitHub Actions** (au lieu de "Deploy from a branch")
+   - Ou en CLI si tu préfères : `gh api -X PUT repos/FabienK/blog-photo/pages -f build_type=workflow`
 
-## Test manuel recommandé avant d'activer le job
+## Décisions actées suite à tes réponses
 
-Pour tester le pipeline complet sans attendre dimanche, une fois `.env`
-rempli :
+- **Mise en ligne automatique sur réponse affirmative** : construit (voir
+  `check_validation.sh` / `publish.sh` ci-dessus). Dès qu'une réponse SMS
+  commence par oui/je valide/ok/go/d'accord, la publication correspondante
+  part en ligne sans autre confirmation. Si un jour tu réponds autre chose,
+  rien ne se passe — la validation reste en attente indéfiniment jusqu'à
+  une réponse reconnue.
+- **Nom de domaine GitHub Pages** : pas de domaine personnalisé (achat
+  payant, hors contrainte de gratuité) — URL par défaut
+  `https://fabienk.github.io/blog-photo/`. `astro.config.mjs` et tous les
+  liens internes du site sont configurés pour ce chemin.
+- **Nouveaux modèles ShowMe5WH** : si tu ajoutes un modèle/checkpoint et le
+  déclares dans `backend/presets/presets.json` (voir le dépôt
+  Image-generator), l'agent peut l'utiliser normalement — le garde-fou
+  CLAUDE.md interdit à l'agent d'installer des modèles lui-même, pas
+  d'utiliser ceux que tu as toi-même ajoutés.
+
+## Test manuel recommandé (une fois les deux bloquants levés)
+
+Pour tester le pipeline complet sans attendre dimanche :
 ```bash
 rm automation/state/last_run.txt   # force le script à considérer un run comme dû
 bash scripts/run_publication.sh
 ```
-⚠️ Cela consommera réellement le prochain thème de `themes.md` et générera
-une vraie publication (photos comprises) — à faire en connaissance de
-cause, pas comme un test anodin.
+⚠️ Cela consommera réellement le prochain thème de `themes.md`, générera
+une vraie publication (photos comprises), et — si tu réponds
+oui/ok/go au SMS reçu — la mettra réellement en ligne. À faire en
+connaissance de cause, pas comme un test anodin.

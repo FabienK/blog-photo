@@ -57,8 +57,8 @@ const articles = [
 >
 	<header class="site-header">
 		<div class="wrap site-header__inner">
-			<a class="wordmark" href="/">Prisme</a>
-			<a class="back-link" href="/">← Toutes les publications</a>
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
 		</div>
 	</header>
 
@@ -120,7 +120,7 @@ const articles = [
 				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
 				local). Textes et mise en page : l'auteur, assisté de Claude.
 			</p>
-			<a class="back-link" href="/">← Retour à Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
 		</div>
 	</footer>
 </Base>
