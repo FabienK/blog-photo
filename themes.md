@@ -1,6 +1,4 @@
 # Thèmes
-
-- Liberté
 - Élégance
 - Idée
 - Espoir
