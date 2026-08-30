@@ -1,11 +1,15 @@
 # Thèmes
+<<<<<<< HEAD
 
+=======
+- Élégance
+>>>>>>> origin/main
 - Idée
 - Espoir
 - Destin
 - Dieu
 - Passion
-- Colère
+- Intelligence artificielle   
 - Sagesse
 - Discipline
 - Ingéniosité
@@ -26,7 +30,7 @@
 - Frustration
 - Plénitude
 - Humanité
-- Artificiel
+- superfificiel
 - Concept
 - Futur
 - Catastrophe
@@ -46,3 +50,4 @@
 - Sarcasme
 - Humour
 - Espérance
+- Rêve
