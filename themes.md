@@ -1,9 +1,4 @@
 # Thèmes
-<<<<<<< HEAD
-
-=======
-- Élégance
->>>>>>> origin/main
 - Idée
 - Espoir
 - Destin
