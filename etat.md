@@ -29,29 +29,18 @@ Le cycle complet (génération → email preview → réponse affirmative → mi
 
 ## 3. Publication en cours
 
-Thème : **Élégance** (2e thème, retiré de `themes.md`). Dossier : [publications/2026-08-30-elegance/](./publications/2026-08-30-elegance/) — preview brute : [preview.md](./publications/2026-08-30-elegance/preview.md). Déclenchement manuel dans le chat (rattrapage du dimanche 30/08 14h), pipeline `automation/PIPELINE.md` suivi à l'identique.
-
-Statut par article :
-
-| Article | Idée | Photo générée | Texte rédigé | Mise en page | Preview | Validation contenu (Phase 1) | Validation mise en ligne (Phase 3+) | Tentatives régén. (max 3) |
-|---|---|---|---|---|---|---|---|---|
-| 1 — Le geste suspendu (main de danseuse) | ✅ | ✅ | ✅ | ✅ | ✅ | n/a (plus de validation intermédiaire depuis le 2026-08-27) | ⏳ en attente | 0 |
-| 2 — Le pli parfait (drapé de soie) | ✅ | ✅ | ✅ | ✅ | ✅ | n/a | ⏳ en attente | 0 |
-| 3 — Le rituel du thé (versement, mains) | ✅ | ✅ | ✅ | ✅ | ✅ | n/a | ⏳ en attente | 0 |
-
-Note technique : réponse `image_base64` de l'API ShowMe5WH reçue avec préfixe `data:image/png;base64,` — décodage adapté en conséquence (script de génération ponctuel, non committé, dans le scratchpad de session).
-
-Site local consultable en dev : `npm --prefix site run dev` puis `http://localhost:4321/elegance` (page d'accueil : `http://localhost:4321/`). Build de production vérifié sans erreur (3 pages générées).
+Aucune — "Élégance" est en ligne (voir historique ci-dessous). Prochaine publication : lire le premier thème de `themes.md` ("Idée") au prochain déclenchement (dimanche suivant ou rattrapage).
 
 ## 4. Historique des publications
 
 | Date | Thème | Nb articles | Lien preview/archive | Statut |
 |---|---|---|---|---|
 | 2026-08-27 | Liberté | 3 | [publications/2026-08-27-liberte/](./publications/2026-08-27-liberte/) | ✅ en ligne — https://fabienk.github.io/blog-photo/liberte/ |
+| 2026-08-30 | Élégance | 3 | [publications/2026-08-30-elegance/](./publications/2026-08-30-elegance/) | ✅ en ligne — https://fabienk.github.io/blog-photo/elegance/ |
 
 ## 5. Blocages / questions ouvertes
 
-**Aucun blocage actuel.**
+**Aucun blocage actuel.** Point de vigilance identifié le 2026-08-30 (voir journal) : le job launchd `checkvalidation` tourne en tâche de fond sur le même dépôt local que les sessions interactives — une session qui modifie l'arbre de travail (ex. résolution de conflit `git merge` en cours) pendant qu'un sondage `checkvalidation` se déclenche peut faire committer un état intermédiaire non désiré (`git add -A` de `publish.sh` ne fait pas la différence). Pas de correctif appliqué pour l'instant (risque faible, fenêtre de collision étroite) — à surveiller si ça se reproduit.
 
 **Résolus :**
 
@@ -67,6 +56,7 @@ Site local consultable en dev : `npm --prefix site run dev` puis `http://localho
 - ~~Compte Twilio / gestion de l'image dans la notification~~ — résolu le 2026-08-27 : Twilio abandonné (blocages répétés), remplacé par email — voir décisions ci-dessus.
 
 ## 6. Journal d'avancement
+- **2026-08-30** — Diagnostic d'un échec de mise en ligne signalé par l'auteur. Cause racine : `themes.md` avait été édité directement sur GitHub.com par l'auteur le 2026-08-28 (retrait de "Liberté", corrections de thèmes, ajout de "Rêve") — ces commits distants n'avaient jamais été récupérés localement (`git fetch`/`pull`), donc le `git push` du 15h14 a été rejeté (`non-fast-forward`). En résolvant le conflit (`git merge origin/main`, fusion des deux versions de `themes.md`), une collision s'est produite avec le job `checkvalidation` qui a retenté en tâche de fond au même moment : son `publish.sh` a committé et poussé l'état intermédiaire du merge avant que la résolution du conflit ne soit finalisée côté session, laissant des marqueurs de conflit Git bruts (`<<<<<<<` / `=======` / `>>>>>>>`) dans `themes.md` sur la branche publiée. Fichier corrigé et repoussé (commit propre, sans marqueurs). Aucun autre fichier affecté — le site déployé (pages, images, articles) était déjà correctement commité avant l'incident et n'a jamais été impacté. Publication "Élégance" confirmée en ligne : https://fabienk.github.io/blog-photo/elegance/
 - **2026-08-30** — Mise en ligne automatique de la publication "elegance" suite à validation par email : https://fabienk.github.io/blog-photo/elegance/
 - **2026-08-30** — Correction d'un oubli : "Liberté" n'avait jamais été retiré de `themes.md` après sa lecture le 2026-08-27 (l'étape 1 du pipeline avait été suivie en esprit mais pas exécutée littéralement sur le fichier). Retiré maintenant, avec "Élégance" (thème de cette publication).
 - **2026-08-30** — Déclenchement manuel de la publication hebdomadaire (rattrapage du dimanche 14h, demandé par l'auteur dans le chat). Thème lu et retiré de `themes.md` : "Élégance". Recherche d'angles, 3 prompts originaux, génération des 3 photos via l'API REST de ShowMe5WH (Flux.1 Schnell, aucune régénération nécessaire — décodage base64 adapté au format `data:image/png;base64,...` renvoyé par l'API), rédaction des 3 textes, rangement dans `publications/2026-08-30-elegance/` (preview brute incluse). Mise en page dédiée créée dans `site/` (`elegance.astro`), design distinct de "Liberté" (titres italiques centrés, composition plus aérée) mais cohérent avec l'identité graphique du site ; page d'accueil mise à jour. Build de production vérifié sans erreur, rendu contrôlé dans le navigateur (page publication + accueil). Pipeline arrêté à la preview conformément au garde-fou CLAUDE.md — en attente de l'accord de l'auteur pour la mise en ligne.
