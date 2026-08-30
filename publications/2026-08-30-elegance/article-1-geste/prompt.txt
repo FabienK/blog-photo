@@ -1,0 +1,11 @@
+Prompt original (français, saisi dans ShowMe5WH — mode "prompt libre") :
+
+Photographie photoréaliste en noir et blanc : gros plan sur la main et l'avant-bras d'une danseuse de ballet, doigts fins et gracieux en pointe, poignet légèrement cambré, sur fond noir uni. Éclairage latéral dramatique en clair-obscur, peau texturée avec précision, netteté extrême sur les doigts, arrière-plan totalement sombre et épuré.
+
+Script traduit envoyé au modèle (traduction locale via Argos Translate, automatique dans ShowMe5WH) :
+
+Photorealistic photograph in black and white: close-up on the hand and forearm of a ballet dancer, fine and graceful fingers in tip, slightly arched wrist, on a plain black background. Dramatic lateral lighting in clear-obscured, precisely textured skin, extreme sharpness on the fingers, totally dark and sleek background.
+
+Style détecté : Photoréaliste
+Modèle de génération : Flux.1 Schnell (mflux, 4-bit) — via ShowMe5WH / ComfyUI, exécuté en local sur le Mac mini
+Seed : 93478473

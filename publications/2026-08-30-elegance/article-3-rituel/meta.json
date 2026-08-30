@@ -1,0 +1,24 @@
+{
+  "prompt_fr": "Photographie photoréaliste : gros plan sur des mains âgées et fines versant du thé depuis une théière en porcelaine blanche vers une tasse assortie, sur une table en bois clair. Lumière naturelle douce venant de la gauche, vapeur légère visible au-dessus de la tasse, arrière-plan flou et neutre, attention portée à la précision du geste et à la retenue du mouvement.",
+  "script_en": "Photorealistic photograph: close-up on old hands and thin tea from a teapot in white porcelain to a matching cup, on a light wood table. Soft natural light coming from the left, light steam visible above the cup, blurred and neutral background, attention to the accuracy of the gesture and the restraint of the movement.",
+  "style": "Photoréaliste",
+  "model_id": "flux_schnell_photo",
+  "preset_used": {
+    "style": "Photoréaliste",
+    "model_id": "flux_schnell_photo",
+    "model_label": "Flux",
+    "model_version": "schnell",
+    "estimated_time": "~2 min 30",
+    "checkpoint": "flux.1-schnell-mflux-4bit",
+    "lora": null,
+    "sampler": "-",
+    "scheduler": "-",
+    "steps": 4,
+    "cfg": 3.5,
+    "width": 1024,
+    "height": 1024,
+    "denoise_strength": null
+  },
+  "seed_used": 2693791993,
+  "prompt_id": "3e11f001-3338-499d-9656-805af437048b"
+}

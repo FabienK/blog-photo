@@ -4,11 +4,11 @@ Fichier de suivi d'avancement, mis à jour à chaque étape significative. Voir 
 
 ## 1. Phase actuelle
 
-**Phase 3 — Automatisation** (mécanisme complet et fonctionnel, en attente du mot de passe d'application Gmail)
+**Phase 3 — Automatisation** (mécanisme complet et fonctionnel, cycle de bout en bout opérationnel)
 
 Phases 0 à 2 terminées le 2026-08-27. **Note de méthode (2026-08-27)** : l'auteur a précisé que le contenu (photos/prompts/textes) et la mise en page ne nécessitent pas de validation intermédiaire — seule la mise en ligne finale requiert son accord explicite (conforme à CLAUDE.md). À partir de maintenant, ces étapes sont exécutées puis rapportées, sans être présentées comme des questions.
 
-Le cycle complet (génération → email preview → réponse affirmative → mise en ligne automatique) est construit : `scripts/run_publication.sh`, `scripts/check_validation.py`, `scripts/publish.sh`, `.github/workflows/deploy.yml`. Les deux jobs launchd sont **chargés et fonctionnels** (`LastExitStatus = 0`, autorisation macOS accordée). Twilio abandonné le 2026-08-27 (procédure d'inscription bloquante) au profit d'une notification par **email** (Gmail SMTP/IMAP) — voir CLAUDE.md, section Déclenchement automatique. Seul point restant : le mot de passe d'application Gmail à renseigner dans `.env`. **Aucune mise en ligne publique n'a eu lieu** — le site tourne uniquement en local. Détail complet dans [automation/AUTOMATISATION.md](./automation/AUTOMATISATION.md).
+Le cycle complet (génération → email preview → réponse affirmative → mise en ligne automatique) est construit : `scripts/run_publication.sh`, `scripts/check_validation.py`, `scripts/publish.sh`, `.github/workflows/deploy.yml`. Les deux jobs launchd sont **chargés et fonctionnels** (`LastExitStatus = 0`, autorisation macOS accordée). Twilio abandonné le 2026-08-27 (procédure d'inscription bloquante) au profit d'une notification par **email** (Gmail SMTP/IMAP) — voir CLAUDE.md, section Déclenchement automatique. Mot de passe d'application Gmail renseigné et testé le 2026-08-30 (connexion SMTP + IMAP validée) : plus aucun point bloquant. Première publication ("Liberté") déjà en ligne depuis le 2026-08-28. Détail complet dans [automation/AUTOMATISATION.md](./automation/AUTOMATISATION.md).
 
 ## 2. Décisions prises
 
@@ -29,34 +29,33 @@ Le cycle complet (génération → email preview → réponse affirmative → mi
 
 ## 3. Publication en cours
 
-Thème : **Liberté** (premier thème, retiré de `themes.md`). Dossier : [publications/2026-08-27-liberte/](./publications/2026-08-27-liberte/) — preview brute : [preview.md](./publications/2026-08-27-liberte/preview.md).
+Thème : **Élégance** (2e thème, retiré de `themes.md`). Dossier : [publications/2026-08-30-elegance/](./publications/2026-08-30-elegance/) — preview brute : [preview.md](./publications/2026-08-30-elegance/preview.md). Déclenchement manuel dans le chat (rattrapage du dimanche 30/08 14h), pipeline `automation/PIPELINE.md` suivi à l'identique.
 
 Statut par article :
 
 | Article | Idée | Photo générée | Texte rédigé | Mise en page | Preview | Validation contenu (Phase 1) | Validation mise en ligne (Phase 3+) | Tentatives régén. (max 3) |
 |---|---|---|---|---|---|---|---|---|
-| 1 — L'instant avant l'envol (colombe/cage) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ (2026-08-27) | ⏳ en attente | 0 |
-| 2 — Le dernier maillon (chaîne brisée, N&B) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ (2026-08-27) | ⏳ en attente | 0 |
-| 3 — Aucune limite (silhouette, falaise) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ (2026-08-27) | ⏳ en attente | 0 |
+| 1 — Le geste suspendu (main de danseuse) | ✅ | ✅ | ✅ | ✅ | ✅ | n/a (plus de validation intermédiaire depuis le 2026-08-27) | ⏳ en attente | 0 |
+| 2 — Le pli parfait (drapé de soie) | ✅ | ✅ | ✅ | ✅ | ✅ | n/a | ⏳ en attente | 0 |
+| 3 — Le rituel du thé (versement, mains) | ✅ | ✅ | ✅ | ✅ | ✅ | n/a | ⏳ en attente | 0 |
 
-Site local consultable en dev : `npm --prefix site run dev` puis `http://localhost:4321/liberte` (page d'accueil : `http://localhost:4321/`).
+Note technique : réponse `image_base64` de l'API ShowMe5WH reçue avec préfixe `data:image/png;base64,` — décodage adapté en conséquence (script de génération ponctuel, non committé, dans le scratchpad de session).
+
+Site local consultable en dev : `npm --prefix site run dev` puis `http://localhost:4321/elegance` (page d'accueil : `http://localhost:4321/`). Build de production vérifié sans erreur (3 pages générées).
 
 ## 4. Historique des publications
 
-Aucune publication réalisée à ce jour.
-
 | Date | Thème | Nb articles | Lien preview/archive | Statut |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| 2026-08-27 | Liberté | 3 | [publications/2026-08-27-liberte/](./publications/2026-08-27-liberte/) | ✅ en ligne — https://fabienk.github.io/blog-photo/liberte/ |
 
 ## 5. Blocages / questions ouvertes
 
-**Bloquant actuel (nécessite l'auteur, hors périmètre agent) :**
-
-1. Générer un mot de passe d'application Gmail ([myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)) et le renseigner dans `.env` (`GMAIL_APP_PASSWORD`). Seul point restant avant un cycle complet fonctionnel.
+**Aucun blocage actuel.**
 
 **Résolus :**
 
+- ~~Mot de passe d'application Gmail~~ — résolu le 2026-08-30 : généré par l'auteur ([myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)), renseigné dans `.env`, connexion SMTP et IMAP testée avec succès. Premier mot de passe collé rejeté (`535 Bad Credentials`) — probablement une erreur de copie ou compte sans validation en 2 étapes active au moment de la génération ; régénéré et validé.
 - ~~Localisation de l'outil ShowMe5WH~~ — résolu le 2026-08-27 : trouvé dans `Documents/Projets Claude code/Image generator /Image-generator/`, actuellement installé et démarré (ComfyUI :8188, backend FastAPI :8000, frontend :5173), presets renseignés. API REST disponible (`POST /api/generate`, `POST /api/batches`) pour un déclenchement programmatique.
 - ~~Écart thème "Liberté" vs contenu de `themes.md`~~ — résolu le 2026-08-27 : "Liberté" ajouté en tête de liste.
 - ~~Dépôt GitHub pour l'hébergement~~ — résolu le 2026-08-27 : fourni par l'auteur, ajouté comme remote (pas encore poussé).
@@ -68,6 +67,11 @@ Aucune publication réalisée à ce jour.
 - ~~Compte Twilio / gestion de l'image dans la notification~~ — résolu le 2026-08-27 : Twilio abandonné (blocages répétés), remplacé par email — voir décisions ci-dessus.
 
 ## 6. Journal d'avancement
+- **2026-08-30** — Correction d'un oubli : "Liberté" n'avait jamais été retiré de `themes.md` après sa lecture le 2026-08-27 (l'étape 1 du pipeline avait été suivie en esprit mais pas exécutée littéralement sur le fichier). Retiré maintenant, avec "Élégance" (thème de cette publication).
+- **2026-08-30** — Déclenchement manuel de la publication hebdomadaire (rattrapage du dimanche 14h, demandé par l'auteur dans le chat). Thème lu et retiré de `themes.md` : "Élégance". Recherche d'angles, 3 prompts originaux, génération des 3 photos via l'API REST de ShowMe5WH (Flux.1 Schnell, aucune régénération nécessaire — décodage base64 adapté au format `data:image/png;base64,...` renvoyé par l'API), rédaction des 3 textes, rangement dans `publications/2026-08-30-elegance/` (preview brute incluse). Mise en page dédiée créée dans `site/` (`elegance.astro`), design distinct de "Liberté" (titres italiques centrés, composition plus aérée) mais cohérent avec l'identité graphique du site ; page d'accueil mise à jour. Build de production vérifié sans erreur, rendu contrôlé dans le navigateur (page publication + accueil). Pipeline arrêté à la preview conformément au garde-fou CLAUDE.md — en attente de l'accord de l'auteur pour la mise en ligne.
+
+- **2026-08-30** — Mot de passe d'application Gmail renseigné par l'auteur dans `.env`. Premier essai rejeté par Google (`535 Bad Credentials`) ; l'auteur en a régénéré un second, validé cette fois (connexion SMTP `smtp.gmail.com:587` et IMAP `imap.gmail.com` testées avec succès). Le cycle d'automatisation Phase 3 est désormais entièrement fonctionnel, plus aucun point bloquant.
+
 - **2026-08-28** — Mise en ligne automatique de la publication "Liberté" suite à validation par email : https://fabienk.github.io/blog-photo/liberte/
 
 - **2026-08-27** — Lecture de CLAUDE.md, création de ce fichier `etat.md`, correction de `themes.md` (ajout de "Liberté" en tête). Localisation et vérification de l'outil ShowMe5WH (installé et actif sur le Mac mini). Feuille de route en 5 phases définie et validée avec l'auteur.

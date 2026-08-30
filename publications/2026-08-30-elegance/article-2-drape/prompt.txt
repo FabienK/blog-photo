@@ -1,0 +1,11 @@
+Prompt original (français, saisi dans ShowMe5WH — mode "prompt libre") :
+
+Photographie photoréaliste en studio : un drapé de soie ivoire tombant en plis fluides et sculpturaux sur le dossier d'une chaise en bois sombre, dans une pièce minimaliste aux murs gris clair. Lumière douce et directionnelle venant d'une fenêtre haute, ombres longues et nettes, texture soyeuse visible, composition épurée, aucune présence humaine.
+
+Script traduit envoyé au modèle (traduction locale via Argos Translate, automatique dans ShowMe5WH) :
+
+Photorealistic studio photography: an ivory silk drape falling in fluid and sculptural folds on the back of a dark wooden chair, in a minimalist room with light grey walls. Soft and directional light from a high window, long and sharp shadows, visible silky texture, clean composition, no human presence.
+
+Style détecté : Photoréaliste
+Modèle de génération : Flux.1 Schnell (mflux, 4-bit) — via ShowMe5WH / ComfyUI, exécuté en local sur le Mac mini
+Seed : 2868283160

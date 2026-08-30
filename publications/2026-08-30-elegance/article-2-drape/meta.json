@@ -1,0 +1,24 @@
+{
+  "prompt_fr": "Photographie photoréaliste en studio : un drapé de soie ivoire tombant en plis fluides et sculpturaux sur le dossier d'une chaise en bois sombre, dans une pièce minimaliste aux murs gris clair. Lumière douce et directionnelle venant d'une fenêtre haute, ombres longues et nettes, texture soyeuse visible, composition épurée, aucune présence humaine.",
+  "script_en": "Photorealistic studio photography: an ivory silk drape falling in fluid and sculptural folds on the back of a dark wooden chair, in a minimalist room with light grey walls. Soft and directional light from a high window, long and sharp shadows, visible silky texture, clean composition, no human presence.",
+  "style": "Photoréaliste",
+  "model_id": "flux_schnell_photo",
+  "preset_used": {
+    "style": "Photoréaliste",
+    "model_id": "flux_schnell_photo",
+    "model_label": "Flux",
+    "model_version": "schnell",
+    "estimated_time": "~2 min 30",
+    "checkpoint": "flux.1-schnell-mflux-4bit",
+    "lora": null,
+    "sampler": "-",
+    "scheduler": "-",
+    "steps": 4,
+    "cfg": 3.5,
+    "width": 1024,
+    "height": 1024,
+    "denoise_strength": null
+  },
+  "seed_used": 2868283160,
+  "prompt_id": "755048b2-4621-4a2e-be06-c89d91e384da"
+}

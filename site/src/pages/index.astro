@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import coverImage from '../assets/publications/liberte/horizon.png';
+import elegantCoverImage from '../assets/publications/elegance/drape.png';
 ---
 
 <Base
@@ -18,7 +19,7 @@ import coverImage from '../assets/publications/liberte/horizon.png';
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 01 — 27 août 2026</p>
+				<p class="eyebrow">Numéro 02 — 30 août 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -33,6 +34,27 @@ import coverImage from '../assets/publications/liberte/horizon.png';
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/elegance/`}>
+					<div class="issue-card__media">
+						<Image
+							src={elegantCoverImage}
+							alt="Un drapé de soie ivoire tombant en plis fluides sur le dossier d'une chaise en bois sombre"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">30 août 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Élégance</h2>
+						<p class="issue-card__excerpt">
+							Un geste de danseuse, un drapé de soie, un thé qu'on verse —
+							trois façons de regarder ce que retenir veut dire.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/liberte/`}>
 					<div class="issue-card__media">

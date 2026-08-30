@@ -1,0 +1,13 @@
+Prompt original (français, saisi dans ShowMe5WH — mode "prompt libre") :
+
+Photographie photoréaliste : gros plan sur des mains âgées et fines versant du thé depuis une théière en porcelaine blanche vers une tasse assortie, sur une table en bois clair. Lumière naturelle douce venant de la gauche, vapeur légère visible au-dessus de la tasse, arrière-plan flou et neutre, attention portée à la précision du geste et à la retenue du mouvement.
+
+Script traduit envoyé au modèle (traduction locale via Argos Translate, automatique dans ShowMe5WH) :
+
+Photorealistic photograph: close-up on old hands and thin tea from a teapot in white porcelain to a matching cup, on a light wood table. Soft natural light coming from the left, light steam visible above the cup, blurred and neutral background, attention to the accuracy of the gesture and the restraint of the movement.
+
+Note : la traduction automatique locale (Argos Translate) a légèrement dénaturé la phrase source ("versant" traduit de façon approximative) — le modèle d'image a néanmoins correctement interprété l'intention (geste de verser le thé).
+
+Style détecté : Photoréaliste
+Modèle de génération : Flux.1 Schnell (mflux, 4-bit) — via ShowMe5WH / ComfyUI, exécuté en local sur le Mac mini
+Seed : 2693791993
