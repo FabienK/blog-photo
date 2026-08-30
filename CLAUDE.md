@@ -75,5 +75,12 @@ Chaque article doit contenir :
 - Nombre max de tentatives de régénération par article : 3
 - Format de la preview : image + texte brut, sans mise en habillage/mise en page (l'habillage n'intervient qu'à la publication finale)
 
+## Attentes de comportement
+
+- **Agir dès qu'un blocage saute**, sans attendre une relance explicite : si une condition de déclenchement est déjà remplie (ex. mot de passe fourni alors qu'on est après 14h le dimanche), enchaîner sur l'étape suivante plutôt que de s'arrêter et attendre une nouvelle demande — sauf si cette étape suivante nécessite elle-même un accord explicite (mise en ligne, voir garde-fous).
+- **Vérifier le résultat des actions asynchrones/automatiques** (job launchd, déploiement GitHub Pages, envoi d'email) au lieu de considérer la tâche terminée dès qu'elle est déclenchée : contrôler les logs et/ou le site en ligne avant de conclure au succès, sans attendre que l'auteur signale un problème.
+
+(Décision de l'auteur le 2026-08-30, suite à un cas concret où ces deux points n'avaient pas été respectés — voir `etat.md`, journal du 2026-08-30.)
+
 ## Questions ouvertes
 Aucune pour l'instant.
