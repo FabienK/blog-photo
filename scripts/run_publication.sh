@@ -84,6 +84,7 @@ while [[ $attempt -le $MAX_ATTEMPTS ]]; do
 		cd "$PROJECT_DIR" &&
 			"$CLAUDE_BIN" -p "$PROMPT" \
 				--permission-mode acceptEdits \
+				--allowedTools "Bash" "WebSearch" \
 				--output-format json \
 				>"$out_file" 2>"$err_file"
 	)
@@ -114,7 +115,7 @@ echo "$last_sunday" >"$LAST_RUN_FILE"
 # --- 4. Extraction du dossier de preview + notification email -----------
 
 result_text=$(jq -r '.result // ""' "$last_out_file")
-preview_dir=$(printf '%s\n' "$result_text" | grep -o 'PREVIEW_DIR:[^[:space:]]*' | tail -1 | sed 's/^PREVIEW_DIR: *//')
+preview_dir=$(printf '%s\n' "$result_text" | grep -oE 'PREVIEW_DIR: *[^[:space:]]+' | tail -1 | sed -E 's/^PREVIEW_DIR: *//')
 
 if [[ -n "$preview_dir" && -d "$PROJECT_DIR/$preview_dir" ]]; then
 	theme_title=$(basename "$preview_dir" | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}-//')
