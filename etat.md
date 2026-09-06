@@ -29,7 +29,7 @@ Le cycle complet (génération → email preview → réponse affirmative → mi
 
 ## 3. Publication en cours
 
-Aucune — "Élégance" est en ligne (voir historique ci-dessous). Prochaine publication : lire le premier thème de `themes.md` ("Idée") au prochain déclenchement (dimanche suivant ou rattrapage).
+**"Idée"** (thème lu et retiré de `themes.md` le 2026-09-06) — preview prête dans [publications/2026-09-06-idee/](./publications/2026-09-06-idee/), page de mise en page créée dans `site/` (`idee.astro`), page d'accueil mise à jour. En attente de l'accord explicite de l'auteur pour la mise en ligne (garde-fou CLAUDE.md).
 
 ## 4. Historique des publications
 
@@ -37,6 +37,7 @@ Aucune — "Élégance" est en ligne (voir historique ci-dessous). Prochaine pub
 |---|---|---|---|---|
 | 2026-08-27 | Liberté | 3 | [publications/2026-08-27-liberte/](./publications/2026-08-27-liberte/) | ✅ en ligne — https://fabienk.github.io/blog-photo/liberte/ |
 | 2026-08-30 | Élégance | 3 | [publications/2026-08-30-elegance/](./publications/2026-08-30-elegance/) | ✅ en ligne — https://fabienk.github.io/blog-photo/elegance/ |
+| 2026-09-06 | Idée | 3 | [publications/2026-09-06-idee/](./publications/2026-09-06-idee/) | 🕓 preview prête — en attente de validation par l'auteur |
 
 ## 5. Blocages / questions ouvertes
 
@@ -56,6 +57,7 @@ Aucune — "Élégance" est en ligne (voir historique ci-dessous). Prochaine pub
 - ~~Compte Twilio / gestion de l'image dans la notification~~ — résolu le 2026-08-27 : Twilio abandonné (blocages répétés), remplacé par email — voir décisions ci-dessus.
 
 ## 6. Journal d'avancement
+- **2026-09-06** — Publication hebdomadaire du thème "Idée" (dimanche 14h). Thème lu et retiré de `themes.md`. Recherche d'angles évitant le cliché de l'ampoule (métaphores visuelles alternatives : fil, pliage, goutte d'encre), 3 prompts originaux, génération via l'API REST de ShowMe5WH (Flux.1 Schnell) — 2 générations réussies du premier coup (fil, goutte), 1 régénération nécessaire pour l'article "pliage" (premier essai : pli quasi invisible, non conforme au prompt ; deuxième essai conforme, sur 3 tentatives max autorisées). Rédaction des 3 textes, rangement dans `publications/2026-09-06-idee/` (preview brute incluse). Mise en page dédiée créée dans `site/` (`idee.astro`) : design volontairement distinct d'"Élégance" (titres droits non italiques, numérotation monospace, mise en page en deux colonnes alternées) pour une identité propre à chaque publication tout en restant dans l'univers graphique du site. Page d'accueil mise à jour. Build de production vérifié sans erreur ; rendu vérifié via le serveur de dev et des requêtes HTTP (page /idee/, lien depuis l'accueil, statut 200 des 3 images) — pas de vérification visuelle par capture d'écran cette fois, aucun outil de screenshot/navigateur headless (chromium-cli, Playwright) n'étant disponible dans cette session. Pipeline arrêté à la preview conformément au garde-fou CLAUDE.md — en attente de l'accord de l'auteur pour la mise en ligne. Note : `themes.md` ne contenait que 46 thèmes restants après "Idée" (pas de vérification particulière requise, cas normal).
 - **2026-08-30** — Diagnostic d'un échec de mise en ligne signalé par l'auteur. Cause racine : `themes.md` avait été édité directement sur GitHub.com par l'auteur le 2026-08-28 (retrait de "Liberté", corrections de thèmes, ajout de "Rêve") — ces commits distants n'avaient jamais été récupérés localement (`git fetch`/`pull`), donc le `git push` du 15h14 a été rejeté (`non-fast-forward`). En résolvant le conflit (`git merge origin/main`, fusion des deux versions de `themes.md`), une collision s'est produite avec le job `checkvalidation` qui a retenté en tâche de fond au même moment : son `publish.sh` a committé et poussé l'état intermédiaire du merge avant que la résolution du conflit ne soit finalisée côté session, laissant des marqueurs de conflit Git bruts (`<<<<<<<` / `=======` / `>>>>>>>`) dans `themes.md` sur la branche publiée. Fichier corrigé et repoussé (commit propre, sans marqueurs). Aucun autre fichier affecté — le site déployé (pages, images, articles) était déjà correctement commité avant l'incident et n'a jamais été impacté. Publication "Élégance" confirmée en ligne : https://fabienk.github.io/blog-photo/elegance/
 - **2026-08-30** — Mise en ligne automatique de la publication "elegance" suite à validation par email : https://fabienk.github.io/blog-photo/elegance/
 - **2026-08-30** — Correction d'un oubli : "Liberté" n'avait jamais été retiré de `themes.md` après sa lecture le 2026-08-27 (l'étape 1 du pipeline avait été suivie en esprit mais pas exécutée littéralement sur le fichier). Retiré maintenant, avec "Élégance" (thème de cette publication).

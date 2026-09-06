@@ -1,5 +1,4 @@
 # Thèmes
-- Idée
 - Espoir
 - Destin
 - Dieu
