@@ -43,31 +43,38 @@ Toute autre réponse (ou l'absence de réponse) ne déclenche rien : la
 mise en ligne n'a lieu que sur confirmation explicite, conformément à
 `CLAUDE.md`.
 
-**Vérifications déjà faites dans cette session :**
-- `claude -p` fonctionne avec l'authentification par abonnement actuelle en
-  environnement dépouillé type launchd. `--permission-mode acceptEdits`
-  suffisant pour un run sans invite de confirmation.
+**Vérifications faites (mises à jour le 2026-09-06) :**
 - Logique de rattrapage/anti-doublon (`last_run.txt`) testée.
 - Les deux jobs launchd sont chargés et fonctionnels (`LastExitStatus = 0`)
   — l'autorisation macOS "Accès complet au disque" pour `/bin/bash` a été
   accordée par l'auteur et vérifiée.
 - GitHub Pages configuré en mode "GitHub Actions" (`build_type: workflow`),
   compatible avec le workflow de déploiement.
+- **Cycle email complet testé et fonctionnel** (envoi de preview → réponse
+  → mise en ligne), confirmé sur les publications "Élégance" et "Idée".
+- **Authentification et permissions du run headless, corrigées le
+  2026-09-06** — voir `etat.md` (section "Journal d'avancement", entrée du
+  2026-09-06) pour le détail des trois bugs trouvés et corrigés :
+  jeton OAuth longue durée requis (`claude -p` avec la session interactive
+  seule échoue en headless au bout de quelques heures), `--permission-mode
+  acceptEdits` seul insuffisant (`--allowedTools "Bash" "WebSearch"`
+  ajouté), et une regex d'extraction de `PREVIEW_DIR:` corrigée dans
+  `scripts/run_publication.sh`.
 
-**Non testé** : le cycle email complet (envoi → réponse → mise en ligne),
-en attente du mot de passe d'application Gmail — voir ci-dessous.
-
-## Ce qu'il reste à faire (ne peut pas être fait par l'agent)
-
-1. **Générer un mot de passe d'application Gmail** :
-   [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
-   (nécessite la validation en 2 étapes activée sur le compte Google).
-   Coller la valeur dans `.env` (`GMAIL_APP_PASSWORD=`) — `GMAIL_ADDRESS`
-   est déjà renseigné.
-2. Une fois fait, tester l'envoi :
-   ```bash
-   python3 scripts/notify_author.py "Test Prisme" "Ceci est un test."
-   ```
+**⚠️ Point d'attention — plist déployé vs plist versionné.** Le job
+réellement chargé par launchd est
+`~/Library/LaunchAgents/com.fabien.blogphoto.publication.plist`, **hors du
+dépôt Git** — pas le fichier versionné dans `automation/`. Depuis le
+2026-09-06, la copie déployée porte une clé `CLAUDE_CODE_OAUTH_TOKEN`
+(jeton longue durée généré par `claude setup-token`) dans
+`EnvironmentVariables`, absente de la copie versionnée (qui reste
+volontairement sans secret, pour ne jamais faire transiter le jeton par
+Git). **Ne jamais recopier `automation/com.fabien.blogphoto.publication.plist`
+par-dessus la copie déployée** — ça effacerait le jeton et referait planter
+le pipeline automatique avec la même erreur d'authentification. Si le
+jeton doit être régénéré (expire ~1 an après génération, soit vers
+septembre 2027), éditer directement le fichier dans
+`~/Library/LaunchAgents/`.
 
 ## Décisions actées
 
