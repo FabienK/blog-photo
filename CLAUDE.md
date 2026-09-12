@@ -8,7 +8,9 @@ Mise en ligne uniquement après validation par un tiers (modalité à définir �
 ## Structure d'une publication
 - Entre 1 et 5 articles par publication
 - 1 seul article = exception, pas la norme
-- Design décidé par l'agent, celui qui lui semble le mieux adapté au thème
+- Design décidé par l'agent : couleurs, typographie **et** mise en page doivent
+  chacune être adaptées au thème (pas seulement la mise en page) — voir la règle de
+  non-répétition dans Garde-fous > Design
 - Titre de la publication = le thème lui-même
 
 ## Structure d'un article
@@ -27,6 +29,10 @@ Chaque article doit contenir :
 - Recherche web libre pour trouver des idées liées au thème
 - Génération d'images : **ShowMe5WH** (anciennement 4W1H), outil local, à utiliser dans sa version actuelle uniquement
 - Design : compétences natives Anthropic (Claude) + ressources web
+- Inspiration et composants de design autorisés : https://uiverse.io/,
+  https://reactbits.dev/get-started/index, https://kokonutui.com/ — copie/adaptation
+  de composants autorisée, y compris React/Tailwind (voir Garde-fous > Design pour
+  la conséquence sur la stack technique)
 
 ## Répartition des décisions
 
@@ -49,6 +55,18 @@ Chaque article doit contenir :
 - Aucune publication (ni mise à jour d'une publication existante) sans accord explicite préalable de l'auteur
 - L'agent doit produire un livrable de preview consultable (aperçu complet de la publication) avant de demander cet accord
 - Pas d'accès aux identifiants/API de mise en ligne : cette étape reste une action manuelle ou déclenchée explicitement par l'auteur
+
+### Design
+- Interdiction d'avoir deux dimanches de suite le même design : la palette de
+  couleurs et la typographie doivent changer d'une publication à l'autre, pas
+  seulement la mise en page
+- Avant de choisir le design, consulter `automation/design-log.md` (palette,
+  typographie et mise en page de la dernière publication) ; après l'avoir choisi, y
+  ajouter une ligne pour la publication en cours (voir étape 4 d'`automation/PIPELINE.md`)
+- Sources d'inspiration/composants autorisées : voir Outils identifiés. Si un
+  composant copié nécessite une dépendance nouvelle (ex. intégration Astro React ou
+  Tailwind), l'ajouter reste permis — la stack technique du blog reste à la
+  discrétion de l'agent, sous la contrainte de gratuité déjà actée
 
 ### Outil de génération d'images (ShowMe5WH)
 - Utilisation en l'état uniquement : aucune modification du pipeline, du workflow, de la configuration

@@ -21,11 +21,24 @@ divergence, `CLAUDE.md` fait foi.
    illustre le thème.
    - Maximum **3 tentatives de régénération par article**. Au-delà, garder la
      meilleure image obtenue plutôt que de boucler.
-4. **Mise en page** — Construire la page de publication dans `site/`, avec un
-   design adapté au thème (l'agent décide seul, comme pour tout le reste de
-   ce pipeline sauf le thème imposé et la mise en ligne finale — voir la
-   répartition des décisions dans `CLAUDE.md`). Ajouter la publication à la
-   page d'accueil.
+4. **Mise en page** — Lire `automation/design-log.md` pour connaître la palette et
+   la typographie de la dernière publication. Construire la page de publication
+   dans `site/`, avec un design adapté au thème (l'agent décide seul, comme pour
+   tout le reste de ce pipeline sauf le thème imposé et la mise en ligne finale —
+   voir la répartition des décisions dans `CLAUDE.md`) : choisir une palette de
+   couleurs et une typographie qui diffèrent de celles de la dernière entrée du
+   log (pas seulement la mise en page — voir `CLAUDE.md` > Garde-fous > Design).
+   S'inspirer librement de https://uiverse.io/, https://reactbits.dev/get-started/index
+   ou https://kokonutui.com/ si utile, y compris en copiant un composant
+   React/Tailwind (ajouter l'intégration Astro correspondante — `@astrojs/react` ou
+   `@astrojs/tailwind` — si elle n'est pas déjà présente). Définir la palette/typo de
+   la page dans son propre bloc `<style>` scopé (redéfinir les variables CSS de
+   `site/src/styles/global.css` via un sélecteur `:global(body)` local à la page,
+   sur le modèle de l'override déjà utilisé pour le mode sombre) plutôt que de
+   modifier `global.css`, qui reste le thème par défaut de la page d'accueil.
+   Ajouter la publication à la page d'accueil, puis ajouter une ligne à
+   `automation/design-log.md` décrivant le design choisi (palette, typographie,
+   style de mise en page, source d'inspiration éventuelle).
 5. **Rangement** — Créer `publications/<date>-<slug-theme>/` avec, pour
    chaque article, `photo.png`, `prompt.txt`, `texte.md`, et un
    `preview.md` à la racine du dossier (image + texte brut, sans habillage —

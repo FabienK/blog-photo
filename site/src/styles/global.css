@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
 
+/*
+ * :root ci-dessous définit le thème PAR DÉFAUT (page d'accueil, layout de base).
+ * Chaque page de publication doit avoir sa propre palette/typographie, différente
+ * de la publication précédente (voir automation/design-log.md et CLAUDE.md >
+ * Garde-fous > Design) : ne pas modifier ces valeurs ici, les redéfinir dans le
+ * <style> scopé de la page via `:global(body) { --paper: ...; }`, sur le modèle de
+ * l'override `:root[data-theme='dark']` plus bas.
+ */
 :root {
 	--paper: #f6f3ee;
 	--ink: #1a1714;
