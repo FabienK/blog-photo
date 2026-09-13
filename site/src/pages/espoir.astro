@@ -1,0 +1,290 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import braise from '../assets/publications/espoir/braise.png';
+import fissure from '../assets/publications/espoir/fissure.png';
+import cerfVolant from '../assets/publications/espoir/cerf-volant.png';
+
+const articles = [
+	{
+		number: '01',
+		title: 'La braise sous la cendre',
+		image: braise,
+		alt: "Un morceau de charbon incandescent orange vif, à moitié recouvert de cendres grises, dans l'obscurité presque totale",
+		paragraphs: [
+			"Sous une couche de cendre grise, un morceau de charbon garde encore, en son cœur, une fissure d'orange vif — la preuve que rien n'est tout à fait éteint. De l'extérieur, il ne reste qu'un tas gris et froid en apparence ; il faut s'approcher, attendre que l'œil s'habitue à l'obscurité, pour voir qu'une chaleur continue d'y vivre.",
+			"C'est peut-être la forme la plus sobre de l'espoir : non pas une flamme haute et visible de loin, mais une persistance discrète, presque invisible, qui ne demande qu'un peu d'air pour redevenir feu. L'espoir, ici, n'est pas un sentiment éclatant — c'est une survivance, un noyau qui tient bon sous la couche de ce qui semble avoir cédé.",
+			"Cette braise ne garantit rien : elle peut s'éteindre tout autant que reprendre. Mais tant qu'elle rougeoie, même cachée, la possibilité d'un feu reste ouverte. C'est tout ce que l'espoir promet — pas une certitude, une possibilité qui continue de couver.",
+		],
+		prompt:
+			"Photographie photoréaliste en macro, plan très rapproché : un morceau de charbon de bois incandescent orange vif, à moitié recouvert d'un lit de cendres grises fines, dans l'obscurité presque totale d'un foyer éteint. Un mince filet de fumée s'élève au-dessus. Éclairage provenant uniquement de la lueur rouge du charbon lui-même, contraste extrême entre l'orange chaud et le noir profond, grain photographique fin, aucune flamme visible, aucune présence humaine.",
+	},
+	{
+		number: '02',
+		title: 'La fissure et la lueur',
+		image: fissure,
+		alt: "Une coquille d'œuf blanche intacte sur fond noir, traversée d'une fine fissure dorée laissant échapper de la lumière",
+		paragraphs: [
+			"Une coquille d'œuf, intacte en apparence, mais traversée d'une fine fissure dorée : quelque chose, à l'intérieur, brille déjà — avant même que la coquille ne s'ouvre, avant que l'on sache ce qui en sortira. Le reste de la forme demeure dans l'obscurité ; seule cette ligne trahit qu'il s'y passe quelque chose.",
+			"L'espoir ressemble souvent à ça : un signe minuscule, une fêlure, avant que la situation elle-même n'ait changé. Rien n'est encore né, rien n'est encore résolu — mais une lumière existe déjà là où, un instant plus tôt, on ne voyait qu'une coque fermée et opaque. On ne sait pas ce que la fissure va laisser advenir. On sait seulement qu'elle laisse déjà passer quelque chose.",
+			"Ce qui frappe, dans cette image, c'est la retenue : la lumière ne jaillit pas, elle s'infiltre, le long d'une ligne aussi fine qu'un cheveu. L'espoir n'a pas besoin de tout illuminer d'un coup — il commence par une fissure, et une fissure suffit pour que le reste devienne possible.",
+		],
+		prompt:
+			"Photographie photoréaliste en studio, macro : une coquille d'œuf blanche intacte posée sur un fond noir mat, traversée par une fine fissure en zigzag d'où s'échappe un mince filet de lumière chaude dorée, comme si une lueur se trouvait à l'intérieur de la coquille. Le reste de la coquille demeure plongé dans l'obscurité, mise au point extrême sur la fissure lumineuse, aucune présence humaine.",
+	},
+	{
+		number: '03',
+		title: 'Le cerf-volant qui attend le vent',
+		image: cerfVolant,
+		alt: 'Un cerf-volant en papier kraft sur une plage de sable sombre sous un ciel gris, fil tendu, sur le point de se soulever',
+		paragraphs: [
+			"Un cerf-volant en papier kraft, posé au bord de l'eau sur une plage grise, sous un ciel bas et uniforme. Le fil est déjà tendu, presque vibrant, et l'objet commence tout juste à se soulever du sable — mais rien n'est encore vraiment parti. Tout est prêt, sauf le vent, qui n'a pas encore décidé de se lever pour de bon.",
+			"Espérer, c'est souvent cela : tenir une chose prête à s'élever, sans pouvoir décider du moment où elle le fera pleinement. On a fait le nœud, déroulé le fil, choisi l'endroit ; le reste ne dépend plus de soi. Le ciel ne promet rien — ni éclaircie ni tempête — il reste simplement ouvert, et cette ouverture suffit à justifier l'attente.",
+			"Ce qui rend la scène presque tenable, c'est cette tension déjà visible dans le fil : le vent n'est pas encore établi, mais on voit déjà, dans la ligne tirée et le premier soulèvement, la forme qu'aura l'envol quand il viendra. L'espoir n'est pas l'assurance que le vent se lèvera — c'est la décision de rester avec le fil tendu, prêt, en attendant qu'il se lève.",
+		],
+		prompt:
+			"Photographie photoréaliste grand angle, temps gris : un cerf-volant losange en papier kraft posé à plat sur un sol de sable sombre et mouillé, son fil se déroulant en une ligne tendue et vibrante vers le bord du cadre sous l'effet du vent, alors que l'engin lui-même reste immobile au sol. Ciel bas et uniforme couvert de nuages gris, aucune présence humaine, composition large et austère.",
+	},
+];
+---
+
+<Base
+	title="Espoir — Prisme"
+	description="Trois photographies générées pour explorer le thème de l'espoir : une braise sous la cendre, une fissure lumineuse, un cerf-volant qui attend le vent."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="eyebrow">Numéro 04 — 13 septembre 2026 · 3 photographies</p>
+				<h1 class="pub-title">Espoir</h1>
+				<p class="pub-intro">
+					Rien n'éclate d'un coup. Une braise qui tient sous la cendre, une
+					fissure qui laisse passer une lueur, un fil qui se tend avant que le
+					vent ne se lève — trois instants où quelque chose n'est pas encore
+					arrivé, mais devient possible.
+				</p>
+			</div>
+		</section>
+
+		{
+			articles.map((article, i) => (
+				<article class="article">
+					<div class="article__media">
+						<Image
+							src={article.image}
+							alt={article.alt}
+							widths={[640, 1024, 1600]}
+							sizes="100vw"
+							loading={i === 0 ? 'eager' : 'lazy'}
+						/>
+					</div>
+					<div class="wrap article__body-wrap">
+						<div class="article__body">
+							<div class="article__progress" aria-hidden="true">
+								{articles.map((_, j) => (
+									<span class="article__progress-seg" data-lit={j <= i} />
+								))}
+							</div>
+							<p class="article__index">{article.number} / 03</p>
+							<h2 class="article__title">{article.title}</h2>
+							<div class="article__text">
+								{article.paragraphs.map((p) => (
+									<p>{p}</p>
+								))}
+							</div>
+							<div class="article__meta">
+								Photo générée avec <strong>ShowMe5WH</strong> — modèle{' '}
+								<strong>Flux.1 Schnell</strong> (ComfyUI, en local)
+								<details>
+									<summary>Voir le prompt de génération</summary>
+									<p>{article.prompt}</p>
+								</details>
+							</div>
+						</div>
+					</div>
+				</article>
+			))
+		}
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
+
+	:global(body) {
+		--paper: #12151a;
+		--ink: #f3ede4;
+		--ink-soft: #a49b8c;
+		--rule: rgba(243, 237, 228, 0.14);
+		--accent: #e8734a;
+		--accent-strong: #ff8c5a;
+		--surface-raised: #1c2029;
+		--font-display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+		--font-body: 'Newsreader', 'Iowan Old Style', serif;
+	}
+
+	.site-header {
+		padding: 1.75rem 0;
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.02em;
+	}
+	.back-link {
+		font-family: var(--font-display);
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent-strong);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 2rem 0 4.5rem;
+	}
+	.pub-header__inner {
+		max-width: 40rem;
+	}
+	.pub-title {
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 10vw + 1rem, 6.5rem);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		margin: 0.5rem 0 1.75rem;
+	}
+	.pub-intro {
+		font-family: var(--font-body);
+		font-style: italic;
+		font-size: 1.2rem;
+		color: var(--ink-soft);
+		max-width: 34rem;
+		margin: 0;
+	}
+
+	.article {
+		border-top: 1px solid var(--rule);
+	}
+	.article__media {
+		width: 100%;
+		background: var(--surface-raised);
+	}
+	.article__media :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 82vh;
+		object-fit: cover;
+	}
+	.article__body-wrap {
+		padding: 3rem 0 5.5rem;
+	}
+	.article__body {
+		max-width: 38rem;
+		margin: 0 auto;
+	}
+	.article__progress {
+		display: flex;
+		gap: 0.4rem;
+		margin-bottom: 1.5rem;
+	}
+	.article__progress-seg {
+		height: 3px;
+		width: 2.25rem;
+		background: var(--rule);
+		border-radius: 2px;
+	}
+	.article__progress-seg[data-lit='true'] {
+		background: var(--accent);
+	}
+	.article__index {
+		font-family: var(--font-display);
+		font-size: 0.8rem;
+		letter-spacing: 0.1em;
+		color: var(--accent-strong);
+		margin: 0 0 0.5rem;
+	}
+	.article__title {
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3vw + 1rem, 2.5rem);
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		margin-bottom: 1.5rem;
+	}
+	.article__text {
+		font-family: var(--font-body);
+		font-size: 1.1rem;
+		line-height: 1.65;
+	}
+	.article__meta {
+		margin-top: 1.75rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--rule);
+		font-family: var(--font-display);
+		font-size: 0.8rem;
+		color: var(--ink-soft);
+		letter-spacing: 0.01em;
+	}
+	.article__meta strong {
+		color: var(--ink);
+		font-weight: 600;
+	}
+	.article__meta details {
+		margin-top: 0.6rem;
+	}
+	.article__meta summary {
+		cursor: pointer;
+		color: var(--accent-strong);
+		font-weight: 600;
+	}
+	.article__meta details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-body);
+		font-style: italic;
+		line-height: 1.6;
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 0.875rem;
+		color: var(--ink-soft);
+	}
+</style>

@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import coverImage from '../assets/publications/liberte/horizon.png';
 import elegantCoverImage from '../assets/publications/elegance/drape.png';
 import ideeCoverImage from '../assets/publications/idee/goutte.png';
+import espoirCoverImage from '../assets/publications/espoir/fissure.png';
 ---
 
 <Base
@@ -20,7 +21,7 @@ import ideeCoverImage from '../assets/publications/idee/goutte.png';
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 03 — 06 septembre 2026</p>
+				<p class="eyebrow">Numéro 04 — 13 septembre 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -35,6 +36,28 @@ import ideeCoverImage from '../assets/publications/idee/goutte.png';
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/espoir/`}>
+					<div class="issue-card__media">
+						<Image
+							src={espoirCoverImage}
+							alt="Une coquille d'œuf blanche sur fond noir, traversée d'une fine fissure dorée laissant échapper de la lumière"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">13 septembre 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Espoir</h2>
+						<p class="issue-card__excerpt">
+							Une braise qui tient sous la cendre, une fissure qui laisse
+							passer une lueur, un fil qui se tend avant que le vent ne se
+							lève — trois instants juste avant que quelque chose n'arrive.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/idee/`}>
 					<div class="issue-card__media">
