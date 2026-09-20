@@ -15,10 +15,11 @@ divergence, `CLAUDE.md` fait foi.
 3. **Articles** — Décider du nombre d'articles (entre 1 et 5 ; 1 seul article
    reste une exception, pas la norme). Pour chacun : écrire un prompt de
    génération original, générer la photo via l'API REST de ShowMe5WH
-   (`http://127.0.0.1:8000/api/script` puis `/api/generate` — voir
-   `Documents/Projets Claude code/Image generator /Image-generator/README.md`
-   pour le détail de l'API), rédiger un texte expliquant en quoi la photo
-   illustre le thème.
+   (`http://127.0.0.1:8540/api/script` puis `/api/generate` — mode d'emploi
+   complet dans `Documents/Projets Claude code/ShowMe-5WH/AGENT.md` : lire ce
+   seul fichier, lancer `scripts/start_showme.sh` si le backend ne répond pas,
+   vérifier `/api/status` avant de générer), rédiger un texte expliquant en
+   quoi la photo illustre le thème.
    - Maximum **3 tentatives de régénération par article**. Au-delà, garder la
      meilleure image obtenue plutôt que de boucler.
 4. **Mise en page** — Lire `automation/design-log.md` pour connaître la palette et

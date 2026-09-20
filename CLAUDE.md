@@ -69,6 +69,10 @@ Chaque article doit contenir :
   discrétion de l'agent, sous la contrainte de gratuité déjà actée
 
 ### Outil de génération d'images (ShowMe5WH)
+- Emplacement : `Documents/Projets Claude code/ShowMe-5WH/` — API sur `http://127.0.0.1:8540`.
+  Lire **uniquement** `ShowMe-5WH/AGENT.md` (mode d'emploi complet), pas le reste du dépôt
+- Seules actions autorisées hors du dossier du projet : lancer `ShowMe-5WH/scripts/start_showme.sh`
+  si `/api/health` ne répond pas (démarre ComfyUI + backend, idempotent), et lire `AGENT.md`
 - Utilisation en l'état uniquement : aucune modification du pipeline, du workflow, de la configuration
 - Interdiction d'acquérir, télécharger ou installer de nouveaux modèles
 - Interdiction d'appeler un service de génération d'images externe/tiers en remplacement ou complément
