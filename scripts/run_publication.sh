@@ -71,14 +71,13 @@ PROMPT="Exécute la procédure de publication hebdomadaire décrite dans automat
 
 attempt=1
 success=0
-last_out_file=""
+preview_dir=""
 
 while [[ $attempt -le $MAX_ATTEMPTS ]]; do
 	log "tentative $attempt/$MAX_ATTEMPTS"
 	ts=$(date +%Y%m%dT%H%M%S)
 	out_file="$LOG_DIR/claude_${ts}_attempt${attempt}.json"
 	err_file="$LOG_DIR/claude_${ts}_attempt${attempt}.err"
-	last_out_file="$out_file"
 
 	(
 		cd "$PROJECT_DIR" &&
@@ -91,51 +90,52 @@ while [[ $attempt -le $MAX_ATTEMPTS ]]; do
 	exit_code=$?
 
 	if [[ $exit_code -eq 0 ]] && jq -e '.is_error == false' "$out_file" >/dev/null 2>&1; then
-		success=1
-		break
+		# Une réponse sans erreur technique ne veut pas dire qu'une publication a
+		# été produite (ex. Claude s'arrête sur une question bloquante en
+		# headless, personne ne peut répondre) : on ne considère la tentative
+		# réussie que si le marqueur PREVIEW_DIR pointe vers un dossier réel.
+		result_text=$(jq -r '.result // ""' "$out_file")
+		candidate_dir=$(printf '%s\n' "$result_text" | grep -oE 'PREVIEW_DIR: *[^[:space:]]+' | tail -1 | sed -E 's/^PREVIEW_DIR: *//')
+
+		if [[ -n "$candidate_dir" && -d "$PROJECT_DIR/$candidate_dir" ]]; then
+			preview_dir="$candidate_dir"
+			success=1
+			break
+		fi
+
+		log "tentative $attempt terminée sans erreur mais sans dossier de preview détecté (voir $out_file)"
+	else
+		log "tentative $attempt échouée (code sortie $exit_code — voir $err_file)"
 	fi
 
-	log "tentative $attempt échouée (code sortie $exit_code — voir $err_file)"
 	attempt=$((attempt + 1))
 	[[ $attempt -le $MAX_ATTEMPTS ]] && sleep "$RETRY_DELAY_SECONDS"
 done
 
 if [[ $success -ne 1 ]]; then
 	log "échec définitif après $MAX_ATTEMPTS tentatives"
-	notify "Prisme : échec de la génération" "Échec de la génération automatique après $MAX_ATTEMPTS tentatives. Vérifie automation/logs/ sur le Mac mini."
+	notify "Prisme : échec de la génération" "Échec de la génération automatique après $MAX_ATTEMPTS tentatives (erreur technique ou aucune preview produite). Vérifie automation/logs/ sur le Mac mini."
 	exit 1
 fi
 
-# On considère la semaine traitée dès que Claude a terminé sans erreur,
-# même si l'extraction du dossier de preview ci-dessous échoue : on ne veut
-# pas re-générer une deuxième publication la même semaine en cas de pépin
-# purement cosmétique sur la notification.
 echo "$last_sunday" >"$LAST_RUN_FILE"
 
-# --- 4. Extraction du dossier de preview + notification email -----------
+# --- 4. Notification email de la preview ---------------------------------
 
-result_text=$(jq -r '.result // ""' "$last_out_file")
-preview_dir=$(printf '%s\n' "$result_text" | grep -oE 'PREVIEW_DIR: *[^[:space:]]+' | tail -1 | sed -E 's/^PREVIEW_DIR: *//')
+theme_title=$(basename "$preview_dir" | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}-//')
+first_image=$(find "$PROJECT_DIR/$preview_dir" -name "photo.png" | sort | head -1)
 
-if [[ -n "$preview_dir" && -d "$PROJECT_DIR/$preview_dir" ]]; then
-	theme_title=$(basename "$preview_dir" | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}-//')
-	first_image=$(find "$PROJECT_DIR/$preview_dir" -name "photo.png" | sort | head -1)
+# Plus grand UID de INBOX AVANT l'envoi de la preview : sert de repère à
+# scripts/check_validation.py pour détecter une nouvelle réponse.
+baseline_uid=$("$PYTHON_BIN" "$SCRIPTS_DIR/gmail_latest_uid.py" 2>>"$RUN_LOG")
+[[ "$baseline_uid" =~ ^[0-9]+$ ]] || baseline_uid=0
 
-	# Plus grand UID de INBOX AVANT l'envoi de la preview : sert de repère à
-	# scripts/check_validation.py pour détecter une nouvelle réponse.
-	baseline_uid=$("$PYTHON_BIN" "$SCRIPTS_DIR/gmail_latest_uid.py" 2>>"$RUN_LOG")
-	[[ "$baseline_uid" =~ ^[0-9]+$ ]] || baseline_uid=0
+subject="Prisme : \"$theme_title\" est prête"
+body="La publication \"$theme_title\" est prête ($preview_dir). Réponds OUI / JE VALIDE / OK / GO pour la mettre en ligne."
+notify "$subject" "$body" "$first_image"
 
-	subject="Prisme : \"$theme_title\" est prête"
-	body="La publication \"$theme_title\" est prête ($preview_dir). Réponds OUI / JE VALIDE / OK / GO pour la mettre en ligne."
-	notify "$subject" "$body" "$first_image"
-
-	jq -n --arg preview_dir "$preview_dir" --arg theme_title "$theme_title" --argjson baseline_uid "$baseline_uid" \
-		'{preview_dir: $preview_dir, theme_title: $theme_title, baseline_uid: $baseline_uid}' >"$STATE_DIR/pending_validation.json"
-	log "run terminé avec succès — preview : $preview_dir — en attente de validation par email (voir scripts/check_validation.py)"
-else
-	log "run terminé sans erreur mais dossier de preview non détecté dans la réponse"
-	notify "Prisme : preview introuvable" "La génération a réussi mais je n'ai pas retrouvé le dossier de preview automatiquement. Vérifie publications/ sur le Mac mini."
-fi
+jq -n --arg preview_dir "$preview_dir" --arg theme_title "$theme_title" --argjson baseline_uid "$baseline_uid" \
+	'{preview_dir: $preview_dir, theme_title: $theme_title, baseline_uid: $baseline_uid}' >"$STATE_DIR/pending_validation.json"
+log "run terminé avec succès — preview : $preview_dir — en attente de validation par email (voir scripts/check_validation.py)"
 
 exit 0
