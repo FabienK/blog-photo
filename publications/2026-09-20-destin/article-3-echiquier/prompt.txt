@@ -1,0 +1,6 @@
+Photographie photoréaliste en gros plan sur un échiquier en bois posé sur une table dans une pièce sombre : un seul pion noir se trouve déjà avancé au centre de l'échiquier, entièrement vide tout autour de lui, projetant une ombre très longue sous une lumière qui vient d'un point unique hors champ. Toutes les autres cases restent vides et nettes, aucune présence humaine, lumière douce et contrastée.
+
+(Traduit en anglais avant envoi au modèle — Argos Translate, en local :)
+Photorealistic close-up photograph on a wooden chessboard placed on a table in a dark room: a single black pawn is already advanced in the center of the chessboard, completely empty all around it, projecting a very long shadow under a light that comes from a single point out of field. All other cells remain empty and clear, with no human presence, mild and contrasting light.
+
+Modèle : ShowMe5WH — Flux.1 Schnell (ComfyUI, en local). Aucune régénération nécessaire — note : le modèle a généré une pièce à l'allure de roi/fou plutôt qu'un pion au sens strict ; conservée car conforme à l'intention (une seule pièce déjà avancée sur un échiquier vide) et le texte a été ajusté en conséquence.

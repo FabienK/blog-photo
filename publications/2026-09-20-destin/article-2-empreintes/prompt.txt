@@ -1,0 +1,6 @@
+Photographie photoréaliste grand angle, sur une plage de sable mouillé au crépuscule : une unique ligne d'empreintes de pas s'étend depuis le premier plan vers l'horizon, les empreintes les plus proches déjà à moitié effacées par un mince courant d'eau qui remonte sur le sable, tandis que celles plus loin restent nettes et intactes. Un ciel bas couvert de longues bandes de nuages orange, étirées à l'horizon, une lumière qui vient de côté et allonge les ombres, aucune personne visible dans le cadre, composition large et sobre.
+
+(Traduit en anglais avant envoi au modèle — Argos Translate, en local :)
+Wide angle photorealistic photograph, on a sandy beach wet at dusk: a single line of footprints extends from the foreground towards the horizon, the closest prints already half erased by a thin stream of water that goes up on the sand, while those further on remain clear and intact. A low sky covered with long strips of orange clouds, spread out on the horizon, a light that comes from side and lengthens the shadows, no person visible in the frame, broad and sober composition.
+
+Modèle : ShowMe5WH — Flux.1 Schnell (ComfyUI, en local). Aucune régénération nécessaire.

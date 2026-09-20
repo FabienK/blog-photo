@@ -1,0 +1,6 @@
+Photographie photoréaliste en gros plan, mise au point extrême sur une rangée de dominos en bois posés sur une table sombre : le premier domino est figé à mi-chute, en plein basculement, tandis que tous les suivants sont encore parfaitement debout et alignés dans la profondeur de champ floue. Une lumière qui vient de côté, presque à l'horizontale, qui allonge les ombres des dominos debout, fond noir uni, grain photographique fin, aucune présence humaine, aucune main visible.
+
+(Traduit en anglais avant envoi au modèle — Argos Translate, en local :)
+Close-up photorealistic photograph, with an extreme focus on a row of wooden dominoes placed on a dark table: the first domino is frozen mid-fall, in full swing, while all the following are still perfectly standing and aligned in the depth of blurred field. A light that comes from the side, almost to the horizontal, that lengthens the shadows of standing dominoes, plain black background, fine photographic grain, no human presence, no visible hand.
+
+Modèle : ShowMe5WH — Flux.1 Schnell (ComfyUI, en local). Aucune régénération nécessaire.

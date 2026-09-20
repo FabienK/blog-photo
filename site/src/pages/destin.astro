@@ -1,0 +1,302 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import dominos from '../assets/publications/destin/dominos.png';
+import empreintes from '../assets/publications/destin/empreintes.png';
+import echiquier from '../assets/publications/destin/echiquier.png';
+
+const articles = [
+	{
+		ref: 'D—01',
+		title: 'La chute qui entraîne le reste',
+		image: dominos,
+		alt: "Un domino en pleine chute, à mi-basculement, devant une longue rangée de dominos encore parfaitement debout sur fond noir",
+		paragraphs: [
+			"Un domino a déjà basculé. Il est encore en l'air, à mi-chemin de sa chute, alors que tous les autres, derrière lui, se tiennent parfaitement droits — pour l'instant. Rien dans leur alignement ne dit qu'ils vont tomber : ils sont juste posés là, dans le même ordre depuis le début. Et pourtant, dès que le premier a basculé, la suite n'est plus vraiment une question.",
+			"C'est une image assez juste du destin tel qu'on le ressent parfois : non pas une volonté extérieure qui déciderait à notre place, mais une mécanique enclenchée par un geste minuscule, souvent après coup — un mot dit plutôt qu'un autre, une porte prise plutôt qu'une autre. Sur le moment, ce premier geste ne pèse rien. Ce n'est qu'en regardant la chaîne entière, depuis la fin, qu'on peut dire : c'est là que tout a commencé.",
+			"Ce que la photo garde en suspens, volontairement, c'est le milieu du mouvement — ni le déclencheur, déjà passé, ni la chute finale, pas encore arrivée. Le destin ne se voit presque jamais en train de se faire : on ne le reconnaît qu'une fois la rangée entière tombée, en remontant du dernier domino jusqu'au premier.",
+		],
+		prompt:
+			"Photographie photoréaliste en gros plan, mise au point extrême sur une rangée de dominos en bois posés sur une table sombre : le premier domino est figé à mi-chute, en plein basculement, tandis que tous les suivants sont encore parfaitement debout et alignés dans la profondeur de champ floue. Une lumière qui vient de côté, presque à l'horizontale, qui allonge les ombres des dominos debout, fond noir uni, grain photographique fin, aucune présence humaine, aucune main visible.",
+	},
+	{
+		ref: 'D—02',
+		title: "La trace qu'on ne peut reprendre",
+		image: empreintes,
+		alt: "Une ligne d'empreintes de pas sur une plage au crépuscule, à moitié effacées près de la caméra, nettes vers l'horizon",
+		paragraphs: [
+			"Une seule ligne d'empreintes traverse une plage vide, du premier plan jusqu'à l'horizon. Les plus proches, déjà, se remplissent d'eau et perdent leurs contours ; celles du fond, plus loin dans le temps de la marche, restent nettes, intactes, presque plus vraies que les récentes. Le sable ne garde pas tout au même rythme : ce qui vient d'être fait s'efface le premier.",
+			"Le destin, souvent, se raconte à l'envers : on regarde le chemin parcouru et on y voit une ligne cohérente, presque nécessaire, alors qu'au moment de chaque pas, rien n'était certain — seulement le sable sous le pied suivant. Ce qui rend cette trace irréversible, ce n'est pas qu'elle ait été voulue ainsi depuis le début : c'est qu'une fois posée, aucun pas ne peut être repris sans en laisser un autre à côté.",
+			"Devant, le sable reste lisse, sans aucune marque. C'est peut-être la seule vraie liberté que laisse un destin qu'on ne choisit pas entièrement : celle du pas suivant, encore à faire, sur une surface qui n'a encore rien enregistré.",
+		],
+		prompt:
+			"Photographie photoréaliste grand angle, sur une plage de sable mouillé au crépuscule : une unique ligne d'empreintes de pas s'étend depuis le premier plan vers l'horizon, les empreintes les plus proches déjà à moitié effacées par un mince courant d'eau qui remonte sur le sable, tandis que celles plus loin restent nettes et intactes. Un ciel bas couvert de longues bandes de nuages orange, étirées à l'horizon, une lumière qui vient de côté et allonge les ombres, aucune personne visible dans le cadre, composition large et sobre.",
+	},
+	{
+		ref: 'D—03',
+		title: 'La pièce déjà avancée',
+		image: echiquier,
+		alt: "Une pièce d'échecs noire seule au centre d'un échiquier autrement vide, projetant une ombre très longue",
+		paragraphs: [
+			"Sur un échiquier par ailleurs entièrement vide, une seule pièce noire se tient déjà au centre, loin de sa rangée de départ. Aucune main dans le cadre, aucun adversaire visible, aucune autre pièce pour expliquer ce coup : on découvre la partie après le premier mouvement, comme si elle avait commencé avant nous, ou sans nous.",
+			"C'est une sensation assez proche de ce qu'on appelle le destin : l'impression, à un moment donné, que la partie est déjà engagée quand on y prête enfin attention — que des choix ont eu lieu, quelque part, avant qu'on ait eu son mot à dire. L'ombre de la pièce, démesurée par rapport à sa taille réelle, dit bien cela : une seule décision peut s'étendre bien au-delà d'elle-même, occuper un espace que rien d'autre sur le plateau ne vient encore contester.",
+			"Il reste malgré tout un échiquier vide autour de cette pièce, un espace de jeu intact. Le destin, dans cette image, n'a pas encore rempli le plateau — il a seulement fait le premier geste.",
+		],
+		prompt:
+			"Photographie photoréaliste en gros plan sur un échiquier en bois posé sur une table dans une pièce sombre : un seul pion noir se trouve déjà avancé au centre de l'échiquier, entièrement vide tout autour de lui, projetant une ombre très longue sous une lumière qui vient d'un point unique hors champ. Toutes les autres cases restent vides et nettes, aucune présence humaine, lumière douce et contrastée.",
+	},
+];
+---
+
+<Base
+	title="Destin — Prisme"
+	description="Trois photographies générées pour explorer le thème du destin : des dominos qui basculent, une trace qui s'efface, une pièce déjà avancée."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="eyebrow">Numéro 05 — 20 septembre 2026 · 3 photographies</p>
+				<h1 class="pub-title">Destin</h1>
+				<p class="pub-intro">
+					On ne le voit jamais se faire — seulement, après coup, la ligne qu'il
+					a tracée. Un domino qui bascule, une trace qui s'efface derrière un
+					pas, une pièce déjà avancée sur un plateau vide : trois instants
+					relevés après le premier geste, avant qu'on en comprenne la suite.
+				</p>
+			</div>
+		</section>
+
+		<section class="plates">
+			<div class="wrap">
+				{
+					articles.map((article, i) => (
+						<article class="plate">
+							<p class="plate__ref">{article.ref}</p>
+							<figure class="plate__figure">
+								<div class="plate__frame">
+									<Image
+										src={article.image}
+										alt={article.alt}
+										widths={[480, 900, 1400]}
+										sizes="(min-width: 62rem) 46rem, 100vw"
+										loading={i === 0 ? 'eager' : 'lazy'}
+									/>
+								</div>
+								<figcaption>
+									Fig. {i + 1} — {article.title}
+								</figcaption>
+							</figure>
+							<div class="plate__body">
+								<h2 class="plate__title">{article.title}</h2>
+								{article.paragraphs.map((p) => (
+									<p>{p}</p>
+								))}
+								<div class="plate__meta">
+									Photo générée avec <strong>ShowMe5WH</strong> — modèle{' '}
+									<strong>Flux.1 Schnell</strong> (ComfyUI, en local)
+									<details>
+										<summary>Voir le prompt de génération</summary>
+										<p>{article.prompt}</p>
+									</details>
+								</div>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+	:global(body) {
+		--paper: #ece1c8;
+		--ink: #261c14;
+		--ink-soft: #6f5c45;
+		--rule: rgba(38, 28, 20, 0.22);
+		--accent: #8a2e26;
+		--accent-strong: #6e2019;
+		--surface-raised: #ddcda6;
+		--font-display: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+		--font-body: 'Literata', 'Iowan Old Style', Georgia, serif;
+	}
+
+	.site-header {
+		padding: 1.75rem 0;
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.02em;
+	}
+	.back-link {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.78rem;
+		letter-spacing: 0.02em;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent-strong);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 2rem 0 4rem;
+	}
+	.pub-header__inner {
+		max-width: 42rem;
+	}
+	.eyebrow {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-weight: 500;
+		letter-spacing: 0.1em;
+	}
+	.pub-title {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: clamp(3rem, 9vw + 1rem, 6rem);
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		margin: 0.5rem 0 1.75rem;
+	}
+	.pub-intro {
+		font-family: var(--font-body);
+		font-size: 1.15rem;
+		color: var(--ink-soft);
+		max-width: 36rem;
+		margin: 0;
+	}
+
+	.plates {
+		padding-bottom: 5rem;
+	}
+
+	.plate {
+		max-width: 42rem;
+		margin: 0 auto 5.5rem;
+		padding: 2.5rem 2.25rem;
+		background: var(--paper);
+		border: 1px solid var(--rule);
+		box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px var(--rule);
+	}
+	.plate:last-child {
+		margin-bottom: 0;
+	}
+	.plate__ref {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.78rem;
+		letter-spacing: 0.12em;
+		color: var(--accent);
+		margin: 0 0 1.25rem;
+	}
+	.plate__figure {
+		margin: 0 0 2rem;
+	}
+	.plate__frame {
+		background: var(--surface-raised);
+		border: 1px solid var(--rule);
+		padding: 0.6rem;
+	}
+	.plate__frame :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.plate__figure figcaption {
+		font-family: var(--font-body);
+		font-style: italic;
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+		margin-top: 0.75rem;
+		text-align: center;
+	}
+	.plate__title {
+		font-family: var(--font-display);
+		font-size: clamp(1.6rem, 3vw + 1rem, 2.15rem);
+		font-weight: 600;
+		margin-bottom: 1.25rem;
+	}
+	.plate__body p {
+		font-family: var(--font-body);
+		font-size: 1.05rem;
+		line-height: 1.7;
+	}
+	.plate__meta {
+		margin-top: 1.75rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--rule);
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.75rem;
+		color: var(--ink-soft);
+		letter-spacing: 0.01em;
+	}
+	.plate__meta strong {
+		color: var(--ink);
+		font-weight: 500;
+	}
+	.plate__meta details {
+		margin-top: 0.6rem;
+	}
+	.plate__meta summary {
+		cursor: pointer;
+		color: var(--accent);
+		font-weight: 500;
+	}
+	.plate__meta details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-body);
+		font-style: italic;
+		line-height: 1.6;
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.875rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 40rem) {
+		.plate {
+			padding: 3.5rem 4rem;
+		}
+	}
+</style>

@@ -1,5 +1,4 @@
 # Thèmes
-- Destin
 - Dieu
 - Passion
 - Intelligence artificielle   
