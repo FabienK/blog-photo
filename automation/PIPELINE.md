@@ -22,6 +22,16 @@ divergence, `CLAUDE.md` fait foi.
    quoi la photo illustre le thème.
    - Maximum **3 tentatives de régénération par article**. Au-delà, garder la
      meilleure image obtenue plutôt que de boucler.
+   - **Chaque appel à `/api/generate` doit être lancé avec un timeout explicite
+     d'au moins 600000 ms (10 min, le maximum autorisé par l'outil Bash) —
+     jamais le timeout par défaut (2 min).** Une génération dépassant le
+     timeout par défaut est automatiquement basculée en arrière-plan par
+     l'environnement d'exécution, sans bloquer l'agent : si la réponse se
+     termine à ce moment-là, le pipeline s'arrête pour de bon (le mode
+     headless ne "réveille" jamais l'agent plus tard pour une notification en
+     attente). Ne jamais terminer la réponse tant qu'une génération est en
+     cours ou que le marqueur `PREVIEW_DIR:` n'est pas prêt à être écrit — pas
+     de formulation du type "j'attendrai la suite plus tard".
 4. **Mise en page** — Lire `automation/design-log.md` pour connaître la palette et
    la typographie de la dernière publication. Construire la page de publication
    dans `site/`, avec un design adapté au thème (l'agent décide seul, comme pour

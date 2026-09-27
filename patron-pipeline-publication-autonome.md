@@ -74,7 +74,7 @@ tout ce qui précède peut échouer et être rejoué sans conséquence externe.
 |---|---|---|
 | Déclencheur périodique | Lance le pipeline même si la machine était éteinte/endormie au moment prévu | Rattrapage au prochain démarrage, jamais de double-run pour la même période (fichier d'état `last_run`) |
 | Source de sujets | Fournit le sujet imposé de la prochaine publication | Externe à l'agent, modifiable seulement par l'auteur, consommée en FIFO, jamais réinjectée |
-| Génération headless | Produit le contenu via l'outil CLI de l'agent en mode non-interactif | Voir section IV — c'est la partie la plus piégeuse de tout le patron |
+| Génération headless | Produit le contenu via l'outil CLI de l'agent en mode non-interactif | Voir section IV — c'est la partie la plus piégeuse de tout le patron. Timeout explicite sur chaque appel long (jamais le défaut de l'outil, voir IV.9) |
 | Preview | Livrable consultable avant accord | Format brut (texte + média, pas de mise en habillage) — l'habillage final n'a de sens qu'après validation, pour ne pas le refaire si le contenu change |
 | Notification | Signale à l'humain qu'une preview attend une décision | Canal asynchrone, gratuit, capable de porter un aperçu (média en pièce jointe idéalement) |
 | Sondage de validation | Détecte la réponse humaine sans bloquer de process en continu | Polling léger et peu fréquent (pas de connexion permanente coûteuse), mots-clés de validation explicites et documentés, insensibles à la casse |
@@ -212,6 +212,19 @@ anticiper au moment de la conception (pas au premier échec) est tout l'intérê
    manuelle depuis un terminal déjà authentifié) — un environnement headless diffère d'un
    environnement de développement sur des axes qu'aucun test unitaire ne couvre (auth,
    permissions, variables d'environnement disponibles).
+
+9. **Une tâche headless qui dépasse le timeout par défaut d'une commande shell est basculée
+   en arrière-plan sans bloquer l'agent — et rien ne le "réveille" plus tard si le tour de
+   conversation se termine avant que la tâche revienne.**
+   Toute étape de génération (image, vidéo, tout traitement long) doit recevoir un timeout
+   explicite couvrant sa durée réaliste, jusqu'au maximum autorisé par l'outil d'exécution,
+   plutôt que le timeout par défaut (souvent 2 min) — sans quoi la commande part en tâche de
+   fond dès que la génération est un peu plus longue que d'habitude, et l'agent, livré à
+   lui-même, invente à tort un mécanisme de "notification" ou de "reprise ultérieure" qui
+   n'existe pas en mode non-interactif : la fin de sa réponse termine le processus pour de
+   bon. → Documenter dans le prompt/la procédure le timeout explicite à utiliser pour chaque
+   appel long, et interdire toute formulation du type "j'attendrai la suite" en fin de
+   réponse tant que le livrable attendu (ici, le marqueur de fin) n'est pas confirmé produit.
 
 ---
 
