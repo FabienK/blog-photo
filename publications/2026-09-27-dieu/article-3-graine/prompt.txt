@@ -1,0 +1,7 @@
+Prompt original (français) :
+Photo réaliste en macro extrême sur une graine dont l'enveloppe brune se fend, laissant émerger une jeune racine blanche et un fragment de terre sombre et humide, fond noir, éclairage latéral qui souligne la texture de l'enveloppe fendue, aucune présence humaine.
+
+Script envoyé au modèle (traduction vérifiée conforme) :
+Realistic photo in extreme macro on a seed whose brown envelope splits, letting emerge a young white root and a fragment of dark and moist earth, black background, lateral lighting that emphasizes the texture of the split envelope, no human presence.
+
+Style : Photoréaliste — model_id : flux_schnell_photo

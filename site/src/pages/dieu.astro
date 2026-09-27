@@ -1,0 +1,299 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import argile from '../assets/publications/dieu/argile.png';
+import chapelle from '../assets/publications/dieu/chapelle.png';
+import graine from '../assets/publications/dieu/graine.png';
+
+const articles = [
+	{
+		numeral: 'I',
+		title: 'Les mains dans l’argile',
+		image: argile,
+		alt: "Deux mains façonnant un vase en argile brute sur un tour de potier, aucun visage visible",
+		paragraphs: [
+			"Deux mains couvertes de terre pressent une masse d’argile encore grossière, à peine sortie de sa forme informe. Le geste se répète, patient, presque mécanique : serrer, lisser, remonter la matière vers un contour qui n’existe pas encore. Rien n’indique à qui appartiennent ces mains — pas de visage, pas de regard, seulement le travail en train de se faire.",
+			"C’est peut-être la plus ancienne image qu’on se soit faite du divin, bien avant les récits qui lui donnent un nom : moins un « qui » tout-puissant qu’un « comment » patient — une force qui prend de la matière brute et lui donne un contour. Les mythes qui font naître l’humain de la glaise, façonné par des mains qui ne se montrent pas, racontent moins une création soudaine qu’un geste d’artisan, recommencé jusqu’à ce que la forme tienne.",
+			"Ce qui frappe, dans cette image, c’est l’absence justement de ce qu’on attend d’un créateur : aucun visage, aucun regard qui validerait le résultat. Seulement des mains, et de la matière qui cède lentement sous leur pression. Le divin, ici, ne se prouve pas : il se devine à l’effet qu’il produit, jamais à la figure qui le porterait.",
+		],
+		prompt:
+			"Photo réaliste en gros plan sur des mains façonnant un vase en argile brute sur un tour de potier, l’argile encore grossière et humide prenant lentement forme, lumière latérale douce d’atelier, fond sombre flou, grain photographique fin, aucun visage visible.",
+	},
+	{
+		numeral: 'II',
+		title: 'Le banc face au mur nu',
+		image: chapelle,
+		alt: "Un banc de bois usé face à un mur de pierre nu, dans une chapelle sombre éclairée par une haute fenêtre",
+		paragraphs: [
+			"Un seul banc de bois, usé par des générations d’usage, fait face à un mur de pierre claire et parfaitement nu. Une lumière froide tombe d’une fenêtre haute, sur le côté, sans jamais éclairer directement le mur qu’elle frôle. Aucune croix, aucune statue, aucune image ne vient dire à qui ou à quoi s’adresse ce lieu. Il ne reste que l’architecture, et le silence qu’elle organise.",
+			"Beaucoup de traditions se méfient de l’image du divin — non par manque d’imagination, mais par discipline : donner un visage à ce qu’on ne peut pas voir, c’est déjà le réduire à quelque chose de trop petit. Un mur nu, en ce sens, n’est pas un vide qu’on n’a pas encore rempli : c’est un choix délibéré de laisser toute la place à ce qui ne se représente pas.",
+			"Le banc, lui, ne regarde rien en particulier. Il attend simplement, tourné vers un mur qui ne répondra jamais par une image. C’est peut-être à cela que ressemble une grande partie de ce qu’on appelle la foi : non pas la certitude d’une présence qu’on pourrait montrer du doigt, mais la discipline de rester assis, face à ce qui reste muet.",
+		],
+		prompt:
+			"Photo réaliste d’une chapelle dépouillée et sombre : un unique banc de bois usé face à un mur de pierre nu et clair, une haute fenêtre latérale laissant entrer une lumière froide et diffuse, aucune icône ni croix visible, aucune présence humaine, composition sobre et symétrique.",
+	},
+	{
+		numeral: 'III',
+		title: 'La graine qui se fend',
+		image: graine,
+		alt: "Macro extrême sur une graine dont l’enveloppe brune se fend, laissant émerger une jeune racine blanche",
+		paragraphs: [
+			"Sur fond noir, une graine dont l’enveloppe brune vient de céder laisse sortir une racine blanche, encore fragile, à peine plus épaisse qu’un fil. Un peu de terre sombre et humide colle à l’enveloppe fendue. Rien ne pousse cette graine de l’extérieur : elle se fend d’elle-même, au moment où elle se fend, sans qu’aucune main ni aucune volonté visible n’intervienne dans le cadre.",
+			"Il existe une autre façon de penser le divin, moins tournée vers une volonté qui déciderait depuis l’extérieur, plus proche d’une force qui traverse la matière elle-même — celle qui fait qu’une graine, dans de bonnes conditions, ne peut pas ne pas se fendre. Pas un geste ponctuel, mais un principe qui continue d’agir sans avoir besoin d’être renouvelé à chaque fois.",
+			"Ce qui rend ce geste presque vertigineux, c’est son ordinaire : il a lieu des milliards de fois, sans témoin, sans qu’on ait besoin d’y croire pour qu’il se produise. Si le divin loge quelque part dans une graine qui se fend, ce n’est pas dans la preuve qu’elle en donnerait, mais dans le fait qu’elle continue, obstinément, à ne pas avoir besoin de preuve.",
+		],
+		prompt:
+			"Photo réaliste en macro extrême sur une graine dont l’enveloppe brune se fend, laissant émerger une jeune racine blanche et un fragment de terre sombre et humide, fond noir, éclairage latéral qui souligne la texture de l’enveloppe fendue, aucune présence humaine.",
+	},
+];
+---
+
+<Base
+	title="Dieu — Prisme"
+	description="Trois photographies générées pour explorer le thème de Dieu : des mains dans l’argile, un banc face à un mur nu, une graine qui se fend."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="eyebrow">Numéro 06 — 27 septembre 2026 · 3 photographies</p>
+				<h1 class="pub-title">Dieu</h1>
+				<p class="pub-intro">
+					Pas de visage, pas de figure — seulement ce qu’il produit. Des mains
+					qui façonnent sans se montrer, un mur nu qui refuse toute image, une
+					graine qui se fend sans témoin : trois façons de chercher le divin
+					là où il ne se laisse pas représenter.
+				</p>
+			</div>
+		</section>
+
+		<section class="cells">
+			{
+				articles.map((article, i) => (
+					<article class="cell">
+						<div class="wrap cell__inner">
+							<p class="cell__numeral">{article.numeral}</p>
+							<figure class="cell__figure">
+								<Image
+									src={article.image}
+									alt={article.alt}
+									widths={[480, 900, 1400]}
+									sizes="(min-width: 48rem) 34rem, 84vw"
+									loading={i === 0 ? 'eager' : 'lazy'}
+								/>
+							</figure>
+							<h2 class="cell__title">{article.title}</h2>
+							<div class="cell__body">
+								{article.paragraphs.map((p) => (
+									<p>{p}</p>
+								))}
+							</div>
+							<div class="cell__meta">
+								Photo générée avec <strong>ShowMe5WH</strong> — modèle{' '}
+								<strong>Flux.1 Schnell</strong> (ComfyUI, en local)
+								<details>
+									<summary>Voir le prompt de génération</summary>
+									<p>{article.prompt}</p>
+								</details>
+							</div>
+						</div>
+					</article>
+				))
+			}
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l’auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap');
+
+	:global(body) {
+		--paper: #171410;
+		--ink: #efe7d8;
+		--ink-soft: #a89e8c;
+		--rule: rgba(239, 231, 216, 0.14);
+		--accent: #c9a24b;
+		--accent-strong: #e3bd6c;
+		--surface-raised: #211d16;
+		--font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+		--font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+	}
+
+	.site-header {
+		padding: 1.75rem 0;
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.01em;
+	}
+	.back-link {
+		font-family: var(--font-body);
+		font-size: 0.78rem;
+		letter-spacing: 0.02em;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent-strong);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 2rem 0 4rem;
+	}
+	.pub-header__inner {
+		max-width: 40rem;
+	}
+	.eyebrow {
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--accent-strong);
+	}
+	.pub-title {
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 9vw + 1rem, 6rem);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		margin: 0.5rem 0 1.75rem;
+	}
+	.pub-intro {
+		font-family: var(--font-body);
+		font-size: 1.1rem;
+		color: var(--ink-soft);
+		max-width: 34rem;
+		margin: 0;
+	}
+
+	.cells {
+		padding-bottom: 2rem;
+	}
+	.cell {
+		padding: 5rem 0;
+		border-top: 1px solid var(--rule);
+	}
+	.cell:first-child {
+		border-top: 1px solid var(--rule);
+	}
+	.cell__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+	.cell__numeral {
+		font-family: var(--font-display);
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.3em;
+		color: var(--ink-soft);
+		margin: 0 0 2rem;
+	}
+	.cell__figure {
+		margin: 0 0 2.5rem;
+		max-width: 34rem;
+		width: 84vw;
+	}
+	.cell__figure :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		background: var(--surface-raised);
+	}
+	.cell__title {
+		font-family: var(--font-display);
+		font-size: clamp(1.6rem, 3vw + 1rem, 2.25rem);
+		font-weight: 600;
+		max-width: 28rem;
+		margin: 0 0 1.75rem;
+	}
+	.cell__body {
+		max-width: 34rem;
+		text-align: left;
+	}
+	.cell__body p {
+		font-family: var(--font-body);
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: var(--ink);
+	}
+	.cell__meta {
+		max-width: 34rem;
+		text-align: left;
+		margin-top: 1rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--rule);
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		color: var(--ink-soft);
+		letter-spacing: 0.01em;
+	}
+	.cell__meta strong {
+		color: var(--ink);
+		font-weight: 500;
+	}
+	.cell__meta details {
+		margin-top: 0.6rem;
+	}
+	.cell__meta summary {
+		cursor: pointer;
+		color: var(--accent);
+		font-weight: 500;
+	}
+	.cell__meta details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-body);
+		font-style: italic;
+		line-height: 1.6;
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.875rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 40rem) {
+		.cell__inner {
+			padding: 0 2rem;
+		}
+	}
+</style>

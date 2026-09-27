@@ -1,0 +1,7 @@
+Prompt original (français) :
+Photo réaliste d'une chapelle dépouillée et sombre : un unique banc de bois usé face à un mur de pierre nu et clair, une haute fenêtre latérale laissant entrer une lumière froide et diffuse, aucune icône ni croix visible, aucune présence humaine, composition sobre et symétrique.
+
+Script envoyé au modèle (traduction vérifiée conforme) :
+Realistic picture of a stripped and dark chapel: a single worn wooden bench facing a bare and clear stone wall, a high side window allowing a cold and diffuse light, no visible icon or cross, no human presence, sober and symmetrical composition.
+
+Style : Photoréaliste — model_id : flux_schnell_photo

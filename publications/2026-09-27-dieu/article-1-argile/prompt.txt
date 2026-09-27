@@ -1,0 +1,7 @@
+Prompt original (français) :
+Photo réaliste en gros plan sur des mains façonnant un vase en argile brute sur un tour de potier, l'argile encore grossière et humide prenant lentement forme, lumière latérale douce d'atelier, fond sombre flou, grain photographique fin, aucun visage visible.
+
+Script envoyé au modèle (anglais, corrigé après relecture — "tour de potier" traduit à tort en "potter tower" par /api/script) :
+Realistic close-up photo of hands shaping a raw clay vase on a potter's wheel, the clay still coarse and wet, slowly taking shape, soft workshop side light, blurred dark background, fine photographic grain, no visible face.
+
+Style : Photoréaliste — model_id : flux_schnell_photo

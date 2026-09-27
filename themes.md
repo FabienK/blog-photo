@@ -1,5 +1,4 @@
 # Thèmes
-- Dieu
 - Passion
 - Intelligence artificielle   
 - Sagesse

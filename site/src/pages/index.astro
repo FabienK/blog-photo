@@ -6,6 +6,7 @@ import elegantCoverImage from '../assets/publications/elegance/drape.png';
 import ideeCoverImage from '../assets/publications/idee/goutte.png';
 import espoirCoverImage from '../assets/publications/espoir/fissure.png';
 import destinCoverImage from '../assets/publications/destin/echiquier.png';
+import dieuCoverImage from '../assets/publications/dieu/chapelle.png';
 ---
 
 <Base
@@ -22,7 +23,7 @@ import destinCoverImage from '../assets/publications/destin/echiquier.png';
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 05 — 20 septembre 2026</p>
+				<p class="eyebrow">Numéro 06 — 27 septembre 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -37,6 +38,28 @@ import destinCoverImage from '../assets/publications/destin/echiquier.png';
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/dieu/`}>
+					<div class="issue-card__media">
+						<Image
+							src={dieuCoverImage}
+							alt="Un banc de bois usé face à un mur de pierre nu, dans une chapelle sombre éclairée par une haute fenêtre"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">27 septembre 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Dieu</h2>
+						<p class="issue-card__excerpt">
+							Des mains qui façonnent sans se montrer, un mur nu qui refuse
+							toute image, une graine qui se fend sans témoin — trois façons de
+							chercher le divin là où il ne se laisse pas représenter.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/destin/`}>
 					<div class="issue-card__media">
