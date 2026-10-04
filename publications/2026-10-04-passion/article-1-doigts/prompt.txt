@@ -1,0 +1,5 @@
+Prompt (français) : Photo réaliste en gros plan extrême sur le bout des doigts d'un musicien pressant les cordes d'une guitare, callosités et légères marques rougies par la pression répétée, lumière chaude et dirigée de lampe d'atelier, fond sombre flou, aucun visage visible.
+
+Script envoyé au générateur (anglais, écrit directement pour éviter une mistraduction d'Argos sur "lumière rasante" — voir ShowMe-5WH/AGENT.md) : Realistic photo, extreme close-up on the fingertips of a musician pressing guitar strings, calluses and faint reddened marks from repeated pressure, warm angled light from a workshop lamp, blurred dark background, no face visible.
+
+Modèle : ShowMe5WH — Flux (schnell), model_id flux_schnell_photo, style Photoréaliste, seed 1478944500.

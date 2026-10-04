@@ -1,5 +1,4 @@
 # Thèmes
-- Passion
 - Intelligence artificielle   
 - Sagesse
 - Discipline

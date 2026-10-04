@@ -7,6 +7,7 @@ import ideeCoverImage from '../assets/publications/idee/goutte.png';
 import espoirCoverImage from '../assets/publications/espoir/fissure.png';
 import destinCoverImage from '../assets/publications/destin/echiquier.png';
 import dieuCoverImage from '../assets/publications/dieu/chapelle.png';
+import passionCoverImage from '../assets/publications/passion/chausson.png';
 ---
 
 <Base
@@ -23,7 +24,7 @@ import dieuCoverImage from '../assets/publications/dieu/chapelle.png';
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 06 — 27 septembre 2026</p>
+				<p class="eyebrow">Numéro 07 — 4 octobre 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -38,6 +39,28 @@ import dieuCoverImage from '../assets/publications/dieu/chapelle.png';
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/passion/`}>
+					<div class="issue-card__media">
+						<Image
+							src={passionCoverImage}
+							alt="Un chausson de danse classique au satin rose élimé, pointe trouée par l'usage, posé seul sur un parquet rayé"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">04 octobre 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Passion</h2>
+						<p class="issue-card__excerpt">
+							Des doigts marqués par les cordes, un chausson usé à la pointe,
+							un carnet qui déborde — trois objets qui portent la trace d'une
+							obsession, sans jamais montrer qui l'éprouve.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/dieu/`}>
 					<div class="issue-card__media">

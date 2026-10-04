@@ -1,0 +1,7 @@
+Prompt (français) : Photo réaliste d'une paire de chaussons de danse classique usés, satin rose élimé et troué à la pointe, renforcés de sparadrap, posés sur un parquet de studio rayé par l'usage, lumière latérale douce, aucune présence humaine.
+
+Script envoyé au générateur (anglais, écrit directement) : Realistic photo of a pair of worn ballet pointe shoes, pink satin frayed and holed at the tip, reinforced with tape, resting on a scratched studio wood floor, soft side lighting, no human presence.
+
+Modèle : ShowMe5WH — Flux (schnell), model_id flux_schnell_photo, style Photoréaliste, seed 3672889964.
+
+Écart mineur assumé : l'image ne montre qu'un seul chausson (et non une paire), sans renfort de sparadrap visible — conservé tel quel plutôt que régénéré, le texte a été écrit en conséquence (un seul chausson, sans mention de sparadrap).

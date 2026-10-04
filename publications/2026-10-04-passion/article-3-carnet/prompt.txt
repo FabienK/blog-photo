@@ -1,0 +1,5 @@
+Prompt (français) : Photo réaliste en plan rapproché d'un carnet ouvert aux pages gondolées, rempli d'une écriture reprise et raturée des dizaines de fois, un même mot redessiné en marge, crayon usé posé à côté, lumière de bureau tamisée et chaude, aucun visage visible.
+
+Script envoyé au générateur (anglais, écrit directement) : Realistic close-up photo of an open notebook with warped pages, filled with handwriting reworked and crossed out dozens of times, the same word redrawn repeatedly in the margin, a worn pencil resting beside it, dim warm desk lighting, no face visible.
+
+Modèle : ShowMe5WH — Flux (schnell), model_id flux_schnell_photo, style Photoréaliste, seed 861486201.

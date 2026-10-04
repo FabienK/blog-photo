@@ -1,0 +1,326 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import doigts from '../assets/publications/passion/doigts.png';
+import chausson from '../assets/publications/passion/chausson.png';
+import carnet from '../assets/publications/passion/carnet.png';
+
+const articles = [
+	{
+		number: '01',
+		title: 'Les doigts marqués',
+		image: doigts,
+		alt: "Gros plan sur des doigts pressant des cordes de guitare sous une lampe d'atelier, callosités et marques rougies par la pression répétée, aucun visage visible",
+		paragraphs: [
+			"Sous une lampe d'atelier, une main presse des cordes de guitare jusqu'à en effacer les contours de ses propres doigts. La peau du bout des doigts a durci par endroits, s'est marquée de petites zones rougies là où la pression revient, soir après soir, toujours au même endroit. Pas de visage dans le cadre, pas de public, pas d'instant de scène — seulement ce contact répété entre une main et un fil tendu.",
+			"La passion ne s'annonce pas, elle s'imprime. Ce ne sont pas les mots qu'on emploie pour la décrire qui la rendent réelle, mais ce qu'elle laisse derrière elle sur un corps qui a continué sans qu'on le lui demande : un cal, une callosité, une sensibilité qui s'émousse à force d'insister au même endroit. On ne choisit pas d'avoir ces marques-là ; on choisit seulement de revenir, encore, presser encore la corde qui a déjà fait mal hier.",
+			"Ce que personne ne voit dans ces doigts, c'est le nombre de fois où le geste a été refait avant de devenir indolore. La passion, ici, n'est pas l'instant où l'on joue bien : c'est tout ce temps, invisible et répétitif, qu'il a fallu pour que la main cesse de se plaindre.",
+		],
+		prompt:
+			"Realistic photo, extreme close-up on the fingertips of a musician pressing guitar strings, calluses and faint reddened marks from repeated pressure, warm angled light from a workshop lamp, blurred dark background, no face visible.",
+	},
+	{
+		number: '02',
+		title: 'Le chausson usé à la pointe',
+		image: chausson,
+		alt: "Un chausson de danse classique au satin rose élimé, pointe trouée par l'usage, posé seul sur un parquet rayé",
+		paragraphs: [
+			"Posé seul sur un parquet rayé, un chausson de danse classique montre sa pointe trouée, le satin rose parti en lambeaux là où tout le poids d'un corps est venu retomber, encore et encore. Le ruban reste noué, prêt à être rechaussé, comme si la pause n'était que momentanée. Aucune danseuse dans le cadre : seulement l'objet, et ce qu'il garde en mémoire du nombre de fois où il a touché le sol.",
+			"Un chausson comme celui-ci ne ment pas sur l'intensité d'une pratique — il l'inscrit directement dans sa matière, sans avoir besoin qu'on la raconte. La passion s'y mesure moins en heures de répétition qu'en ce qu'elle use : un tissu qui cède avant le corps, une pointe qui se troue avant que le geste ne soit parfait. C'est une forme d'endurance qui ne cherche pas de témoin.",
+			"Ce qui frappe, dans cette usure précise, c'est qu'elle ne s'arrête jamais au bon moment : on continue après que le chausson a commencé à céder, parce que s'arrêter coûterait davantage que recoudre, retaper, repartir. Le chausson usé n'est pas l'échec d'une pratique — il en est la preuve la plus honnête.",
+		],
+		prompt:
+			"Realistic photo of a pair of worn ballet pointe shoes, pink satin frayed and holed at the tip, reinforced with tape, resting on a scratched studio wood floor, soft side lighting, no human presence.",
+	},
+	{
+		number: '03',
+		title: 'Le carnet qui déborde',
+		image: carnet,
+		alt: "Un carnet ouvert aux pages gondolées, saturé d'une écriture reprise et raturée, un crayon usé posé à côté",
+		paragraphs: [
+			"Sous une lumière tamisée, un carnet reste ouvert sur des pages gondolées par l'usage, saturées d'une écriture serrée qui revient sans cesse sur elle-même — reprise, raturée, redessinée dans la marge dès qu'une ligne ne convient pas. Un crayon usé repose juste à côté, posé là comme s'il venait d'être reposé pour la centième fois, pas pour la dernière. Personne n'a demandé que ce carnet soit rempli ainsi.",
+			"C'est peut-être la forme la plus silencieuse de la passion : non pas un geste spectaculaire, mais l'incapacité à laisser une page telle qu'elle est. On revient sur le même mot, la même phrase, parce qu'une version plus juste existe encore quelque part et qu'on ne peut pas s'empêcher de la chercher. Le carnet ne déborde pas parce qu'on l'a rempli une fois, mais parce qu'on y est revenu, inlassablement, bien après que c'était nécessaire.",
+			"Ce qui distingue cette écriture d'une simple corvée, c'est l'absence totale d'obligation : rien ne force à raturer une troisième fois ce qui était déjà lisible la première. Seule la passion explique qu'on continue à chercher, dans la même page, une forme qu'on n'a pas encore trouvée.",
+		],
+		prompt:
+			"Realistic close-up photo of an open notebook with warped pages, filled with handwriting reworked and crossed out dozens of times, the same word redrawn repeatedly in the margin, a worn pencil resting beside it, dim warm desk lighting, no face visible.",
+	},
+];
+---
+
+<Base
+	title="Passion — Prisme"
+	description="Trois photographies générées pour explorer le thème de la Passion : des doigts marqués par les cordes, un chausson usé à la pointe, un carnet qui déborde."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="eyebrow">Numéro 07 — 4 octobre 2026 · 3 photographies</p>
+				<h1 class="pub-title">Passion</h1>
+				<p class="pub-intro">
+					Pas de cœur, pas de flamme, pas d'étreinte — ce que la passion laisse
+					derrière elle : une callosité, un tissu usé, un carnet qu'on a rempli
+					sans qu'on le demande. Trois objets qui portent la trace d'une
+					obsession, sans jamais montrer celui ou celle qui l'éprouve.
+				</p>
+			</div>
+		</section>
+
+		<section class="split-list">
+			{
+				articles.map((article, i) => (
+					<article class="split">
+						<div class="wrap split__inner">
+							<div class="split__media">
+								<div class="split__media-sticky">
+									<Image
+										src={article.image}
+										alt={article.alt}
+										widths={[480, 900, 1400]}
+										sizes="(min-width: 60rem) 36rem, 92vw"
+										loading={i === 0 ? 'eager' : 'lazy'}
+									/>
+								</div>
+							</div>
+							<div class="split__content">
+								<p class="split__number" aria-hidden="true">{article.number}</p>
+								<p class="split__index">Article {article.number} / 03</p>
+								<h2 class="split__title">{article.title}</h2>
+								<div class="split__body">
+									{article.paragraphs.map((p) => (
+										<p>{p}</p>
+									))}
+								</div>
+								<div class="split__meta">
+									Photo générée avec <strong>ShowMe5WH</strong> — modèle{' '}
+									<strong>Flux (schnell)</strong> (ComfyUI, en local)
+									<details>
+										<summary>Voir le prompt de génération</summary>
+										<p>{article.prompt}</p>
+									</details>
+								</div>
+							</div>
+						</div>
+					</article>
+				))
+			}
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500;1,600&family=Albert+Sans:wght@400;500;600&display=swap');
+
+	:global(body) {
+		--paper: #f3e7da;
+		--ink: #2a1512;
+		--ink-soft: #7a5d52;
+		--rule: rgba(42, 21, 18, 0.14);
+		--accent: #9c1f2e;
+		--accent-strong: #c23346;
+		--surface-raised: #ece0d2;
+		--font-display: 'Cormorant', 'Iowan Old Style', Georgia, serif;
+		--font-body: 'Albert Sans', -apple-system, sans-serif;
+	}
+
+	.site-header {
+		padding: 1.75rem 0;
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.5rem;
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.01em;
+	}
+	.back-link {
+		font-family: var(--font-body);
+		font-size: 0.78rem;
+		letter-spacing: 0.02em;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent-strong);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 2rem 0 4rem;
+	}
+	.pub-header__inner {
+		max-width: 40rem;
+	}
+	.eyebrow {
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+	.pub-title {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: clamp(3.25rem, 10vw + 1rem, 6.5rem);
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		margin: 0.5rem 0 1.75rem;
+		color: var(--accent);
+	}
+	.pub-intro {
+		font-family: var(--font-body);
+		font-size: 1.1rem;
+		color: var(--ink-soft);
+		max-width: 34rem;
+		margin: 0;
+	}
+
+	.split-list {
+		padding-bottom: 2rem;
+	}
+	.split {
+		padding: 4rem 0;
+		border-top: 1px solid var(--rule);
+	}
+	.split__inner {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+	.split__media-sticky img {
+		display: block;
+		width: 100%;
+		height: auto;
+		background: var(--surface-raised);
+	}
+	.split__content {
+		position: relative;
+	}
+	.split__number {
+		position: absolute;
+		top: -1.5rem;
+		right: 0;
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: 7rem;
+		line-height: 1;
+		color: var(--accent);
+		opacity: 0.1;
+		margin: 0;
+		pointer-events: none;
+		z-index: 0;
+	}
+	.split__index {
+		font-family: var(--font-body);
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin: 0 0 0.75rem;
+		position: relative;
+	}
+	.split__title {
+		font-family: var(--font-display);
+		font-size: clamp(1.9rem, 3vw + 1rem, 2.6rem);
+		font-weight: 600;
+		margin: 0 0 1.5rem;
+		max-width: 22rem;
+		position: relative;
+	}
+	.split__body {
+		max-width: 34rem;
+		position: relative;
+	}
+	.split__body p {
+		font-family: var(--font-body);
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: var(--ink);
+	}
+	.split__meta {
+		max-width: 34rem;
+		margin-top: 1rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--rule);
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		color: var(--ink-soft);
+		letter-spacing: 0.01em;
+		position: relative;
+	}
+	.split__meta strong {
+		color: var(--ink);
+		font-weight: 600;
+	}
+	.split__meta details {
+		margin-top: 0.6rem;
+	}
+	.split__meta summary {
+		cursor: pointer;
+		color: var(--accent);
+		font-weight: 600;
+	}
+	.split__meta details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-body);
+		font-style: italic;
+		line-height: 1.6;
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.875rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 60rem) {
+		.split__inner {
+			grid-template-columns: 1.05fr 1fr;
+			align-items: start;
+			gap: 4rem;
+		}
+		.split__media-sticky {
+			position: sticky;
+			top: 2.5rem;
+		}
+		.split__content {
+			padding-top: 1rem;
+		}
+	}
+</style>

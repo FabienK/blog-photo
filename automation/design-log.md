@@ -13,11 +13,13 @@ publication ne répète le design (couleurs + typographie) de la précédente �
 | 2026-09-13 | Espoir | Palette individualisée (override scopé) : fond quasi noir bleuté `#12151a`, texte crème `#f3ede4`, accent braise `#e8734a` / `#ff8c5a` | Bricolage Grotesque (titres, sans-serif géométrique) + Newsreader (texte, serif) — inversion du pairing par défaut (serif titres / sans texte) | Images pleine largeur (plein cadre) empilées, texte en colonne centrée étroite sous chaque image, indicateur de progression (3 segments, s'allument au fil des articles) | Aucune |
 | 2026-09-20 | Destin | Fond clair parchemin `#ece1c8`, encre brun-noir `#261c14`, accent oxblood `#8a2e26` / `#6e2019` — retour à un fond clair après le sombre d'Espoir | Playfair Display (titres, serif classique à fort contraste, en italique) + Literata (texte, serif de lecture) + IBM Plex Mono (repères catalogue/légendes) — nouveau pairing, aucune police en commun avec Espoir ou le thème par défaut | « Planches » : chaque article encadré d'une double bordure façon page d'atlas ancien, image insérée avec légende italique (« Fig. N »), repère catalogue façon fiche scientifique (« D—01 ») — colonne unique centrée, ni plein cadre (Espoir) ni grille alternée (Idée) | Aucune |
 | 2026-09-27 | Dieu | Fond pierre/charbon sombre et neutre `#171410`, texte crème `#efe7d8`, accent or mat façon lueur de cierge `#c9a24b` / `#e3bd6c` — sombre comme Espoir mais teinte neutre chaude, sans bleu ni orange ; net écart avec le parchemin clair de Destin | Space Grotesk (titres, sans-serif géométrique) + IBM Plex Sans (texte) — pairing entièrement sans-serif, aucune police en commun avec Destin (tout serif) ni Espoir (mix sans/serif) | « Cellules » : chaque article en pleine section verticale, repère en chiffre romain (I/II/III) discret, image en vignette centrée entourée d'un large espace négatif, texte en colonne étroite sous l'image — ni plein cadre empilé (Espoir), ni grille alternée (Idée), ni planches encadrées en colonne (Destin) | Aucune |
+| 2026-10-04 | Passion | Fond ivoire chaud `#f3e7da`, encre brun très sombre `#2a1512`, accent cramoisi profond `#9c1f2e` / `#c23346` — retour à un fond clair et très saturé après le neutre sombre de Dieu, teinte volontairement associée au thème (sans tomber dans le rouge « cœur » littéral, réservé au texte/accent, jamais au sujet des photos) | Cormorant (titres, serif romantique à fort contraste, en italique) + Albert Sans (texte, sans-serif humaniste) — nouveau pairing serif/sans, aucune police en commun avec Dieu (tout sans-serif), Destin (Playfair/Literata/IBM Plex Mono) ni Espoir (Bricolage/Newsreader) | « Split » : grille deux colonnes à l'image fixée (`position: sticky`) pendant que le texte défile à côté, grand numéro fantôme semi-transparent en fond de chaque bloc de texte — ni cellules empilées (Dieu), ni plein cadre (Espoir), ni grille alternée (Idée), ni planches encadrées (Destin) | Aucune |
 
-**Point de départ pour la prochaine publication** : "Dieu" est sombre (pierre/charbon
-neutre) avec un accent or mat, une paire 100% sans-serif (Space Grotesk + IBM Plex
-Sans), et une mise en page en "cellules" verticales à large espace négatif. La
-prochaine publication doit s'écarter de cette base sur la palette **et** la
-typographie — par exemple un fond clair ou plus saturé, une police serif ou un
-pairing mixte, et une mise en page qui n'utilise pas la succession de cellules
-verticales centrées utilisée ici.
+**Point de départ pour la prochaine publication** : "Passion" est claire et saturée
+(ivoire chaud + accent cramoisi profond), avec un pairing serif/sans (Cormorant
+italique + Albert Sans) et une mise en page en deux colonnes à image fixe (« split »).
+La prochaine publication doit s'écarter de cette base sur la palette **et** la
+typographie — par exemple un fond sombre ou plus neutre, un pairing entièrement
+sans-serif ou entièrement serif, et une mise en page qui n'utilise ni le split à image
+sticky, ni les cellules empilées, ni le plein cadre, ni la grille alternée, ni les
+planches encadrées déjà utilisés.
