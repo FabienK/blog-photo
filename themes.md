@@ -1,5 +1,4 @@
 # Thèmes
-- Intelligence artificielle   
 - Sagesse
 - Discipline
 - Ingéniosité

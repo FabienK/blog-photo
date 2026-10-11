@@ -8,6 +8,7 @@ import espoirCoverImage from '../assets/publications/espoir/fissure.png';
 import destinCoverImage from '../assets/publications/destin/echiquier.png';
 import dieuCoverImage from '../assets/publications/dieu/chapelle.png';
 import passionCoverImage from '../assets/publications/passion/chausson.png';
+import iaCoverImage from '../assets/publications/intelligence-artificielle/carte-perforee.png';
 ---
 
 <Base
@@ -24,7 +25,7 @@ import passionCoverImage from '../assets/publications/passion/chausson.png';
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 07 — 4 octobre 2026</p>
+				<p class="eyebrow">Numéro 08 — 11 octobre 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -39,6 +40,29 @@ import passionCoverImage from '../assets/publications/passion/chausson.png';
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/intelligence-artificielle/`}>
+					<div class="issue-card__media">
+						<Image
+							src={iaCoverImage}
+							alt="Gros plan sur une carte perforée entrant dans le mécanisme d'un métier à tisser ancien, fils rouges et écrus tendus formant un motif naissant"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">11 octobre 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Intelligence artificielle</h2>
+						<p class="issue-card__excerpt">
+							Une carte perforée qui dicte un motif sans le voir, un rouleau qui
+							joue une musique qu'il n'a jamais entendue, une ruche qui construit
+							un ordre parfait sans architecte — trois systèmes qui produisent
+							sans comprendre.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/passion/`}>
 					<div class="issue-card__media">
