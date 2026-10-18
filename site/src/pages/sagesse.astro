@@ -1,0 +1,301 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import murPierres from '../assets/publications/sagesse/mur-pierres.png';
+import noeudMarin from '../assets/publications/sagesse/noeud-marin.png';
+import tasseThe from '../assets/publications/sagesse/tasse-the.png';
+
+const articles = [
+	{
+		label: 'Premier feuillet',
+		title: 'Le mur qui tient sans rien forcer',
+		image: murPierres,
+		alt: 'Gros plan sur un vieux mur de pierres sèches, chaque pierre irrégulière calée à la main sans mortier, lumière rasante de fin d’après-midi',
+		paragraphs: [
+			"Un mur de pierres sèches ne doit rien à la force : aucun mortier ne le fige, aucune armature ne le redresse. Chaque pierre a été choisie pour sa forme propre, tournée, calée, essayée à nouveau jusqu'à trouver l'appui qui ne bouge plus. Rien n'est ajouté pour combler — on compose avec ce qu'on a sous la main, et ça tient, parfois depuis des générations.",
+			"C'est une image de la sagesse qui doit peu aux images attendues — ni vieillard, ni livre, ni chouette perchée. Elle n'est pas un savoir qu'on exhibe mais un geste répété : regarder ce qui se présente, accepter sa forme irrégulière, l'ajuster sans le forcer. Le mur ne proclame rien. Il tient, simplement, parce que chaque pierre a trouvé sa juste place.",
+		],
+		prompt:
+			'Realistic photo of an old dry stone wall, each irregular stone carefully fitted and wedged by hand without any mortar, holding together for generations, soft late-afternoon sunlight raking across the rough textures, close-up composition filling the frame',
+	},
+	{
+		label: 'Deuxième feuillet',
+		title: 'Le nœud qui ne demande plus réflexion',
+		image: noeudMarin,
+		alt: 'Gros plan extrême sur un nœud marin serré avec précision, corde usée par le sel, posée sur un pont de bateau en bois, aucune main visible',
+		paragraphs: [
+			"Un marin ne pense plus son nœud, il le fait. Des années de vent, de corde mouillée et de gestes recommencés ont fini par loger le savoir dans la main plutôt que dans la tête — exactement assez de tours, pas un de plus, serré juste ce qu'il faut pour tenir sans jamais se défaire sous la tension.",
+			"C'est une autre facette de la sagesse : non pas une idée qu'on détient, mais une économie qu'on atteint à force de répétition. Le geste juste, débarrassé de tout superflu, qui ne se remarque même plus à force d'être devenu évident. Rien d'ostentatoire dans cette corde usée par le sel — seulement l'exactitude tranquille de ce qui a été fait, défait et refait, jusqu'à ne plus pouvoir être fait autrement.",
+		],
+		prompt:
+			"Realistic close-up photo of a weathered sailor's rope tied into a precise, tight nautical knot, salt-and-sun-worn fibers, resting on an old wooden boat deck, soft natural daylight, no hands visible, extreme close-up composition",
+	},
+	{
+		label: 'Troisième feuillet',
+		title: "La tasse qu'on laisse encore infuser",
+		image: tasseThe,
+		alt: 'Tasse de thé fumante laissée intacte sur une table en bois patinée, lumière douce de fenêtre, aucune main visible',
+		paragraphs: [
+			"La fumée monte, le thé est prêt — et pourtant la tasse attend, intacte, un instant de plus sur la table. Rien n'oblige à la porter tout de suite aux lèvres. Ce délai, à peine perceptible, est peut-être la forme la plus discrète de la sagesse : savoir que tout n'a pas besoin d'être consommé à l'instant où il devient possible.",
+			"Pas de vieux sage, pas de balance, pas de symbole appuyé — juste une pièce ordinaire, une lumière de fin d'après-midi, et ce court refus de se précipiter. La sagesse, ici, n'est pas de savoir quoi faire. C'est de savoir attendre encore un peu avant de le faire.",
+		],
+		prompt:
+			"Realistic photo of a steaming cup of tea left untouched on a worn wooden table, gentle wisps of steam rising, warm soft window light, nobody's hands in frame, shallow depth of field, close-up composition",
+	},
+];
+---
+
+<Base
+	title="Sagesse — Prisme"
+	description="Trois photographies générées pour explorer le thème de la Sagesse : un mur de pierres sèches, un nœud marin, une tasse de thé qu'on laisse infuser."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="eyebrow">N° 09 — 18 octobre 2026 · 03 photographies</p>
+				<h1 class="pub-title">Sagesse</h1>
+				<p class="pub-intro">
+					Ni vieillard barbu, ni chouette, ni livre ouvert — un mur de pierres
+					sèches qui tient sans mortier, un nœud marin devenu geste du corps,
+					une tasse qu'on laisse infuser un instant de plus. Trois formes
+					discrètes de ce que savoir attendre, ajuster et répéter veut dire.
+				</p>
+			</div>
+		</section>
+
+		<section class="journal">
+			{
+				articles.map((article, i) => (
+					<article class="entry">
+						<div class="wrap entry__inner">
+							<p class="entry__label">{article.label}</p>
+							<div class="entry__card">
+								<div class="entry__media">
+									<Image
+										src={article.image}
+										alt={article.alt}
+										widths={[480, 900, 1400]}
+										sizes="(min-width: 50rem) 42rem, 92vw"
+										loading={i === 0 ? 'eager' : 'lazy'}
+									/>
+								</div>
+								<div class="entry__content">
+									<h2 class="entry__title">{article.title}</h2>
+									<div class="entry__body">
+										{article.paragraphs.map((p) => (
+											<p>{p}</p>
+										))}
+									</div>
+									<div class="entry__meta">
+										<span>Photo générée avec <strong>ShowMe5WH</strong> — modèle <strong>Flux (schnell)</strong> (ComfyUI, en local)</span>
+										<details>
+											<summary>Voir le prompt de génération</summary>
+											<p>{article.prompt}</p>
+										</details>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+				))
+			}
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+	:global(body) {
+		--paper: #dcdccb;
+		--ink: #262a20;
+		--ink-soft: #5c6350;
+		--rule: rgba(38, 42, 32, 0.18);
+		--accent: #4b6b3f;
+		--accent-strong: #3a5330;
+		--surface-raised: #e8e8d9;
+		--font-display: 'Spectral', 'Iowan Old Style', Georgia, serif;
+		--font-body: 'Karla', -apple-system, sans-serif;
+	}
+
+	.site-header {
+		padding: 1.75rem 0;
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.35rem;
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.01em;
+	}
+	.back-link {
+		font-family: var(--font-body);
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent-strong);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 2.5rem 0 4rem;
+	}
+	.pub-header__inner {
+		max-width: 38rem;
+	}
+	.eyebrow {
+		font-family: var(--font-body);
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		color: var(--accent-strong);
+	}
+	.pub-title {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-style: italic;
+		font-size: clamp(2.75rem, 7vw + 1rem, 5rem);
+		letter-spacing: -0.01em;
+		margin: 0.7rem 0 1.5rem;
+		color: var(--ink);
+	}
+	.pub-intro {
+		font-family: var(--font-body);
+		font-size: 1.1rem;
+		line-height: 1.65;
+		color: var(--ink-soft);
+		max-width: 34rem;
+		margin: 0;
+	}
+
+	.journal {
+		padding-bottom: 3.5rem;
+	}
+	.entry {
+		padding: 1.75rem 0;
+	}
+	.entry__inner {
+		max-width: 42rem;
+	}
+	.entry__label {
+		font-family: var(--font-body);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin: 0 0 0.75rem 0.25rem;
+	}
+	.entry__card {
+		background: var(--surface-raised);
+		border-radius: 0.4rem;
+		box-shadow: 0 1px 0 var(--rule), 0 14px 34px -22px rgba(38, 42, 32, 0.45);
+	}
+	.entry__media {
+		padding: 0.9rem 0.9rem 0;
+	}
+	.entry__media img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 0.25rem;
+	}
+	.entry__content {
+		padding: 1.5rem 1.75rem 2rem;
+	}
+	.entry__title {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: clamp(1.4rem, 2vw + 1rem, 1.85rem);
+		letter-spacing: -0.005em;
+		margin: 0 0 1.25rem;
+		color: var(--ink);
+	}
+	.entry__body {
+		max-width: 36rem;
+	}
+	.entry__body p {
+		font-family: var(--font-body);
+		font-size: 1.03rem;
+		line-height: 1.75;
+		color: var(--ink);
+	}
+	.entry__meta {
+		max-width: 36rem;
+		margin-top: 1.1rem;
+		padding-top: 1.1rem;
+		border-top: 1px dashed var(--rule);
+		font-family: var(--font-body);
+		font-size: 0.78rem;
+		letter-spacing: 0.01em;
+		color: var(--ink-soft);
+	}
+	.entry__meta strong {
+		color: var(--ink);
+	}
+	.entry__meta details {
+		margin-top: 0.6rem;
+	}
+	.entry__meta summary {
+		cursor: pointer;
+		color: var(--accent-strong);
+		font-weight: 600;
+	}
+	.entry__meta details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-display);
+		font-style: italic;
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.875rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 48rem) {
+		.entry__content {
+			padding: 2rem 2.75rem 2.5rem;
+		}
+	}
+</style>

@@ -9,6 +9,7 @@ import destinCoverImage from '../assets/publications/destin/echiquier.png';
 import dieuCoverImage from '../assets/publications/dieu/chapelle.png';
 import passionCoverImage from '../assets/publications/passion/chausson.png';
 import iaCoverImage from '../assets/publications/intelligence-artificielle/carte-perforee.png';
+import sagesseCoverImage from '../assets/publications/sagesse/mur-pierres.png';
 ---
 
 <Base
@@ -25,7 +26,7 @@ import iaCoverImage from '../assets/publications/intelligence-artificielle/carte
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 08 — 11 octobre 2026</p>
+				<p class="eyebrow">Numéro 09 — 18 octobre 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -40,6 +41,28 @@ import iaCoverImage from '../assets/publications/intelligence-artificielle/carte
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/sagesse/`}>
+					<div class="issue-card__media">
+						<Image
+							src={sagesseCoverImage}
+							alt="Gros plan sur un vieux mur de pierres sèches, chaque pierre irrégulière calée à la main sans mortier, lumière rasante de fin d'après-midi"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">18 octobre 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Sagesse</h2>
+						<p class="issue-card__excerpt">
+							Un mur de pierres sèches qui tient sans mortier, un nœud marin
+							devenu geste du corps, une tasse qu'on laisse infuser un instant
+							de plus — trois façons discrètes de savoir attendre et ajuster.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/intelligence-artificielle/`}>
 					<div class="issue-card__media">

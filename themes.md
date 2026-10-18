@@ -1,5 +1,4 @@
 # Thèmes
-- Sagesse
 - Discipline
 - Ingéniosité
 - Humanisme
