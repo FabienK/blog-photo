@@ -10,6 +10,7 @@ import dieuCoverImage from '../assets/publications/dieu/chapelle.png';
 import passionCoverImage from '../assets/publications/passion/chausson.png';
 import iaCoverImage from '../assets/publications/intelligence-artificielle/carte-perforee.png';
 import sagesseCoverImage from '../assets/publications/sagesse/mur-pierres.png';
+import disciplineCoverImage from '../assets/publications/discipline/rames.png';
 ---
 
 <Base
@@ -26,7 +27,7 @@ import sagesseCoverImage from '../assets/publications/sagesse/mur-pierres.png';
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 09 — 18 octobre 2026</p>
+				<p class="eyebrow">Numéro 10 — 25 octobre 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -41,6 +42,28 @@ import sagesseCoverImage from '../assets/publications/sagesse/mur-pierres.png';
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/discipline/`}>
+					<div class="issue-card__media">
+						<Image
+							src={disciplineCoverImage}
+							alt="Deux rames en bois appuyées contre le mur d'un hangar à bateaux au lever du jour, manches polis et pâlis par des années de prise identique"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">25 octobre 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Discipline</h2>
+						<p class="issue-card__excerpt">
+							Un manche de rame poli par la prise répétée, une corde à sauter
+							rangée au même clou, un pli de chemise qui ne varie jamais —
+							trois traces d'un effort qu'on ne montre jamais directement.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/sagesse/`}>
 					<div class="issue-card__media">

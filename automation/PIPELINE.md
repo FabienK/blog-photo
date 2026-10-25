@@ -20,6 +20,10 @@ divergence, `CLAUDE.md` fait foi.
    seul fichier, lancer `scripts/start_showme.sh` si le backend ne répond pas,
    vérifier `/api/status` avant de générer), rédiger un texte expliquant en
    quoi la photo illustre le thème.
+   - Lire `AGENT.md` avec `cat "/Users/fabien_1/Documents/Projets Claude code/ShowMe-5WH/AGENT.md"`
+     via Bash, jamais avec l'outil `Read` (fichier hors du projet : refusé en
+     headless, personne ne peut accorder la permission). Ne jamais terminer la
+     réponse pour demander une permission : personne ne répondra.
    - Maximum **3 tentatives de régénération par article**. Au-delà, garder la
      meilleure image obtenue plutôt que de boucler.
    - **Chaque appel à `/api/generate` doit être lancé avec un timeout explicite

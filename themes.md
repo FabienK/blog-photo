@@ -1,5 +1,4 @@
 # Thèmes
-- Discipline
 - Ingéniosité
 - Humanisme
 - Eugénisme

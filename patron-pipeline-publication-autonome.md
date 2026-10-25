@@ -226,6 +226,19 @@ anticiper au moment de la conception (pas au premier échec) est tout l'intérê
    appel long, et interdire toute formulation du type "j'attendrai la suite" en fin de
    réponse tant que le livrable attendu (ici, le marqueur de fin) n'est pas confirmé produit.
 
+10. **Les permissions se déclarent par chemin, pas seulement par outil — et un run réussi
+    après des tentatives ratées doit être signalé.**
+    Autoriser un outil (`Bash`, `WebSearch`) n'autorise pas la lecture d'un fichier situé hors
+    du dossier du projet : en headless, l'outil de lecture est refusé et l'agent s'arrête pour
+    demander une permission que personne ne peut donner. Une autorisation écrite dans le
+    fichier de contexte n'a aucun effet technique tant qu'elle n'est pas répercutée dans le
+    lancement (dossiers supplémentaires, liste d'outils). Le refus peut passer inaperçu : si
+    l'agent contourne (ex. lecture via le shell) et qu'une tentative ultérieure réussit, le run
+    est classé « succès » alors que le défaut est systématique. → Avant la mise en
+    production, dérouler la procédure étape par étape et cocher, pour chaque fichier, chemin
+    et commande touchés, qu'il est couvert par le lancement headless ; consigner les
+    tentatives ratées d'un run réussi dans le journal et en notifier l'auteur.
+
 ---
 
 ## V. Squelette de CLAUDE.md à instancier

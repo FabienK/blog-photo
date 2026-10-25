@@ -83,6 +83,7 @@ while [[ $attempt -le $MAX_ATTEMPTS ]]; do
 		cd "$PROJECT_DIR" &&
 			"$CLAUDE_BIN" -p "$PROMPT" \
 				--permission-mode acceptEdits \
+				--add-dir "/Users/fabien_1/Documents/Projets Claude code/ShowMe-5WH" \
 				--allowedTools "Bash" "WebSearch" \
 				--output-format json \
 				>"$out_file" 2>"$err_file"
