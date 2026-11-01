@@ -1,0 +1,352 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import antenne from '../assets/publications/ingeniosite/antenne.png';
+import entonnoir from '../assets/publications/ingeniosite/entonnoir.png';
+import sangle from '../assets/publications/ingeniosite/sangle.png';
+
+const articles = [
+	{
+		index: '01',
+		title: "Le cintre qui capte mieux que l'antenne d'origine",
+		image: antenne,
+		alt: "Antenne de radio improvisée à partir d'un cintre métallique redressé, scotché au dos d'un vieux poste de radio sur une étagère d'atelier",
+		paragraphs: [
+			"Un vieux poste de radio sur une étagère d'atelier, encombrée d'outils et de boîtiers empilés. L'antenne d'origine a dû casser ou se perdre un jour — à sa place, un cintre métallique redressé, plié en triangle, scotché au dos du poste avec deux bouts de ruban adhésif. Rien d'élégant, mais le geste a réglé le problème sans attendre une pièce de rechange.",
+			"L'ingéniosité tient rarement dans l'invention d'un objet nouveau : elle tient dans ce détournement minute, presque honteux de sa propre simplicité, qui refuse qu'un problème reste sans solution faute du bon matériau sous la main. Personne ne regarde ce cintre deux fois — il fait son travail, et c'est exactement tout ce qu'on lui demande.",
+		],
+		prompt:
+			'Realistic photo of a makeshift radio antenna made from a straightened metal wire coat hanger, taped to the back of an old radio set on a cluttered workshop shelf, warm late afternoon light through a small window, no people visible',
+	},
+	{
+		index: '02',
+		title: "Le goulot qui n'a jamais été conçu pour ça",
+		image: entonnoir,
+		alt: "Entonnoir improvisé inséré dans le goulot d'un bidon d'huile de moteur posé sur le sol en béton d'un garage",
+		paragraphs: [
+			"Au ras du sol en béton d'un garage, un bidon d'huile de moteur attend, son goulot évasé en embout improvisé : la partie supérieure d'un emballage plastique récupéré, enfoncée là où devrait se trouver un entonnoir acheté pour l'usage. L'ajustement n'est pas parfait, mais il canalise, et c'est tout ce qu'on lui demande avant de reboucher et de ranger.",
+			"Ce genre de solution ne cherche jamais l'approbation de personne : elle existe seulement parce qu'un soir, verser sans entonnoir faisait courir le risque d'en renverser partout, et qu'un bout de plastique qui traînait avait justement la bonne forme. L'ingéniosité domestique se reconnaît à ça — elle ne prévoit rien, elle répond.",
+		],
+		prompt:
+			'Realistic close-up photo of an improvised funnel made from the cut-off top of a plastic bottle, resting in the neck of a motor oil canister on a concrete garage floor, soft overhead light, no people visible',
+	},
+	{
+		index: '03',
+		title: 'Le nœud qui remplace la boucle cassée',
+		image: sangle,
+		alt: "Sangle de sac à dos usée réparée par un nœud de corde tressé à la main remplaçant une boucle cassée, suspendue contre une porte en bois",
+		paragraphs: [
+			"Une sangle de sac à dos, suspendue contre une porte en bois usée par les saisons. Là où une boucle en plastique s'est cassée, un nœud serré, tressé à la main avec une cordelette, referme la sangle sur elle-même et tient le sac tout aussi bien — peut-être mieux, puisqu'un nœud ne se fissure pas d'un coup sec par temps froid.",
+			"Il y a une forme de confiance particulière à faire reposer le poids de ses affaires sur un geste qu'on a fait soi-même plutôt que sur une pièce fabriquée en usine. Ce nœud ne cherche pas à imiter la boucle qu'il remplace : il résout le même problème autrement, avec ce qu'il y avait sous la main, et sans attendre qu'on en rachète une.",
+		],
+		prompt:
+			'Realistic close-up photo of a worn backpack strap repaired with a tightly woven cord knot replacing a broken buckle, hanging against a weathered wooden door, late afternoon light, no people visible',
+	},
+];
+---
+
+<Base
+	title="Ingéniosité — Prisme"
+	description="Trois photographies générées pour explorer le thème de l'Ingéniosité : une antenne improvisée avec un cintre, un entonnoir de fortune, une sangle réparée d'un nœud tressé à la main."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="eyebrow">N° 11 — 1 novembre 2026 — 03 photographies</p>
+				<h1 class="pub-title">Ingéniosité</h1>
+				<p class="pub-intro">
+					Ni ampoule, ni rouages, ni éclair de génie — un cintre redressé en
+					antenne, un bout de plastique devenu entonnoir, un nœud tressé à la
+					place d'une boucle cassée. Trois réparations de fortune qui résolvent
+					le problème avec ce qu'il y avait sous la main.
+				</p>
+			</div>
+		</section>
+
+		<section class="bench">
+			<div class="wrap">
+				{
+					articles.map((article, i) => (
+						<article class="patch" style={`--tilt: ${i % 2 === 0 ? '-0.6deg' : '0.7deg'}`}>
+							<div class="patch__tag">
+								<span class="patch__tag-number">{article.index}</span>
+							</div>
+							<div class="patch__card">
+								<div class="patch__media">
+									<Image
+										src={article.image}
+										alt={article.alt}
+										widths={[480, 900, 1400]}
+										sizes="(min-width: 55rem) 32rem, 92vw"
+										loading={i === 0 ? 'eager' : 'lazy'}
+									/>
+								</div>
+								<div class="patch__content">
+									<h2 class="patch__title">{article.title}</h2>
+									<div class="patch__body">
+										{article.paragraphs.map((p) => (
+											<p>{p}</p>
+										))}
+									</div>
+									<div class="patch__meta">
+										<span>
+											Photo générée avec <strong>ShowMe5WH</strong> — modèle{' '}
+											<strong>Flux (schnell)</strong> (ComfyUI, en local)
+										</span>
+										<details>
+											<summary>Voir le prompt de génération</summary>
+											<p>{article.prompt}</p>
+										</details>
+									</div>
+								</div>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+	:global(body) {
+		--paper: #ece2cd;
+		--ink: #2b241d;
+		--ink-soft: #675c4d;
+		--rule: rgba(43, 36, 29, 0.18);
+		--accent: #b5541f;
+		--accent-strong: #8f3e13;
+		--surface-raised: #f6efe0;
+		--font-display: 'Big Shoulders Text', 'Arial Narrow', sans-serif;
+		--font-body: 'Lora', 'Iowan Old Style', serif;
+	}
+
+	.site-header {
+		padding: 1.75rem 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.5rem;
+		font-weight: 700;
+		letter-spacing: 0.01em;
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.back-link {
+		font-family: var(--font-display);
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 3rem 0 3.5rem;
+	}
+	.pub-header__inner {
+		max-width: 38rem;
+	}
+	.eyebrow {
+		font-family: var(--font-display);
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--accent-strong);
+	}
+	.pub-title {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: clamp(2.9rem, 7vw + 1rem, 5.2rem);
+		letter-spacing: 0.005em;
+		margin: 0.7rem 0 1.5rem;
+		color: var(--ink);
+	}
+	.pub-intro {
+		font-family: var(--font-body);
+		font-size: 1.12rem;
+		line-height: 1.65;
+		color: var(--ink-soft);
+		max-width: 34rem;
+		margin: 0;
+	}
+
+	.bench {
+		padding-bottom: 4.5rem;
+	}
+
+	.patch {
+		position: relative;
+		margin: 0 auto 4.5rem;
+		max-width: 46rem;
+	}
+	.patch:last-child {
+		margin-bottom: 0;
+	}
+
+	.patch__tag {
+		position: relative;
+		z-index: 2;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		margin-left: 1.25rem;
+		margin-bottom: -1.1rem;
+		background: var(--accent);
+		border-radius: 0.3rem;
+		transform: rotate(-4deg);
+		box-shadow: 0 2px 0 rgba(43, 36, 29, 0.25);
+	}
+	.patch__tag::after {
+		content: '';
+		position: absolute;
+		top: 0.45rem;
+		left: 0.45rem;
+		width: 0.4rem;
+		height: 0.4rem;
+		border-radius: 50%;
+		background: var(--paper);
+	}
+	.patch__tag-number {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1.05rem;
+		color: var(--paper);
+		margin-top: 0.3rem;
+	}
+
+	.patch__card {
+		position: relative;
+		background: var(--surface-raised);
+		border: 1px solid var(--rule);
+		padding: 2rem 1.5rem 1.75rem;
+		transform: rotate(var(--tilt));
+		clip-path: polygon(
+			0% 1.2rem,
+			1.5% 0%,
+			3% 1rem,
+			5% 0.2rem,
+			7% 1.1rem,
+			9% 0%,
+			100% 0%,
+			100% 100%,
+			0% 100%
+		);
+	}
+
+	.patch__media {
+		border: 1px solid var(--rule);
+	}
+	.patch__media :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.patch__title {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: clamp(1.4rem, 2vw + 1rem, 1.85rem);
+		letter-spacing: 0.005em;
+		margin: 1.4rem 0 1.1rem;
+		color: var(--ink);
+	}
+	.patch__body p {
+		font-family: var(--font-body);
+		font-size: 1.04rem;
+		line-height: 1.7;
+		color: var(--ink);
+	}
+	.patch__body p + p {
+		margin-top: 1rem;
+	}
+	.patch__meta {
+		margin-top: 1.3rem;
+		padding-top: 1.1rem;
+		border-top: 1px dashed var(--rule);
+		font-family: var(--font-body);
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+	}
+	.patch__meta strong {
+		color: var(--ink);
+	}
+	.patch__meta details {
+		margin-top: 0.6rem;
+	}
+	.patch__meta summary {
+		cursor: pointer;
+		color: var(--accent-strong);
+		font-weight: 600;
+	}
+	.patch__meta details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-body);
+		font-style: italic;
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 50rem) {
+		.patch__card {
+			display: grid;
+			grid-template-columns: 18rem 1fr;
+			gap: 0 2rem;
+			padding: 2.25rem;
+		}
+		.patch__title {
+			margin-top: 0;
+		}
+	}
+</style>

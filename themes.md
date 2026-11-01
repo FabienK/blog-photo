@@ -1,5 +1,4 @@
 # Thèmes
-- Ingéniosité
 - Humanisme
 - Eugénisme
 - Amour
