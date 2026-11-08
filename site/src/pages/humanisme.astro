@@ -1,0 +1,341 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import pupitre from '../assets/publications/humanisme/pupitre.png';
+import stethoscope from '../assets/publications/humanisme/stethoscope.png';
+import lettres from '../assets/publications/humanisme/lettres.png';
+
+const articles = [
+	{
+		numeral: 'I',
+		title: 'Le creux que des générations de coudes ont poli',
+		image: pupitre,
+		alt: "Pupitre d'école en bois ancien, surface usée et polie au centre par des générations d'avant-bras, initiale gravée près du bord",
+		paragraphs: [
+			"Un pupitre d'école en bois, usé en son centre jusqu'à devenir presque lisse, presque clair, là où des générations d'avant-bras et de coudes se sont appuyés pendant qu'on apprenait à lire, à compter, à douter. Sur le bord, une marque gravée au canif, trace discrète d'une main qui voulait laisser quelque chose derrière elle.",
+			"L'humanisme, avant d'être une doctrine, est un pari sur l'instruction : l'idée qu'on devient pleinement soi-même en apprenant, et que ce savoir ne vaut que transmis. Chaque usure de ce bois est la preuve silencieuse qu'une personne en a formé une autre, puis une autre encore — le même geste répété, jamais identique, jamais inutile.",
+		],
+		prompt:
+			'Close-up still life of an old wooden school desk writing surface, the wood deeply worn and polished smooth at the center by generations of forearms and elbows resting on it, faint carved initials near the edge, soft raking window light, shallow depth of field, warm documentary photography, no people visible',
+	},
+	{
+		numeral: 'II',
+		title: 'L’embout usé par des milliers de battements écoutés',
+		image: stethoscope,
+		alt: 'Stéthoscope ancien posé sur une table en bois sombre, embouts noircis et pavillon de métal légèrement terni par l’usage',
+		paragraphs: [
+			"Un stéthoscope posé sur une table en bois sombre, les embouts noircis et assouplis par des années d'usage, le pavillon de métal légèrement terni par les mains qui l'ont tenu. Un objet sans prétention, pensé pour une seule chose : entendre ce qui se passe à l'intérieur d'un corps qu'on ne connaît pas encore.",
+			"L'humanisme place la personne — sa douleur, sa vie, sa dignité — avant toute abstraction qui voudrait la réduire à un cas ou un numéro. Cet instrument ne soigne rien par lui-même ; il sert seulement à écouter, le premier geste avant tous les autres, celui qui reconnaît qu'en face il y a quelqu'un.",
+		],
+		prompt:
+			'Close-up still life of an old stethoscope resting on a dark wooden table, the rubber ear tips cracked and worn smooth from years of use, chrome chest piece slightly tarnished, soft directional window light, shallow depth of field, warm documentary photography, no people visible',
+	},
+	{
+		numeral: 'III',
+		title: "Une liasse de lettres qu'on n'a pas pu jeter",
+		image: lettres,
+		alt: "Liasse de lettres manuscrites anciennes nouées d'un ruban fatigué, papier jauni, écriture à l'encre visible",
+		paragraphs: [
+			"Une petite liasse de lettres manuscrites, nouée d'un ruban fatigué, le papier jauni aux bords et l'encre un peu passée. On ne lit presque rien du texte — seulement la certitude qu'une main a tenu un stylo pour s'adresser à une autre, avec le temps et la distance entre les deux.",
+			"Les humanistes de la Renaissance se sont d'abord reconnus par leurs lettres : Érasme, Pétrarque et tant d'autres ont fait circuler leurs idées de main en main, convaincus qu'une pensée ne vaut que partagée. Cette liasse continue le même geste à son échelle — modeste, privée, mais portée par la même conviction qu'une parole adressée à quelqu'un mérite d'être gardée.",
+		],
+		prompt:
+			'Close-up still life of a small bundle of old handwritten letters tied together with a faded ribbon, yellowed paper edges, visible ink handwriting slightly blurred, soft warm window light, shallow depth of field, still life photography, no people or faces visible',
+	},
+];
+---
+
+<Base
+	title="Humanisme — Prisme"
+	description="Trois photographies générées pour explorer le thème de l'Humanisme : un pupitre d'école usé, un stéthoscope, une liasse de lettres manuscrites."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="eyebrow">N° 12 — 8 novembre 2026 — 03 photographies</p>
+				<h1 class="pub-title">Humanisme</h1>
+				<p class="pub-intro">
+					Ni homme de Vitruve, ni globe entouré de mains, ni colombe — un pupitre
+					poli par des générations d'élèves, un stéthoscope usé par l'écoute, une
+					liasse de lettres qu'on n'a pas pu jeter. Trois objets qui portent la
+					trace d'une attention portée à quelqu'un d'autre.
+				</p>
+			</div>
+		</section>
+
+		<section class="manuscript">
+			<div class="wrap wrap--narrow">
+				{
+					articles.map((article, i) => (
+						<>
+							<article class="folio">
+								<p class="folio__numeral" aria-hidden="true">
+									{article.numeral}
+								</p>
+								<div class="folio__media">
+									<Image
+										src={article.image}
+										alt={article.alt}
+										widths={[480, 900, 1400]}
+										sizes="(min-width: 50rem) 34rem, 92vw"
+										loading={i === 0 ? 'eager' : 'lazy'}
+									/>
+								</div>
+								<h2 class="folio__title">{article.title}</h2>
+								<div class="folio__body">
+									{article.paragraphs.map((p) => (
+										<p>{p}</p>
+									))}
+								</div>
+								<div class="folio__meta">
+									<span>
+										Photo générée avec <strong>ShowMe5WH</strong> — modèle{' '}
+										<strong>Flux (schnell)</strong> (ComfyUI, en local)
+									</span>
+									<details>
+										<summary>Voir le prompt de génération</summary>
+										<p>{article.prompt}</p>
+									</details>
+								</div>
+							</article>
+							{i < articles.length - 1 && (
+								<div class="flourish" aria-hidden="true">
+									<span />
+								</div>
+							)}
+						</>
+					))
+				}
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Figtree:wght@400;500;600&display=swap');
+
+	:global(body) {
+		--paper: #171a2c;
+		--ink: #ece7da;
+		--ink-soft: #a7a1c2;
+		--rule: rgba(236, 231, 218, 0.16);
+		--accent: #9b82e0;
+		--accent-strong: #c3afef;
+		--surface-raised: #1e2238;
+		--font-display: 'EB Garamond', 'Iowan Old Style', 'Palatino Linotype', serif;
+		--font-body: 'Figtree', -apple-system, sans-serif;
+	}
+
+	.site-header {
+		padding: 1.75rem 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.5rem;
+		font-style: italic;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.back-link {
+		font-family: var(--font-body);
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent-strong);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 3.25rem 0 3.5rem;
+	}
+	.pub-header__inner {
+		max-width: 36rem;
+	}
+	.eyebrow {
+		font-family: var(--font-body);
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--accent-strong);
+	}
+	.pub-title {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-weight: 500;
+		font-size: clamp(2.8rem, 6vw + 1rem, 4.6rem);
+		letter-spacing: 0.005em;
+		margin: 0.7rem 0 1.5rem;
+		color: var(--ink);
+	}
+	.pub-intro {
+		font-family: var(--font-body);
+		font-size: 1.1rem;
+		line-height: 1.65;
+		color: var(--ink-soft);
+		max-width: 34rem;
+		margin: 0;
+	}
+
+	.manuscript {
+		padding-bottom: 4.5rem;
+	}
+	.wrap--narrow {
+		max-width: 38rem;
+	}
+
+	.folio {
+		position: relative;
+	}
+	.folio__numeral {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-weight: 500;
+		font-size: 1.3rem;
+		letter-spacing: 0.08em;
+		color: var(--accent-strong);
+		margin: 0 0 1rem;
+	}
+
+	.folio__media {
+		border: 1px solid var(--rule);
+	}
+	.folio__media :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.folio__title {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: clamp(1.55rem, 2.2vw + 1rem, 2rem);
+		line-height: 1.2;
+		margin: 1.6rem 0 1.3rem;
+		color: var(--ink);
+	}
+
+	.folio__body p {
+		font-family: var(--font-body);
+		font-size: 1.06rem;
+		line-height: 1.75;
+		color: var(--ink);
+	}
+	.folio__body p + p {
+		margin-top: 1.1rem;
+	}
+	.folio__body p:first-of-type::first-letter {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: 3.4rem;
+		font-weight: 500;
+		line-height: 0.72;
+		float: left;
+		padding: 0.1rem 0.5rem 0 0;
+		color: var(--accent-strong);
+	}
+
+	.folio__meta {
+		margin-top: 1.5rem;
+		padding-top: 1.1rem;
+		border-top: 1px solid var(--rule);
+		font-family: var(--font-body);
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+	}
+	.folio__meta strong {
+		color: var(--ink);
+	}
+	.folio__meta details {
+		margin-top: 0.6rem;
+	}
+	.folio__meta summary {
+		cursor: pointer;
+		color: var(--accent-strong);
+		font-weight: 600;
+	}
+	.folio__meta details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-display);
+		font-style: italic;
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.flourish {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 3.5rem 0;
+	}
+	.flourish span {
+		position: relative;
+		width: 100%;
+		height: 1px;
+		background: var(--rule);
+	}
+	.flourish span::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0.5rem;
+		height: 0.5rem;
+		background: var(--accent);
+		transform: translate(-50%, -50%) rotate(45deg);
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 50rem) {
+		.folio {
+			padding: 0 2rem;
+		}
+	}
+</style>

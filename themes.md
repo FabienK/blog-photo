@@ -1,5 +1,4 @@
 # Thèmes
-- Humanisme
 - Eugénisme
 - Amour
 - Colère
