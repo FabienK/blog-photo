@@ -1,0 +1,342 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import compas from '../assets/publications/eugenisme/compas.png';
+import fiches from '../assets/publications/eugenisme/fiches.png';
+import ruban from '../assets/publications/eugenisme/ruban.png';
+
+const articles = [
+	{
+		code: 'PIÈCE N°01',
+		stamp: 'INSTRUMENT RETIRÉ',
+		title: "Le compas qui prétendait mesurer l'âme",
+		image: compas,
+		alt: 'Compas anthropométrique rouillé posé sur une table de bois, dans un bureau abandonné',
+		paragraphs: [
+			"Entre la fin du XIXe siècle et les années 1930, des médecins et des anthropologues ont cru qu'un compas pouvait dire qui méritait de se reproduire. Le crâne se mesurait au millimètre, l'écart entre les yeux se notait sur une fiche, et ces chiffres servaient de preuve « scientifique » à des lois de stérilisation forcée — aux États-Unis dès 1907, en Scandinavie jusque dans les années 1970, puis, portée à une échelle industrielle, dans le programme eugéniste du Troisième Reich (plus de 400 000 stérilisations entre 1933 et 1945, prélude direct à l'extermination des personnes handicapées dans le programme Aktion T4).",
+			"Cette photo ne montre personne : un compas anthropométrique rouillé, abandonné sur une table de bois dans un bureau vide. L'instrument a survécu à la doctrine qui le justifiait. Il ne mesure plus rien — il rappelle seulement qu'on a un jour fait semblant que le mètre pouvait trancher qui avait le droit d'exister.",
+		],
+		prompt:
+			'Realistic photo of a rusted antique craniometer (anthropometric measuring calipers) resting on a worn wooden laboratory table, in an empty abandoned office with dust in the air, soft daylight through a dirty window, no people present, no text visible, documentary still-life photography, muted sepia tones',
+	},
+	{
+		code: 'PIÈCE N°02',
+		stamp: 'DOSSIER CLASSÉ',
+		title: 'Le tiroir à fiches',
+		image: fiches,
+		alt: 'Tiroir de classeur en bois ouvert, rempli de fiches jaunies serrées les unes contre les autres, aucun nom lisible',
+		paragraphs: [
+			"L'eugénisme n'a pas seulement produit des lois : il a produit de la paperasse. Le Eugenics Record Office de Cold Spring Harbor, aux États-Unis, a constitué pendant des décennies des dizaines de milliers de fiches généalogiques classant des familles entières comme « aptes » ou « inaptes » à se reproduire — alcoolisme, pauvreté, handicap et délit étaient notés sur la même fiche que l'hérédité, sans distinction. Ces dossiers ont ensuite servi de pièces à conviction devant les tribunaux américains pour justifier des stérilisations forcées, validées par la Cour suprême elle-même en 1927.",
+			"La photo montre un tiroir de classeur ouvert, des fiches jaunies tassées les unes contre les autres, aucun visage, aucun nom lisible. C'est précisément ce que faisait cette administration : réduire une personne à une ligne dans un tiroir, avant de décider à sa place de son droit à avoir des enfants.",
+		],
+		prompt:
+			"Realistic photo of an open wooden card catalog drawer filled with old yellowed index cards, some tilted and worn, a faded red stamp mark visible on one card's edge but no readable text anywhere, in a dim quiet archive room, no people present, documentary photography, desaturated colors",
+	},
+	{
+		code: 'PIÈCE N°03',
+		stamp: 'PRIX ANNULÉ',
+		title: 'Le ruban bleu',
+		image: ruban,
+		alt: 'Ruban bleu de concours suspendu à côté d’une toise murale, dans un hangar de foire vide',
+		paragraphs: [
+			"Dans les années 1920, les foires agricoles américaines organisaient des concours de « familles les plus aptes » (Fitter Family Contests) : entre le concours de bétail et celui de confitures, des familles entières se faisaient examiner par des médecins, mesurer, noter sur une fiche médicale, pour repartir — ou non — avec un ruban bleu, la même récompense que la plus belle vache de l'exposition. L'eugénisme n'était alors pas une doctrine savante confinée aux laboratoires : c'était un divertissement populaire, financé par des fondations respectées, qui apprenait à un public de fête foraine à classer les êtres humains comme du bétail.",
+			"La photo montre ce ruban bleu suspendu à côté d'une toise murale, dans un hangar de foire vide. Personne à mesurer, personne pour recevoir le prix — seulement l'objet qui a validé, en souriant, l'idée qu'une vie humaine se note comme une bête de concours.",
+		],
+		prompt:
+			'Realistic photo of a faded blue rosette prize ribbon pinned beside an old wall-mounted height measuring chart, inside an empty rural fairground building, dusty wooden planks, warm fading afternoon light, no people present, documentary photography, worn vintage texture',
+	},
+];
+---
+
+<Base
+	title="Eugénisme — Prisme"
+	description="Trois photographies générées pour examiner, de façon critique et mémorielle, l'histoire de l'eugénisme : un compas anthropométrique, un tiroir de fiches, un ruban de concours."
+>
+	<header class="site-header">
+		<div class="wrap site-header__inner">
+			<a class="wordmark" href={`${import.meta.env.BASE_URL}/`}>Prisme</a>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Toutes les publications</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="pub-header">
+			<div class="wrap pub-header__inner">
+				<p class="case-ref">Dossier N° 13 — 15 novembre 2026 — 03 pièces</p>
+				<h1 class="pub-title">Eugénisme</h1>
+				<p class="pub-intro">
+					Ni croix gammée, ni affiche de propagande, ni arbre généalogique à la
+					branche coupée — un compas rouillé, un tiroir de fiches, un ruban de
+					concours. Trois objets administratifs qui ont chacun validé, en leur
+					temps, l'idée qu'une vie humaine se mesure et se classe. Cette
+					publication les expose comme des pièces à conviction, pas comme un
+					idéal.
+				</p>
+			</div>
+		</section>
+
+		<section class="registry">
+			<div class="wrap wrap--narrow">
+				{
+					articles.map((article, i) => (
+						<article class="dossier">
+							<div class="dossier__tab">{article.code}</div>
+							<div class="dossier__frame">
+								<Image
+									src={article.image}
+									alt={article.alt}
+									widths={[480, 900, 1400]}
+									sizes="(min-width: 50rem) 34rem, 92vw"
+									loading={i === 0 ? 'eager' : 'lazy'}
+								/>
+								<span class="dossier__stamp" aria-hidden="true">
+									{article.stamp}
+								</span>
+							</div>
+							<h2 class="dossier__title">{article.title}</h2>
+							<div class="dossier__body">
+								{article.paragraphs.map((p) => (
+									<p>{p}</p>
+								))}
+							</div>
+							<div class="dossier__meta">
+								<span>
+									Photo générée avec <strong>ShowMe5WH</strong> — modèle{' '}
+									<strong>Flux (schnell)</strong> (ComfyUI, en local)
+								</span>
+								<details>
+									<summary>Voir le prompt de génération</summary>
+									<p>{article.prompt}</p>
+								</details>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>
+				Photographies générées avec <strong>ShowMe5WH</strong> (ComfyUI, en
+				local). Textes et mise en page : l'auteur, assisté de Claude.
+			</p>
+			<a class="back-link" href={`${import.meta.env.BASE_URL}/`}>← Retour à Prisme</a>
+		</div>
+	</footer>
+</Base>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Public+Sans:wght@400;500;600&display=swap');
+
+	:global(body) {
+		--paper: #e3e6e1;
+		--ink: #1c1f1c;
+		--ink-soft: #565d56;
+		--rule: rgba(28, 31, 28, 0.22);
+		--accent: #8f2a1f;
+		--accent-strong: #6e1f16;
+		--surface-raised: #d7dbd3;
+		--font-display: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+		--font-body: 'Public Sans', -apple-system, sans-serif;
+	}
+
+	.site-header {
+		padding: 1.75rem 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.site-header__inner {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	.wordmark {
+		font-family: var(--font-display);
+		font-size: 1.3rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		text-decoration: none;
+		color: var(--ink);
+	}
+	.back-link {
+		font-family: var(--font-body);
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-soft);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.25s ease, color 0.25s ease;
+	}
+	.back-link:hover {
+		color: var(--accent-strong);
+		border-color: currentColor;
+	}
+
+	.pub-header {
+		padding: 3.25rem 0 3.5rem;
+	}
+	.pub-header__inner {
+		max-width: 38rem;
+	}
+	.case-ref {
+		font-family: var(--font-display);
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent-strong);
+	}
+	.pub-title {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: clamp(2.4rem, 5.2vw + 1rem, 3.8rem);
+		letter-spacing: -0.01em;
+		margin: 0.7rem 0 1.5rem;
+		color: var(--ink);
+	}
+	.pub-intro {
+		font-family: var(--font-body);
+		font-size: 1.08rem;
+		line-height: 1.65;
+		color: var(--ink-soft);
+		max-width: 36rem;
+		margin: 0;
+	}
+
+	.registry {
+		padding-bottom: 4.5rem;
+	}
+	.wrap--narrow {
+		max-width: 38rem;
+	}
+
+	.dossier {
+		position: relative;
+		background: var(--surface-raised);
+		border: 1px solid var(--rule);
+	}
+	.dossier + .dossier {
+		margin-top: 2.5rem;
+	}
+	.dossier__tab {
+		position: absolute;
+		top: -1px;
+		left: 1.5rem;
+		transform: translateY(-100%);
+		background: var(--ink);
+		color: var(--paper);
+		font-family: var(--font-display);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		padding: 0.35rem 0.8rem;
+	}
+
+	.dossier__frame {
+		position: relative;
+		overflow: hidden;
+		border-bottom: 1px solid var(--rule);
+	}
+	.dossier__frame :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.dossier__stamp {
+		position: absolute;
+		bottom: 1.4rem;
+		right: 1.2rem;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1rem;
+		letter-spacing: 0.08em;
+		color: var(--accent);
+		border: 3px solid var(--accent);
+		padding: 0.35rem 0.7rem;
+		transform: rotate(-9deg);
+		opacity: 0.82;
+		background: rgba(227, 230, 225, 0.12);
+		mix-blend-mode: multiply;
+	}
+
+	.dossier__title {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: clamp(1.4rem, 2vw + 1rem, 1.8rem);
+		line-height: 1.25;
+		letter-spacing: -0.005em;
+		margin: 1.8rem 1.6rem 1.2rem;
+		color: var(--ink);
+	}
+
+	.dossier__body {
+		margin: 0 1.6rem;
+	}
+	.dossier__body p {
+		font-family: var(--font-body);
+		font-size: 1.02rem;
+		line-height: 1.7;
+		color: var(--ink);
+	}
+	.dossier__body p + p {
+		margin-top: 1rem;
+	}
+
+	.dossier__meta {
+		margin: 1.5rem 1.6rem 0;
+		padding: 1.1rem 0 1.5rem;
+		border-top: 1px solid var(--rule);
+		font-family: var(--font-body);
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+	}
+	.dossier__meta strong {
+		color: var(--ink);
+	}
+	.dossier__meta details {
+		margin-top: 0.6rem;
+	}
+	.dossier__meta summary {
+		cursor: pointer;
+		color: var(--accent-strong);
+		font-weight: 600;
+		font-family: var(--font-display);
+		font-size: 0.78rem;
+		letter-spacing: 0.02em;
+	}
+	.dossier__meta details p {
+		margin: 0.6rem 0 0;
+		font-family: var(--font-body);
+		font-style: italic;
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.site-footer {
+		padding: 2.5rem 0 3rem;
+		border-top: 1px solid var(--rule);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	.site-footer p {
+		margin: 0;
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		color: var(--ink-soft);
+	}
+
+	@media (min-width: 50rem) {
+		.dossier__title,
+		.dossier__body,
+		.dossier__meta {
+			margin-left: 2.4rem;
+			margin-right: 2.4rem;
+		}
+	}
+</style>

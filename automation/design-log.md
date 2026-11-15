@@ -20,14 +20,18 @@ publication ne répète le design (couleurs + typographie) de la précédente �
 | 2026-11-01 | Ingéniosité | Fond sable chaud `#ece2cd`, encre brun-noir `#2b241d`, accent rouille/cuivre oxydé `#b5541f` / `#8f3e13` — clair après le graphite sombre de Discipline, teinte orangée/rouille distincte de l'oxblood de Destin et du rouge franc de Discipline | Big Shoulders Text (titres, sans-serif condensé façon étiquette découpée) + Lora (texte, serif chaleureux) — nouveau pairing sans-serif condensé/serif, aucune police en commun avec Discipline (Archivo/Inter) ni les publications précédentes | « Établi » : chaque article en carte légèrement inclinée (rotation alternée), bord supérieur en zigzag façon papier déchiré, étiquette carrée pivotée en forme de porte-clé accrochée au coin de la carte portant le numéro — ni registre à filets (Discipline), ni cartes arrondies (Sagesse), ni fiches techniques à bandeau gradué (IA), ni split sticky (Passion), ni cellules empilées (Dieu), ni plein cadre (Espoir), ni grille alternée (Idée), ni planches à double bordure (Destin) | Aucune |
 | 2026-11-08 | Humanisme | Fond indigo-violet très sombre `#171a2c`, texte crème `#ece7da`, accent violet mat `#9b82e0` / `#c3afef` — premier accent violet du site, sombre après le sable clair d'Ingéniosité, teinte froide distincte du bleu-nuit froid d'Intelligence artificielle (plus violine que marine) | EB Garamond (titres en italique, serif classique de la Renaissance — clin d'œil direct au thème, Garamond étant un caractère contemporain des humanistes) + Figtree (texte, sans-serif humaniste contemporain) — nouveau pairing serif-Renaissance/sans, aucune police en commun avec Ingéniosité (Big Shoulders Text/Lora) ni les publications précédentes | « Manuscrit » : colonne unique continue façon page de livre (pas de carte, pas de fond différencié par article), chiffre romain (I/II/III) en tête de chaque article, lettrine en grande capitale italique au premier paragraphe façon enluminure, fin d'article marquée d'un simple fleuron (losange) sur un filet fin — ni établi à cartes inclinées (Ingéniosité), ni registre à filets numérotés en marge (Discipline), ni cartes arrondies (Sagesse), ni fiches techniques à bandeau gradué (IA), ni split sticky (Passion), ni cellules empilées (Dieu), ni plein cadre (Espoir), ni grille alternée (Idée), ni planches à double bordure (Destin) | Aucune |
 
-**Point de départ pour la prochaine publication** : "Humanisme" est sombre et
-violine avec un accent violet mat, un pairing serif Renaissance/sans (EB Garamond
-+ Figtree) et une mise en page « manuscrit » en colonne unique continue à lettrines
-et chiffres romains, sans carte ni fond différencié par article. La prochaine
-publication doit s'écarter de cette base sur la palette **et** la typographie —
-par exemple un fond clair ou une teinte chaude, un pairing entièrement différent,
-et une mise en page qui n'utilise ni la colonne continue à lettrines, ni les
-cartes inclinées à bord en zigzag, ni les filets horizontaux à numéro en marge,
-ni les cartes arrondies à libellé en marge, ni les fiches techniques à bandeau
-gradué, ni le split à image sticky, ni les cellules empilées, ni le plein cadre,
-ni la grille alternée, ni les planches à double bordure déjà utilisés.
+| 2026-11-15 | Eugénisme | Fond gris-vert froid clair façon papier administratif `#e3e6e1`, encre quasi noire `#1c1f1c`, accent rouge tampon mat `#8f2a1f` / `#6e1f16` — clair après le sombre violine d'Humanisme, teinte froide et désaturée distincte du vert mousse de Sagesse et du sable/rouille d'Ingéniosité | JetBrains Mono (titres et repères, monospace machine à écrire — registre volontairement administratif/dossier, jamais utilisé) + Public Sans (texte, sans-serif de formulaire, jamais utilisé) — nouveau pairing entièrement différent d'Humanisme (EB Garamond/Figtree) | « Dossier » : chaque article en fiche rectangulaire à bordure simple (pas de carte inclinée, pas de double bordure), languette façon onglet de classeur portant un numéro de pièce (« PIÈCE N°01 »), tampon rouge pivoté en incrustation sur l'image (« INSTRUMENT RETIRÉ », « DOSSIER CLASSÉ », « PRIX ANNULÉ ») — ni colonne à lettrines (Humanisme), ni cartes inclinées à bord en zigzag (Ingéniosité), ni filets horizontaux à numéro en marge (Discipline), ni cartes arrondies à libellé en marge (Sagesse), ni fiches techniques à bandeau gradué (IA), ni split sticky (Passion), ni cellules empilées (Dieu), ni plein cadre (Espoir), ni grille alternée (Idée), ni planches à double bordure (Destin) | Aucune |
+
+**Point de départ pour la prochaine publication** : "Eugénisme" est clair et
+froid (gris-vert papier administratif) avec un accent rouge tampon mat, un
+pairing monospace machine à écrire / sans-serif de formulaire (JetBrains Mono +
+Public Sans) et une mise en page « dossier » à fiches rectangulaires, languette
+numérotée et tampon rouge incrusté sur chaque image. La prochaine publication
+doit s'écarter de cette base sur la palette **et** la typographie — et éviter
+une mise en page à fiches/onglets de classeur, en plus de la colonne continue à
+lettrines (Humanisme), des cartes inclinées à bord en zigzag (Ingéniosité), des
+filets horizontaux à numéro en marge (Discipline), des cartes arrondies à
+libellé en marge (Sagesse), des fiches techniques à bandeau gradué (IA), du
+split à image sticky (Passion), des cellules empilées (Dieu), du plein cadre
+(Espoir), de la grille alternée (Idée) et des planches à double bordure
+(Destin) déjà utilisés.

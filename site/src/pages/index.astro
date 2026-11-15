@@ -13,6 +13,7 @@ import sagesseCoverImage from '../assets/publications/sagesse/mur-pierres.png';
 import disciplineCoverImage from '../assets/publications/discipline/rames.png';
 import ingeniositeCoverImage from '../assets/publications/ingeniosite/antenne.png';
 import humanismeCoverImage from '../assets/publications/humanisme/lettres.png';
+import eugenismeCoverImage from '../assets/publications/eugenisme/ruban.png';
 ---
 
 <Base
@@ -29,7 +30,7 @@ import humanismeCoverImage from '../assets/publications/humanisme/lettres.png';
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 12 — 8 novembre 2026</p>
+				<p class="eyebrow">Numéro 13 — 15 novembre 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -44,6 +45,29 @@ import humanismeCoverImage from '../assets/publications/humanisme/lettres.png';
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/eugenisme/`}>
+					<div class="issue-card__media">
+						<Image
+							src={eugenismeCoverImage}
+							alt="Ruban bleu de concours suspendu à côté d'une toise murale, dans un hangar de foire vide"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">15 novembre 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Eugénisme</h2>
+						<p class="issue-card__excerpt">
+							Un compas anthropométrique rouillé, un tiroir de fiches
+							généalogiques, un ruban de concours de « familles aptes » —
+							trois objets administratifs qui ont validé l'idée qu'une vie
+							humaine se mesure et se classe.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/humanisme/`}>
 					<div class="issue-card__media">
