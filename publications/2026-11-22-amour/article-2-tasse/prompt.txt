@@ -1,0 +1,6 @@
+Modèle : Flux (version schnell) — ShowMe5WH, style "Photoréaliste", model_id flux_schnell_photo
+
+Script (anglais, écrit directement — pratique validée pour éviter les mistraductions Argos) :
+Realistic close-up photo of two ceramic mugs on a wooden kitchen shelf, one with a small chip on its rim but clean and recently used, standing next to its matching intact twin, warm late afternoon light, no people, no legible text.
+
+Seed obtenue : 2147345908

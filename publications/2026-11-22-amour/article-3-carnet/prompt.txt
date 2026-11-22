@@ -1,0 +1,6 @@
+Modèle : Flux (version schnell) — ShowMe5WH, style "Photoréaliste", model_id flux_schnell_photo
+
+Script (anglais, écrit directement — pratique validée pour éviter les mistraductions Argos) :
+Realistic close-up photo of an old worn paper address book page, the same phone number rewritten over the same spot in several different shades of blue ink over the years, soft warm desk lamp light, blurred illegible handwriting, no people.
+
+Seed obtenue : 3118954256

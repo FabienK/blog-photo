@@ -1,0 +1,6 @@
+Modèle : Flux (version schnell) — ShowMe5WH, style "Photoréaliste", model_id flux_schnell_photo
+
+Script (anglais, écrit directement — pratique validée pour éviter les mistraductions Argos) :
+Realistic close-up photo of a neatly made bed with crisp white linen, two hollow indentations of different depths pressed side by side into a shared pillow, soft early morning window light, shallow depth of field, no people, no faces, no text.
+
+Seed obtenue : 1494799197

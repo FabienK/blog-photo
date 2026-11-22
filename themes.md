@@ -1,5 +1,4 @@
 # Thèmes
-- Amour
 - Colère
 - Beauté
 - Gratitude

@@ -14,6 +14,7 @@ import disciplineCoverImage from '../assets/publications/discipline/rames.png';
 import ingeniositeCoverImage from '../assets/publications/ingeniosite/antenne.png';
 import humanismeCoverImage from '../assets/publications/humanisme/lettres.png';
 import eugenismeCoverImage from '../assets/publications/eugenisme/ruban.png';
+import amourCoverImage from '../assets/publications/amour/tasse.png';
 ---
 
 <Base
@@ -30,7 +31,7 @@ import eugenismeCoverImage from '../assets/publications/eugenisme/ruban.png';
 	<main>
 		<section class="hero">
 			<div class="wrap hero__inner">
-				<p class="eyebrow">Numéro 13 — 15 novembre 2026</p>
+				<p class="eyebrow">Numéro 14 — 22 novembre 2026</p>
 				<h1 class="hero__title">Chaque semaine,<br />un mot devient une image.</h1>
 				<p class="hero__lede">
 					Un thème imposé, une poignée de photographies générées, et un texte pour
@@ -45,6 +46,28 @@ import eugenismeCoverImage from '../assets/publications/eugenisme/ruban.png';
 		<section class="issues">
 			<div class="wrap">
 				<p class="eyebrow issues__label">Publications</p>
+
+				<a class="issue-card" href={`${import.meta.env.BASE_URL}/amour/`}>
+					<div class="issue-card__media">
+						<Image
+							src={amourCoverImage}
+							alt="Deux tasses en céramique identiques sur une étagère en bois, l'une ébréchée sur le bord, lumière chaude de fin d'après-midi"
+							widths={[480, 768, 1200]}
+							sizes="(min-width: 60rem) 40rem, 100vw"
+							loading="eager"
+						/>
+					</div>
+					<div class="issue-card__text">
+						<p class="eyebrow">22 novembre 2026 · 3 photographies</p>
+						<h2 class="issue-card__title">Amour</h2>
+						<p class="issue-card__excerpt">
+							Deux oreillers pressés l'un contre l'autre, une tasse ébréchée
+							qu'on n'a pas jetée, un numéro réécrit année après année —
+							trois habitudes discrètes plutôt qu'un cœur ou une rose.
+						</p>
+						<span class="issue-card__cta">Lire la publication →</span>
+					</div>
+				</a>
 
 				<a class="issue-card" href={`${import.meta.env.BASE_URL}/eugenisme/`}>
 					<div class="issue-card__media">
